@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,23 +14,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
     <!-- Css-->
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/animate.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/owl.carousel.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/owl.theme.default.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/magnific-popup.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/fontawesome-all.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/swiper.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap-select.min.css') }}>
 
-    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/vegas.min.css">
-    <link rel="stylesheet" href="assets/css/nouislider.min.css">
-    <link rel="stylesheet" href="assets/css/nouislider.pips.css">
-    <link rel="stylesheet" href="assets/css/jitsin_iconl.css">
-    <!-- Template styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href={{ asset('assets/css/jquery.mCustomScrollbar.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap-datepicker.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/vegas.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/nouislider.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/nouislider.pips.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/jitsin_iconl.css') }}>
 
-</head>
+    <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/responsive.css') }}>
