@@ -6,34 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project Details || Jitsin || Crowdfunding Form HTML Template</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/images/favicons/site.webmanifest">
-
-    <!-- Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-
-    <!-- Css-->
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
-
-    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/vegas.min.css">
-    <link rel="stylesheet" href="assets/css/nouislider.min.css">
-    <link rel="stylesheet" href="assets/css/nouislider.pips.css">
-    <link rel="stylesheet" href="assets/css/jitsin_iconl.css">
-    <!-- Template styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
@@ -68,25 +40,29 @@
                         <div class="project_details_right">
                             <div class="project_details_right_top">
                                 <ul class="project_details_rate_list list-unstyled">
-                                    <li><span>$22,600</span>Pledged</li>
+                                    <li><span>{{$item->dana_terkumpul}}</span>Terkumpul</li>
                                     <li><span>60</span>Backers</li>
                                 </ul>
                             </div>
                             <div class="progress-levels project_details_progress-levels">
                             <!--Skill Box-->
-                                <div class="progress-box">
-                                    <div class="inner count-box">
-                                        <div class="bar">
-                                            <div class="bar-innner">
-                                                <div class="skill-percent">
-                                                    <span class="count-text" data-speed="3000" data-stop="86">0</span>
-                                                    <span class="percent">%</span>
-                                                </div>
-                                                <div class="bar-fill" data-percent="86"></div>
+                            <div class="progress-box">
+                                <div class="inner count-box">
+                                    <div class="bar">
+                                        <div class="bar-innner">
+                                            <div class="skill-percent">
+                                                {{-- Menghitung persen --}}
+                                                {{$data = number_format($item->dana_terkumpul/$item->dana*100)}}
+                                                <span class="count-text" data-speed="3000" data-stop={{$data}}>{{$data}}</span>
+                                                <span class="percent">%</span>
                                             </div>
+                                            <div class="bar-fill" data-percent={{$data}}></div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            
+                            
                             </div>
                             <ul class="projects_details_categories list-unstyled">
                                 <li>
@@ -109,12 +85,12 @@
                             <div class="projects_details_bottom">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <h5>$22,600</h5>
-                                        <p>Pledged</p>
+                                        <h5>Rp.{{$item->dana_terkumpul}}</h5>
+                                        <p>Terkumpul</p>
                                     </li>
                                     <li>
-                                        <h5>$47,300</h5>
-                                        <p>Goal</p>
+                                        <h5>Rp.{{$item->dana}}</h5>
+                                        <p>Dibutuhkan</p>
                                     </li>
                                     <li>
                                         <h5>32</h5>
@@ -152,7 +128,7 @@
                     <div class="col-xl-12">
                         <div class="project-tab-box tabs-box">
                             <ul class="tab-btns tab-buttons clearfix list-unstyled">
-                                <li data-tab="#idea" class="tab-btn active-btn"><span>Project Idea</span></li>
+                                <li data-tab="#idea" class="tab-btn active-btn"><span>Detail Usaha</span></li>
                                 <li data-tab="#faq" class="tab-btn"><span>FAQ</span></li>
                                 <li data-tab="#update" class="tab-btn"><span>Updates</span></li>
                                 <li data-tab="#comm" class="tab-btn"><span>Comments</span></li>
@@ -163,7 +139,7 @@
                                        <div class="row">
                                            <div class="col-xl-8 col-lg-8">
                                                <div class="project_idea_details_content">
-                                                    <p class="project_idea_first_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vulputate sed mauris vitae pellentesque. Nunc ut ullamcorper libero. Aenean fringilla mauris quis risus laoreet interdum. Quisque imperdiet orci in metus aliquam egestas. Fusce elit libero, imperdiet nec orci quis, convallis hendrerit nisl. Cras auctor nec purus at placerat. Quisque consectetur, lectus in ullamcorper tempus, dolor arcu suscipit elit, id laoreet tortor justo nec arcu. Nam eu dictum ipsum. Morbi in mi eu urna placerat finibus a vel neque.</p>
+                                                    <p class="project_idea_first_text">{{$item->deskripsi}}aaaaaa</p>
                                                     <div class="project_idea_first_image">
                                                         <img src="assets/images/project/project_idea-img-1.jpg" alt="">
                                                     </div>
@@ -586,34 +562,6 @@
             </form>
         </div>
     </div>
-
-
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/TweenMax.min.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/typed-2.0.11.js"></script>
-    <script src="assets/js/vegas.min.js"></script>
-    <script src="assets/js/jquery.validate.min.js"></script>
-    <script src="assets/js/bootstrap-select.min.js"></script>
-    <script src="assets/js/countdown.min.js"></script>
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/js/nouislider.min.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/appear.js"></script>
-
-
-    <!-- template scripts -->
-    <script src="assets/js/theme.js"></script>
-
 
 </body>
 
