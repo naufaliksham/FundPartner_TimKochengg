@@ -24,6 +24,7 @@ class Usaha extends Model
         'nama_usaha',
         'deskripsi',
         'dana',
+        'dana_terkumpul',
     ];
 
     /**
