@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_mitra');
             $table->foreign('id_mitra')->references('id')->on('users');
             $table->string('nama_usaha');
-            $table->text('despripsi');
+            $table->text('deskripsi');
             $table->integer('dana');
             // $table->foreignId('id_MoU');
             // $table->foreign('id_MoU')->references('id')->on('MoU');
