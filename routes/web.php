@@ -22,5 +22,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {
-    Route::get("/home",[])
+    Route::get("/home",[]);
 });
