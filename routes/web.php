@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\DetailUsahaController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -15,11 +16,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
 
-Auth::routes();
+// Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {
     Route::get("/home",[]);
