@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-use App\Http\Controllers\DetailUsahaController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MitraController;
+use App\Http\Controllers\DetailUsahaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::post('/login', [AuthController::class, 'login']);
 // REGISTER
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+
+//MITRA
+// Route::group(['as' => 'mitra.', 'prefix' => 'mitra'], function () {
+    Route::get('/indexmitra', [MitraController::class, 'index'])->name('index');
+    Route::get('/form_umkm', [MitraController::class, 'create'])->name('create');
+    // });
 
 // LUPA PASSWORD
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
