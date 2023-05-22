@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\DetailUsahaController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -23,3 +24,11 @@ Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('d
 Route::middleware(['auth','user-role:user'])->group(function() {
     Route::get("/home",[]);
 });
+
+// LOGIN
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+// REGISTER
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
