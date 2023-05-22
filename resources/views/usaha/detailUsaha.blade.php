@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project Details || Jitsin || Crowdfunding Form HTML Template</title>
-
-</head>
-
-<body>
-
-    <div class="preloader">
-        <img src="assets/images/loader.png" class="preloader__image" alt="">
-    </div><!-- /.preloader -->
-
-    <div class="page-wrapper">
 
 
         <!--Project Details Top-->
@@ -510,59 +495,4 @@
             </div>
         </div>
 
-
-
-
-    </div><!-- /.page-wrapper -->
-
-
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
-
-
-    <div class="side-menu__block">
-        <div class="side-menu__block-overlay custom-cursor__overlay">
-            <div class="cursor"></div>
-            <div class="cursor-follower"></div>
-        </div><!-- /.side-menu__block-overlay -->
-        <div class="side-menu__block-inner ">
-            <div class="side-menu__top justify-content-end">
-                <a href="#" class="side-menu__toggler side-menu__close-btn"><img
-                        src="assets/images/shapes/close-1-1.png" alt=""></a>
-            </div><!-- /.side-menu__top -->
-
-            <nav class="mobile-nav__container">
-                <!-- content is loading via js -->
-            </nav>
-
-            <div class="side-menu__sep"></div><!-- /.side-menu__sep -->
-
-            <div class="side-menu__content">
-                <p><a href="mailto:needhelp@tripo.com">needhelp@jitsin.com</a> <br> <a href="tel:888-999-0000">888 999
-                        0000</a></p>
-                <div class="side-menu__social">
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="search-popup">
-        <div class="search-popup__overlay custom-cursor__overlay">
-            <div class="cursor"></div>
-            <div class="cursor-follower"></div>
-        </div><!-- /.search-popup__overlay -->
-        <div class="search-popup__inner">
-            <form action="#" class="search-popup__form">
-                <input type="text" name="search" placeholder="Type here to Search....">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-
-</body>
-
-</html>
+@endsection
