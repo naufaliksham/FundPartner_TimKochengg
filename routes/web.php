@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
+Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
 
 // Auth::routes();
 
