@@ -20,6 +20,6 @@ Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('d
 
 // Auth::routes();
 
-// Route::middleware(['auth','user-role:user'])->group(function() {
-//     Route::get("/home",[]);
-// });
+Route::middleware(['auth','user-role:user'])->group(function() {
+    Route::get("/home",[]);
+});
