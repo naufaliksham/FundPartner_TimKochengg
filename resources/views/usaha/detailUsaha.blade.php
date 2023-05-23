@@ -184,7 +184,7 @@
                                                                     alt="">
                                                             </div>
                                                             <div class="creator_info">
-                                                                <h4>Kevin Martin</h4>
+                                                                <h4>{{$item->usaha->name}}</h4>
                                                                 <h5>First Created · 0 backed</h5>
                                                             </div>
                                                             <div class="project_detail_creator_text">
