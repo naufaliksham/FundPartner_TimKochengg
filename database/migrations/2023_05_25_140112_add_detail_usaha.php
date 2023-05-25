@@ -16,7 +16,7 @@ return new class extends Migration
         //add dana terkumpul
         Schema::table('detail_usaha', function (Blueprint $table) {
             $table->string('gambar')->after('dana_terkumpul');
-            $table->string('waktu')->after('gambar')->nullable();
+            $table->integer('waktu')->after('gambar')->nullable();
             $table->string('status')->after('waktu')->default("Belum didanai");
         });
     }
