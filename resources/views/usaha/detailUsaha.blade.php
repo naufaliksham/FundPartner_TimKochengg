@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-xl-7 col-lg-7">
                             <div class="project_details_image">
-                                <img src="assets/images/project/project_details_img-1.jpg" alt="">
+                                <img src="{{asset('storage/'.$item->gambar)}}" alt="">
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5">
@@ -24,7 +24,7 @@
                                 <div class="project_details_right_top">
                                     <ul class="project_details_rate_list list-unstyled">
                                         <li><span>{{ $item->dana_terkumpul }}</span>Terkumpul</li>
-                                        <li><span>60</span>Backers</li>
+                                        {{-- <li><span>60</span>Backers</li> --}}
                                     </ul>
                                 </div>
                                 <div class="progress-levels project_details_progress-levels">

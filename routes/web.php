@@ -18,7 +18,7 @@ use App\Http\Controllers\DetailUsahaController;
 |
 */
 
-Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
+Route::get('/usaha/{request}', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
 
 // Auth::routes();
 
