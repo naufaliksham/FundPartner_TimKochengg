@@ -55,8 +55,8 @@
                             <label for="pembayaran" class="form-label input-runded"> Opsi Pembayaran</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pembayaran">
                                 <option selected disabled>Pilih</option>
-                                <option value="Dibayar langsung lunas"> Dibayar langsung lunas</option>
-                                <option value="Dicicil tiap minggu"> Dicicil tiap minggu</option>
+                                <option value="lunas"> Dibayar langsung lunas</option>
+                                <option value="dicicil"> Dicicil tiap minggu</option>
                               </select>
                             @error('pembayaran')
                             <div id="pembayaranHelp" class="form-text">{{ $message }}</div>
