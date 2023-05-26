@@ -11,8 +11,10 @@ class MitraController extends Controller
 {
     public function index()
     {
+        $data["usaha"] = Usaha::all();
+        $data2["usaha2"] = Usaha::orderBy('created_at','desc')->take(5)->get();
 
-    return view("mitra.index");
+        return view("mitra.index",$data,$data2);
     }
 
     public function create()
