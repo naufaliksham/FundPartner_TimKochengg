@@ -127,11 +127,10 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-8">
                                                     <div class="project_idea_details_content">
-                                                        <div class="project_idea_first_image">
-                                                            <img src="{{asset("assets/images/project/project_idea-img-1.jpg")}}"
-                                                                alt="">
-                                                        </div>
-                                                        <p class="project_idea_second_text">{{ $item->deskripsi }}</p>
+
+                                                            {!! $item->deskripsi !!}
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-4">
