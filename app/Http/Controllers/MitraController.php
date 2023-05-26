@@ -41,7 +41,8 @@ class MitraController extends Controller
         $usaha->gambar = $path;
         $usaha->save();
         
-        $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
-        return view('usaha.detailUsaha', compact('details'));
+        // $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
+        // return view('usaha.detailUsaha', compact('details'));
+        return redirect()->route('detailUsaha');
     }
 }
