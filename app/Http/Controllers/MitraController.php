@@ -29,6 +29,8 @@ class MitraController extends Controller
             'id_mitra' => ['required','integer'],
             'deskripsi' => ['required','string'],
             'dana' => ['required', 'integer'],
+            'waktu' => ['required','integer'],
+            'pembayaran' => ['required','string'],
             'gambar' => ['required', File::types(['jpg', 'jpeg', 'png', 'gif','jfif'])->max(12 * 1024)],
         ]);
         
@@ -38,6 +40,8 @@ class MitraController extends Controller
         $usaha->nama_usaha = $request->nama_usaha;
         $usaha->deskripsi = $request->deskripsi;
         $usaha->dana = $request->dana;
+        $usaha->waktu = $request->waktu;
+        $usaha->pembayaran = $request->pembayaran;
         $usaha->gambar = $path;
         $usaha->save();
         
