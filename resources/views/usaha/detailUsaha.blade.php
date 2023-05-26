@@ -16,7 +16,11 @@
                     <div class="row">
                         <div class="col-xl-7 col-lg-7">
                             <div class="project_details_image">
+                                @if ($item->gambar)
                                 <img src="{{asset('storage/'.$item->gambar)}}" alt="">
+                                @else
+                                <img src="{{asset("assets/images/project/project_idea-img-1.jpg")}}" alt="">
+                                @endif
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5">
@@ -126,54 +130,11 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-8">
                                                     <div class="project_idea_details_content">
-                                                        <p class="project_idea_first_text">{{ $item->deskripsi }}aaaaaa</p>
                                                         <div class="project_idea_first_image">
-                                                            <img src="assets/images/project/project_idea-img-1.jpg"
+                                                            <img src="{{asset("assets/images/project/project_idea-img-1.jpg")}}"
                                                                 alt="">
                                                         </div>
-                                                        <p class="project_idea_second_text">Integer feugiat est in tincidunt
-                                                            congue. Nam eget accumsan ligula. Nunc auctor ligula a quam
-                                                            fermentum, non iaculis diam suscipit. Aliquam lacinia lorem vel
-                                                            suscipit pulvinar. Etiam condimentum nunc non ultricies
-                                                            hendrerit. Sed nec blandit libero, ut gravida quam. Nam tortor
-                                                            est, faucibus at dolor id, blandit venenatis leo. Praesent
-                                                            euismod tempus libero et accumsan. Nunc ultrices sit amet urna
-                                                            sed euismod. Pellentesque finibus ipsum non mi sodales, vel
-                                                            ullamcorper ipsum pharetra. Praesent nec pharetra neque.</p>
-                                                        <ul class="project_idea_list list-unstyled">
-                                                            <li><i class="fa fa-check"></i>Praesent euismod tempus libero et
-                                                                accumsan.</li>
-                                                            <li><i class="fa fa-check"></i>Nunc ultrices sit amet urna sed
-                                                                euismod.</li>
-                                                            <li><i class="fa fa-check"></i>Vel ullamcorper ipsum pharetra
-                                                                raesent nec pharetra neque.</li>
-                                                            <li><i class="fa fa-check"></i>Fusce elit libero, imperdiet nec
-                                                                orci quis, convallis hendrerit nisl.</li>
-                                                        </ul>
-                                                        <div class="project_idea_second_image">
-                                                            <img src="assets/images/project/project_idea-img-2.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="project_idea_3rd_text">
-                                                            <h5>Nulla in ex at mi viverra sagittis ut non erat raesent nec
-                                                                congue elit.</h5>
-                                                            <p>Nunc arcu odio, convallis a lacinia ut, tristique id eros.
-                                                                Suspendisse leo erat, pellentesque et commodo vel, varius in
-                                                                felis. Nulla mollis turpis porta justo eleifend volutpat.
-                                                                Cras malesuada nec magna eu blandit. Nam sed efficitur ante.
-                                                                Quisque lobortis sodales risus, eu dapibus dolor porta
-                                                                vitae. Vestibulum eu ex auctor, scelerisque velit sit amet,
-                                                                vehicula sapien.</p>
-                                                        </div>
-                                                        <div class="project_idea_4th_text">
-                                                            <h5>Suspendisse leo erat, pellentesque et commodo vel, varius in
-                                                                felis.</h5>
-                                                            <p>Nulla mollis turpis porta justo eleifend volutpat. Cras
-                                                                malesuada nec magna eu blandit. Nam sed efficitur ante.
-                                                                Quisque lobortis sodales risus, eu dapibus dolor porta
-                                                                vitae. Vestibulum eu ex auctor, scelerisque velit sit amet,
-                                                                vehicula sapien.</p>
-                                                        </div>
+                                                        <p class="project_idea_second_text">{{ $item->deskripsi }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-4">
@@ -185,7 +146,6 @@
                                                             </div>
                                                             <div class="creator_info">
                                                                 <h4>{{$item->usaha->name}}</h4>
-                                                                <h5>First Created · 0 backed</h5>
                                                             </div>
                                                             <div class="project_detail_creator_text">
                                                                 <p>Crochet designer and Creator of the Woolly Chic brand.
