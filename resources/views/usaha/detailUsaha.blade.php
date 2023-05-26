@@ -89,10 +89,10 @@
                                     </ul>
                                 </div>
                                 <div class="project_details_btn_box">
-                                    <a href="#" class="thm-btn follow_btn"><i class="fa fa-heart"></i>Follow</a>
-                                    <a href="#" class="thm-btn back_this_project_btn">Back This Project</a>
+                                    <a href="#" class="thm-btn follow_btn">Edit</a>
+                                    <a href="#" class="thm-btn back_this_project_btn">Delete</a>
                                 </div>
-                                <div class="project_detail_share_box">
+                                {{-- <div class="project_detail_share_box">
                                     <div class="share_box_title">
                                         <h2>Share with friends</h2>
                                     </div>
@@ -102,7 +102,7 @@
                                         <a href="#" class="dr-clr"><i class="fab fa-dribbble"></i></a>
                                         <a href="#" class="ins-clr"><i class="fab fa-instagram"></i></a>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="project_details_text_box">
                                     <p><span>All or nothing</span>. This project will only be funded if it reaches its goal
                                         by Tue, January 28 2020 4:59 AM UTC +00:00.</p>
@@ -150,7 +150,7 @@
                                                                     environment.</p>
                                                             </div>
                                                         </div>
-                                                        <div class="project_detail_pledge">
+                                                        {{-- <div class="project_detail_pledge">
                                                             <div class="title">
                                                                 <h3>Pledge Without<br>A Reward</h3>
                                                             </div>
@@ -165,9 +165,9 @@
                                                             <div class="project_detail_btn">
                                                                 <a href="#" class="thm-btn">Continue</a>
                                                             </div>
-                                                        </div>
-                                                        <div class="project_detail_rewards">
-                                                            <h3>Pledge $50 or more</h3>
+                                                        </div> --}}
+                                                        {{-- <div class="project_detail_rewards"> --}}
+                                                            {{-- <h3>Pledge $50 or more</h3>
                                                             <p>Reward description goes here. Lorem ipsum dolor sit amet,
                                                                 piscing elit. Vivamus dictum congue nunc, sed interdum massa
                                                                 in.</p>
@@ -182,7 +182,7 @@
                                                             <div class="project_detail_rewards_btn">
                                                                 <a href="#" class="thm-btn">Select this Reward</a>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>

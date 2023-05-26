@@ -8292,7 +8292,8 @@ li {
   display: block;
 }
 .project_details_image img {
-  width: 100%;
+  width: 670px;
+  height: 498px;
 }
 .project_details_right {
   position: relative;
