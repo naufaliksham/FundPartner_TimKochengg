@@ -82,6 +82,91 @@
                 </div>
             </section>
 
+            <section class="explorep_projects_one">
+                <div class="container">
+                    <div class="block-title text-center">
+                        <div class="block_title_icon">
+                            <img src="assets/images/icon/sec__title_two_icon.png" alt="">
+                        </div>
+                        <p>Ayo lihat</p>
+                        <h3>UMKM YANG BARU SAJA BERGABUNG</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="projects_four_carousel owl-theme owl-carousel">
+                                @foreach ($usaha2 as $no => $item)
+                                <div class="projects_one_single">
+                                    <div class="projects_one_img">
+                                        <img src="{{asset('storage/'.$item->gambar)}}" alt="">
+                                        <div class="project_one_icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="projects_one_content">
+                                        <div class="porjects_one_text">
+                                            <p><span>by</span> {{ $item->usaha->name }}</p>
+                                            <h3><a href="#">UMKM<br>{{ $item->nama_usaha }}</a></h3>
+                                        </div>
+                                        <div class="progress-levels">
+                                            <!--Skill Box-->
+                                            <div class="progress-box">
+                                                <div class="inner count-box">
+                                                    <div class="bar">
+                                                        <div class="bar-innner">
+                                                            <div class="skill-percent">
+                                                                <span class="count-text" data-speed="3000"
+                                                                    data-stop="86">0</span>
+                                                                <span class="percent">%</span>
+                                                            </div>
+                                                            <div class="bar-fill" data-percent="86"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="projects_categories">
+                                            <div class="projects_categories_left">
+                                                <div class="left_icon">
+                                                    <img src="assets/images/project/folder-icon.png" alt="">
+                                                </div>
+                                                <div class="left_text">
+                                                    <p>Health & Fitness</p>
+                                                </div>
+                                            </div>
+                                            <div class="projects_categories_right">
+                                                <div class="right_icon">
+                                                    <img src="assets/images/project/flag.png" alt="">
+                                                </div>
+                                                <div class="right_text">
+                                                    <p>United Kingdom</p>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                    </div>
+                                    <div class="projects_one_bottom">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <h5>Rp {{ $item->dana_terkumpul }}</h5>
+                                                <p>Pledged</p>
+                                            </li>
+                                            <li>
+                                                <h5>Rp {{ $item->dana }}</h5>
+                                                <p>Goal</p>
+                                            </li>
+                                            {{-- <li>
+                                                <h5>{{ $item->waktu*7 }}</h5>
+                                                <p>Days Left</p>
+                                            </li> --}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!--How We Works Two Start-->
             <section class="how_we_works how_we_works_two">
                 <div class="container">
@@ -153,8 +238,90 @@
                     </div>
                 </div>
             </section>
-            <section class="project_details_top">
-                
+
+            <section class="explorep_projects_one">
+                <div class="container">
+                    <div class="block-title text-center">
+                        <div class="block_title_icon">
+                            <img src="assets/images/icon/sec__title_two_icon.png" alt="">
+                        </div>
+                        <p>Ayo lihat juga</p>
+                        <h3>UMKM YANG SUKSES MENDAPAT PENDANAAN</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="projects_four_carousel owl-theme owl-carousel">
+                                @foreach ($usaha as $no => $item)
+                                <div class="projects_one_single">
+                                    <div class="projects_one_img">
+                                        <img src="{{asset('storage/'.$item->gambar)}}" alt="">
+                                        <div class="project_one_icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="projects_one_content">
+                                        <div class="porjects_one_text">
+                                            <p><span>by</span> {{ $item->usaha->name }}</p>
+                                            <h3><a href="#">UMKM<br>{{ $item->nama_usaha }}</a></h3>
+                                        </div>
+                                        <div class="progress-levels">
+                                            <!--Skill Box-->
+                                            <div class="progress-box">
+                                                <div class="inner count-box">
+                                                    <div class="bar">
+                                                        <div class="bar-innner">
+                                                            <div class="skill-percent">
+                                                                <span class="count-text" data-speed="3000"
+                                                                    data-stop="86">0</span>
+                                                                <span class="percent">%</span>
+                                                            </div>
+                                                            <div class="bar-fill" data-percent="86"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="projects_categories">
+                                            <div class="projects_categories_left">
+                                                <div class="left_icon">
+                                                    <img src="assets/images/project/folder-icon.png" alt="">
+                                                </div>
+                                                <div class="left_text">
+                                                    <p>Health & Fitness</p>
+                                                </div>
+                                            </div>
+                                            <div class="projects_categories_right">
+                                                <div class="right_icon">
+                                                    <img src="assets/images/project/flag.png" alt="">
+                                                </div>
+                                                <div class="right_text">
+                                                    <p>United Kingdom</p>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                    </div>
+                                    <div class="projects_one_bottom">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <h5>Rp {{ $item->dana_terkumpul }}</h5>
+                                                <p>Pledged</p>
+                                            </li>
+                                            <li>
+                                                <h5>Rp {{ $item->dana }}</h5>
+                                                <p>Goal</p>
+                                            </li>
+                                            {{-- <li>
+                                                <h5>{{ $item->waktu*7 }}</h5>
+                                                <p>Days Left</p>
+                                            </li> --}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="project_details_tab_box">

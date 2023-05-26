@@ -38,6 +38,10 @@ Route::post('/register', [AuthController::class, 'register']);
 // Route::group(['as' => 'mitra.', 'prefix' => 'mitra'], function () {
     Route::get('/indexmitra', [MitraController::class, 'index'])->name('index');
     Route::get('/form_umkm', [MitraController::class, 'create'])->name('create');
+
+    //form mitra
+    Route::post('/store_umkm', [MitraController::class, 'store'])->name('store');
+
     // });
 
 // LUPA PASSWORD

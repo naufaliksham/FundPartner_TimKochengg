@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        //add dana terkumpul
         Schema::table('detail_usaha', function (Blueprint $table) {
-            $table->integer('dana_terkumpul')->after('dana')->nullable();
+            $table->string('pembayaran');
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('detail_usaha', function (Blueprint $table) {
+            //
+        });
     }
 };

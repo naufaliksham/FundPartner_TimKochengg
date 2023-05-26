@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //add dana terkumpul
+        //add timestamps
         Schema::table('detail_usaha', function (Blueprint $table) {
-            $table->integer('dana_terkumpul')->after('dana')->nullable();
+            $table->timestamps();
         });
     }
 
