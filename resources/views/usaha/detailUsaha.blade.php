@@ -40,8 +40,19 @@
                                                     <div class="skill-percent">
                                                         {{-- Menghitung persen --}}
                                                         @php
-                                                            $data = number_format(($item->dana_terkumpul / $item->dana) * 100)
+                                                            $day = ($item->waktu)*7;
+                                                            $date = $item->created_at;
+                                                            $today = date('Y-m-d');
+                                                            $addedDay = date('Y-m-d', strtotime($date . '+'. $day.' days'));
+                                                            $diff = strtotime($addedDay)-strtotime($today);
+                                                            $remain = floor($diff / (60 * 60 * 24));
+                                                            if ($remain != $day) {
+                                                                $data = 100 - (number_format(($remain / $day) * 100));
+                                                            }else {
+                                                                $data= 0;
+                                                            }
                                                         @endphp
+
                                                         <span class="count-text" data-speed="3000"
                                                             data-stop={{ $data }}></span>
                                                         <span class="percent">%</span>
@@ -127,11 +138,10 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-8">
                                                     <div class="project_idea_details_content">
-                                                        <div class="project_idea_first_image">
-                                                            <img src="{{asset("assets/images/project/project_idea-img-1.jpg")}}"
-                                                                alt="">
-                                                        </div>
-                                                        <p class="project_idea_second_text">{{ $item->deskripsi }}</p>
+
+                                                            {!! $item->deskripsi !!}
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-4">

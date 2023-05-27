@@ -21,13 +21,6 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="deskripsi" class="form-label input-runded"> Deskripsi Usaha</label>
-                            <input type="text" class="form-control Background" name="deskripsi" value="{{ old('deskripsi') }}">
-                            @error('deskripsi')
-                            <div id="deskripsiHelp" class="form-text">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
                             <label for="dana" class="form-label input-runded"> Dana yang dibutuhkan</label>
                             <input type="text" class="form-control Background" name="dana" placeholder="5000000" value="{{ old('dana') }}">
                             @error('dana')
@@ -35,7 +28,7 @@
                             @enderror
                         </div>
                         <br>
-
+                        
                         <div class="mb-3">
                             <label for="waktu" class="form-label input-runded"> Waktu pelunasan</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="waktu">
@@ -45,43 +38,43 @@
                                 <option value="24"> 24 Minggu dari pendanaan</option>
                                 <option value="54"> 54 Minggu dari pendanaan</option>
                                 <option value="108"> 108 Minggu dari pendanaan</option>
-                              </select>
+                            </select>
                             @error('waktu')
                             <div id="waktuHelp" class="form-text">{{ $message }}</div>
                             @enderror
                         </div>
-
+                        
                         <div class="mb-3">
                             <label for="pembayaran" class="form-label input-runded"> Opsi Pembayaran</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pembayaran">
                                 <option selected disabled>Pilih</option>
                                 <option value="lunas"> Dibayar langsung lunas</option>
                                 <option value="dicicil"> Dicicil tiap minggu</option>
-                              </select>
+                            </select>
                             @error('pembayaran')
                             <div id="pembayaranHelp" class="form-text">{{ $message }}</div>
                             @enderror
                         </div>
-
+                        
                         {{-- <div class="mb-3">
                             <label for="pembayaran" class="form-label input-runded"> Opsi pembayaran</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Dibayar langsung lunas" id="Dibayar langsung lunas" value="Dibayar langsung lunas">
                                 <label class="form-check-label" for="Dibayar langsung lunas">
-                                  Dibayar langsung lunas
+                                    Dibayar langsung lunas
                                 </label>
-                              </div>
+                            </div>
                               <div class="form-check">
                                 <input class="form-check-input" type="radio" name="Dicicil setiap minggu" id="Dicicil setiap minggu" value="Dicicil setiap minggu">
                                 <label class="form-check-label" for="Dicicil setiap minggu">
                                   Dicicil setiap minggu
                                 </label>
-                              </div>
+                            </div>
                             @error('pembayaran')
                             <div id="pembayaranHelp" class="form-text">{{ $message }}</div>
                             @enderror
                         </div> --}}
-
+                        
                         <div class="mb-3">
                             <label for="gambar" class="form-label input-runded"> Gambar </label>
                             <input type="file" class="form-control Background" name="gambar">
@@ -89,7 +82,16 @@
                             <div id="gambarHelp" class="form-file">{{ $message }}</div>
                             @enderror
                         </div>
-                
+                        
+                        <div class="mb-3">
+                            <label for="deskripsi" class="form-label input-runded"> Deskripsi Usaha</label>
+                            <textarea name="deskripsi" id="deskripsi" rows="4" cols="50">{{ old('deskripsi') }}</textarea>
+                        
+                            {{-- <input type="text" class="form-control Background" name="deskripsi" value="{{ old('deskripsi') }}"> --}}
+                            @error('deskripsi')
+                            <div id="deskripsiHelp" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -97,11 +99,11 @@
                 </div>
             </div>
         </div>
-            </section>
-
-            
-        
-        </div>
+    </section>
+    
+    
+    
+</div>
     </div>
 
 @endsection
