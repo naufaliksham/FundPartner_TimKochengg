@@ -19,7 +19,7 @@ use App\Http\Controllers\DetailUsahaController;
 */
 
 Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
-
+Route::get('/rincian', [DetailUsahaController::class, 'rincian'])->name('rincianInvestment');
 // Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {

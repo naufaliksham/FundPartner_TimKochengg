@@ -11157,3 +11157,20 @@ li {
   border-top: 1px solid #eeeae6;
   padding-top: 118px;
 }
+
+
+.scroll-container {
+  display: flex;
+  justify-content: space-between;
+  height: 200px; /* Adjust the height as needed */
+}
+
+.left-scroll-box, .right-scroll-box {
+  width: 48%; /* Adjust the width as needed */
+  overflow: auto;
+  border: 1px solid #000;
+}
+
+
+
+

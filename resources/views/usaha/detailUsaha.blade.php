@@ -93,10 +93,6 @@
                                             <h5>Rp.{{ $item->dana }}</h5>
                                             <p>Dibutuhkan</p>
                                         </li>
-                                        <li>
-                                            <h5>32</h5>
-                                            <p>Days Left</p>
-                                        </li>
                                     </ul>
                                 </div>
                                 <div class="project_details_btn_box">
