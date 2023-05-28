@@ -119,14 +119,32 @@
                                                 </div>
                                             </div>
 											<div class="scroll-container">
-												<div class="left-scroll-box">
-													
-												</div>
+                                                <div class="left-scroll-box">
+                                                    @foreach ($biaya as $bayar)
+                                                        <div>
+                                                            <h3>{{$bayar->jumlah_pembayaran}}</h3>
+                                                            <h3>{{ $bayar->waktu_pembayaran}}</h3>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
 												<div class="right-scroll-box">
-													
-												</div>
-											  </div>
-											  
+                                                    @php
+                                                    $dayIterator = 0; // Initialize the day iterator variable
+                                                @endphp
+                                                
+                                                @for ($i = 1; $i <= $item->waktu; $i++)
+                                                    @php
+                                                        $cicilan = $item->dana / $item->waktu;
+                                                        $dayIterator += 7; // Increment the day iterator by 7
+                                                        $tenggat = date('Y-m-d', strtotime($item->created_at . '+'. $dayIterator.' days'));
+                                                    @endphp
+                                                
+                                                    <h5>{{ $cicilan }}</h5>
+                                                    <h5>{{ $tenggat }}</h5>
+                                                @endfor
+                                                
+                                                </div>
+											</div>
                                         </div>
                                     </div>
                                 </div>

@@ -14,7 +14,7 @@ class Transaksi extends Model
     protected $fillable =[
         'id',
         'jenis_pembayaran',
-        'jumlah_pembayaran',
+        'jumlah_pembayaran', //isi dengan lunas atau cicil
     ];
 
     public function user(){
