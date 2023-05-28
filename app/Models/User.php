@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Usaha;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -57,4 +58,10 @@ class User extends Authenticatable
     public function usaha(){
         return $this->hasMany(Usaha::class, 'id_mitra', 'id');
     }
+    public function transaksi(): HasMany
+    {
+        return $this->hasMany(Transaksi::class, 'id_user', 'id');
+    }
+
+
 }
