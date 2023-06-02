@@ -20,8 +20,8 @@
                 <div class="main-nav__header-one-top-left">
                     <ul>
                         <li><a href="#">Customer Support</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
                     </ul>
                 </div>
                 <div class="main-nav__header-one-top-right">
@@ -59,7 +59,7 @@
                                 <a href="#">Jelajahi</a>
                                 <ul>
                                     <li><a href="project.html">UMKM</a></li>
-                                    <li><a href="project-details.html">UMKM saya</a></li>
+                                    <li><a href="/usaha">UMKM saya</a></li>
                                 </ul><!-- /.sub-menu -->
                             </li>
                             <li class="dropdown">

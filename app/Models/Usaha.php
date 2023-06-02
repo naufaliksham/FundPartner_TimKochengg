@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -44,6 +45,10 @@ class Usaha extends Model
 
      public function usaha(){
         return $this->belongsTo(User::class, 'id_mitra');
+    }
+    public function transaksi(): HasMany
+    {
+        return $this->hasMany(Transaksi::class, 'id_mitra', 'id');
     }
 
 }

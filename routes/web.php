@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\DetailUsahaController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\DetailUsahaController;
 */
 
 Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
-
+Route::get('/rincian', [TransaksiController::class, 'show'])->name('rincianInvestment');
 // Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {
@@ -41,6 +42,9 @@ Route::post('/register', [AuthController::class, 'register']);
 
     //form mitra
     Route::post('/store_umkm', [MitraController::class, 'store'])->name('store');
+    Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit']);
+    Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha');
+    Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha');
 
     // });
 
