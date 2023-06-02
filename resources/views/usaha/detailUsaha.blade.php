@@ -96,8 +96,23 @@
                                     </ul>
                                 </div>
                                 <div class="project_details_btn_box">
-                                    <a href="#" class="thm-btn follow_btn">Edit</a>
-                                    <a href="#" class="thm-btn back_this_project_btn">Delete</a>
+                                    <div class="container text-center">
+                                        <div class="row">
+                                          <div class="col">
+                                            <a href="/editUsaha/{{ $item->id }}" class="thm-btn follow_btn">Edit</a>
+                                          </div>
+                                          <div class="col">
+                                            <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="thm-btn back_this_project_btn">Delete</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    
                                 </div>
                                 {{-- <div class="project_detail_share_box">
                                     <div class="share_box_title">
