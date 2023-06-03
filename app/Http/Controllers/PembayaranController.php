@@ -19,8 +19,9 @@ class PembayaranController extends Controller
         $userID = Auth::id();
         $biaya = Pembayaran::all();
         $details = Usaha::with('usaha')->where('id_mitra', $userID)->get();
+        $transaksi = Transaksi::where('id_user', $userID)->get();
         
-        return view('usaha.rincianInvestment', compact('biaya', 'details'));
+        return view('usaha.rincianInvestment', compact('biaya', 'details', 'transaksi'));
     }
     public function bayar($id){
         $biaya = Pembayaran::find($id);
