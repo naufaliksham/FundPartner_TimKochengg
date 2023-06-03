@@ -4,6 +4,7 @@
 
         <!--Project Details Top-->
         @foreach ($details as $item)
+        {{-- {{dd($item->id)}} --}}
             <section class="project_details_top">
                 <div class="container">
                     <div class="row">
@@ -118,33 +119,75 @@
                                                     </div>
                                                 </div>
                                             </div>
-											<div class="scroll-container">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                          <th scope="col">Tanggal Tempo</th>
+                                                          <th scope="col">Jumlah</th>
+                                                          <th scope="col">Status</th>
+                                                          <th scope="col">Action</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        @foreach ($biaya as $bayar)
+                                                        @if ($bayar->id_mitra == $item->id)
+                                                        <tr>
+                                                            <th scope="row">{{$bayar->tanggal_jatuh_tempo}}</th>
+                                                            <td>{{$bayar->jumlah_pembayaran}}</td>
+                                                            @if ($bayar->status==0)
+                                                                
+                                                            <td>Belum dibayar</td>
+                                                            @else
+                                                            <td>Lunas</td>                                                       
+                                                            @endif
+                                                            <td>
+                                                                @if ($bayar->status==0)
+                                                                <a href="{{ route('bayar', ['id' => $bayar->id]) }}" class="btn btn-sm btn-primary">Bayar</a>
+                                                                @else
+                                                                <i class="fas fa-check-circle"></i>
+                                                                @endif
+
+                                                            </td>
+                                                        </tr> 
+                                                        @endif 
+                                                        @endforeach
+                                            
+                                                      </tbody>
+                                                </table>
+                                              </div>
+											{{-- <div class="scroll-container">
                                                 <div class="left-scroll-box">
+                                                    {{dd($item->id)}}
+                                                    
                                                     @foreach ($biaya as $bayar)
-                                                        <div>
-                                                            <h3>{{$bayar->jumlah_pembayaran}}</h3>
-                                                            <h3>{{ $bayar->waktu_pembayaran}}</h3>
+                                                    @if ($bayar->id_mitra == $item->id)
+                                                                                                                <div>
+                                                            <h3>{{$bayar->jenis_pembayaran}}</h3>
+                                                            <h3>{{ $bayar->id_mitra}}</h3>
                                                         </div>
+                                                    @endif
                                                     @endforeach
                                                 </div>
 												<div class="right-scroll-box">
-                                                    @php
-                                                    $dayIterator = 0; // Initialize the day iterator variable
-                                                @endphp
-                                                
-                                                @for ($i = 1; $i <= $item->waktu; $i++)
-                                                    @php
-                                                        $cicilan = $item->dana / $item->waktu;
-                                                        $dayIterator += 7; // Increment the day iterator by 7
-                                                        $tenggat = date('Y-m-d', strtotime($item->created_at . '+'. $dayIterator.' days'));
-                                                    @endphp
-                                                
-                                                    <h5>{{ $cicilan }}</h5>
-                                                    <h5>{{ $tenggat }}</h5>
-                                                @endfor
+                                                    <form action="your-action-url" method="POST">
+                                                        @csrf
+                                                    @foreach ($biaya as $bayar )
+                                                    @if ($bayar->id_mitra == $item->id)
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={{$bayar->id}} checked>
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                          <span class="jumlah-pembayaran">{{ $bayar->jumlah_pembayaran }}</span>
+                                                          <span class="tanggal-jatuh-tempo">{{ $bayar->tanggal_jatuh_tempo }}</span>
+                                                        </label>
+                                                      </div>
+                                                      
+
+                                                    @endif
+                                                    @endforeach
                                                 
                                                 </div>
-											</div>
+											</div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -173,120 +216,4 @@
                 </div>
             </div>
         </div>
-
-        <!--Site Footer Start-->
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <div class="footer-widget__column footer-widget__about wow fadeInUp animated"
-                            data-wow-delay="100ms"
-                            style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
-                            <div class="footer-widget__title">
-                                <h3>About</h3>
-                            </div>
-                            <div class="footer-widget_about_text">
-                                <p>Id quas utamur delicata qui, vix ei prima mentitum omnesque. Duo corrumpit cotidieque ne.
-                                </p>
-                            </div>
-                            <form>
-                                <div class="footer_input-box">
-                                    <input type="Email" placeholder="Email Address">
-                                    <button type="submit" class="button"><i class="fa fa-envelope"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-3">
-                        <div class="footer-widget__column footer-widget__company wow fadeInUp animated"
-                            data-wow-delay="200ms"
-                            style="visibility: visible; animation-delay: 200ms; animation-name: fadeInUp;">
-                            <div class="footer-widget__title">
-                                <h3>Company</h3>
-                            </div>
-                            <ul class="footer-widget__company-list list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">How It Works</a></li>
-                                <li><a href="#">Knowledge hub</a></li>
-                                <li><a href="#">Success Stories</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-3">
-                        <div class="footer-widget__column footer-widget__explore wow fadeInUp animated"
-                            data-wow-delay="300ms"
-                            style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
-                            <div class="footer-widget__title">
-                                <h3>Explore</h3>
-                            </div>
-                            <ul class="footer-widget__explore_list list-unstyled">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Trust & Safety</a></li>
-                                <li><a href="#">Help & Support</a></li>
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Careers</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-4 col-md-4">
-                        <div class="footer-widget__column footer-widget__links wow fadeInUp animated"
-                            data-wow-delay="400ms"
-                            style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
-                            <div class="footer-widget__title">
-                                <h3>Links</h3>
-                            </div>
-                            <ul class="footer-widget_links_list list-unstyled">
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Cookies</a></li>
-                                <li><a href="#">Funded Companies</a></li>
-                                <li><a href="#">Media Centre</a></li>
-                                <li><a href="#">Partnership</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-8 col-md-8">
-                        <div class="footer-widget__column footer-widget__options wow fadeInUp animated"
-                            data-wow-delay="400ms"
-                            style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
-                            <div class="footer-widget__title">
-                                <h3>Options</h3>
-                            </div>
-                            <div class="footer_Currency">
-                                <select name="currency" id="currency" class="selectpicker">
-                                    <option value="Country">$ US Dollars </option>
-                                    <option value="Aud">AUD</option>
-                                    <option value="Aud">CAD</option>
-                                </select>
-                                <select name="language" id="language" class="selectpicker">
-                                    <option value="Country">English</option>
-                                    <option value="Canada">Russian</option>
-                                    <option value="England">Urdu</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!--Site Footer Bottom Start-->
-        <div class="site-footer_bottom">
-            <div class="container">
-                <div class="site-footer_bottom_copyright">
-                    <div class="site_footer_bottom_icon">
-                        <img src="assets/images/shapes/footer-bottom-shape.png" alt="">
-                    </div>
-                    <p>@ All copyright 2020, <a href="#">Layerdrops.com</a></p>
-                </div>
-                <div class="site-footer__social">
-                    <a href="#" class="tw-clr"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="fb-clr"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#" class="dr-clr"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="ins-clr"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
