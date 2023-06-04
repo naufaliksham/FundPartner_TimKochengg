@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\DetailUsahaController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -20,7 +21,9 @@ use App\Http\Controllers\TransaksiController;
 */
 
 Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
-Route::get('/rincian', [TransaksiController::class, 'show'])->name('rincianInvestment');
+Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
+Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
+Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
 // Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {
