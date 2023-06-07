@@ -134,7 +134,7 @@
                                                     @if ($bayar->id_mitra == $item->id)
                                                         <tr>
                                                             <th scope="row">{{ $bayar->tanggal_jatuh_tempo }}</th>
-                                                            <td>{{ $bayar->jumlah_pembayaran }}</td>
+                                                            <td>Rp.{{ number_format($bayar->jumlah_pembayaran,0,',','.') ?? '-' }}</td>
                                                             @if ($bayar->status == 0)
                                                                 <td>Belum dibayar</td>
                                                             @else
@@ -188,11 +188,16 @@
                                                             <th scope="row">{{ $riwayat->id_pembayaran }}</th>
                                                             <td>{{ $riwayat->jenis_pembayaran }}
                                                             </td>
-                                                            <td>{{ $riwayat->jumlah_pembayaran }}
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->jumlah_pembayaran,0,',','.') ?? '-' }}
                                                             </td>
-                                                            <td>{{ $riwayat->denda }}</td>
-                                                            <td>{{ $riwayat->fee }}</td>
-                                                            <td>{{ $riwayat->total }}
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->denda,0,',','.') ?? '-' }}
+                                                            </td>
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->fee,0,',','.') ?? '-' }}
+                                                            </td>
+                                                            <td>Rp.{{ number_format($riwayat->total,0,',','.') ?? '-' }}
                                                             </td>
                                                             <td>{{ $riwayat->waktu_pembayaran }}
                                                             </td>

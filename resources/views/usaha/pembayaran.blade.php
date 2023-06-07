@@ -5,7 +5,7 @@
         <div class="card-body">
             <h5 class="card-title" style="text-align:center">Pembayaran</h5>
             {{-- {{dd($biaya->id)}} --}}
-            <p class="card-text" style="text-align: right">Saldo: {{$saldo}}</p>
+            <p class="card-text" style="text-align: right">Saldo: Rp.{{ number_format($saldo,0,',','.') ?? '-' }}</p>
             <p class="card-text" style="text-align: right">{{$biaya->tanggal_jatuh_tempo}}</p>
             <form method="POST" action="{{route('pembayaran', ['id' => $biaya->id])}}">
                 @csrf
@@ -28,16 +28,16 @@
                     @endphp
 
                 <div class="form-group">
-                    <label for="amount">Jumlah: {{$biaya->jumlah_pembayaran}}</label>
+                    <label for="amount">Jumlah: Rp.{{ number_format($biaya->jumlah_pembayaran,0,',','.') ?? '-' }}</label>
                     <input type="hidden" class="form-control" id="jumlah" name="jumlah" value={{$biaya->jumlah_pembayaran}}>
                 </div>
 
                 <div class="form-group">
-                    <label for="card_number">Denda:{{$denda}}</label>
+                    <label for="card_number">Denda: Rp.{{ number_format($denda,0,',','.') ?? '-' }}</label>
                     <input type="hidden" class="form-control" id="card_number" name="denda" value={{$denda}}>
                 </div>
                 <div class="form-group">
-                    <label for="card_number">Biaya aplikasi: {{$fee}} (5%)</label>
+                    <label for="card_number">Biaya aplikasi: Rp.{{ number_format($fee,0,',','.') ?? '-' }} (5%)</label>
                     <input type="hidden" class="form-control" id="card_number" name="fee" value={{$fee}}>
                 </div>
                 <div class="form-group">
@@ -45,7 +45,7 @@
                     <input type="hidden" class="form-control" id="card_number" name="jenis" value={{$biaya->jenis_pembayaran}}>
                 </div>
                 <div class="form-group">
-                    <label for="card_number">Total:{{$total}}</label>
+                    <label for="card_number">Total: Rp.{{ number_format($total,0,',','.') ?? '-' }}</label>
                     <input type="hidden" class="form-control" id="card_number" name="total" value={{$total}}>
                 </div>
                 @if ($saldo >= $biaya->jumlah_pembayaran)
