@@ -59,7 +59,7 @@ class PembayaranController extends Controller
             $transaksi->fee = $request->fee;
             $transaksi->total = $request->total;
             $transaksi->save();
-
+            $request->session()->flash('success', 'Transaksi berhasil.');
         });
         return redirect()->route('rincianInvestment');
     }
