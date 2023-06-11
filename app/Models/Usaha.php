@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Pembayaran;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,5 +51,9 @@ class Usaha extends Model
     {
         return $this->hasMany(Transaksi::class, 'id_mitra', 'id');
     }
-
+    public function pembayaran(): HasMany
+    {
+        return $this->hasMany(Pembayaran::class, 'id_mitra', 'id');
+    }
+    
 }

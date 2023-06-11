@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembayaran;
 use App\Models\Usaha;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Storage;
+
 
 class MitraController extends Controller
 {
@@ -46,6 +49,38 @@ class MitraController extends Controller
         $usaha->pembayaran = $request->pembayaran;
         $usaha->gambar = $path;
         $usaha->save();
+
+        //GENERATE PEMBAYARANA AND  
+        $usaha = Usaha::where('nama_usaha', $request->nama_usaha)->first();
+        if ($request->pembayaran == 'lunas') {
+            $pelunasan = $request->dana;
+            $tempo = Carbon::now()->addDays(7*$request->waktu);
+        
+            $newPayment = new Pembayaran;
+            $newPayment->id_mitra = $usaha->id;
+            $newPayment->jumlah_pembayaran = $pelunasan;
+            $newPayment->status = false;
+            $newPayment->jenis_pembayaran = $request->pembayaran;
+            $newPayment->tanggal_jatuh_tempo = $tempo;
+            $newPayment->save();
+        } else {
+            $pelunasan = ($request->dana / $request->waktu);
+            $tempo = Carbon::now()->addDays(7);
+            // dd($usaha->id);
+            for ($i = 0; $i <= $request->waktu; $i++) {
+                $newPayment = new Pembayaran;
+                $newPayment->id_mitra = $usaha->id;
+                $newPayment->jumlah_pembayaran = $pelunasan;
+                $newPayment->status = false;
+                $newPayment->jenis_pembayaran = $request->pembayaran;
+                $newPayment->tanggal_jatuh_tempo = $tempo;
+                $newPayment->save();
+        
+                $tempo = $tempo->addDays(7);
+            };
+        }
+        
+
         
         // $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
         // return view('usaha.detailUsaha', compact('details'));
