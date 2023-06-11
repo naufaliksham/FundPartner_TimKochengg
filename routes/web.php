@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\DetailUsahaController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DetailUsahaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,9 @@ Route::post('/register', [AuthController::class, 'register']);
     Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha');
 
     // });
+
+// INVESTOR
+Route::get('investor-page', [InvestorController::class, 'index']);
 
 // LUPA PASSWORD
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
