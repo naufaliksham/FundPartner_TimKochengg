@@ -3,6 +3,14 @@
     <div class="page-wrapper">
 
         <!--Project Details Top-->
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         @foreach ($details as $item)
             {{-- {{dd($item->id)}} --}}
             <section class="project_details_top">
@@ -134,7 +142,8 @@
                                                     @if ($bayar->id_mitra == $item->id)
                                                         <tr>
                                                             <th scope="row">{{ $bayar->tanggal_jatuh_tempo }}</th>
-                                                            <td>{{ $bayar->jumlah_pembayaran }}</td>
+                                                            <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
+                                                            </td>
                                                             @if ($bayar->status == 0)
                                                                 <td>Belum dibayar</td>
                                                             @else
@@ -182,17 +191,22 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($transaksi as $riwayat)
-                                                {{-- {{dd($riwayat->id)}} --}}
+                                                    {{-- {{dd($riwayat->id)}} --}}
                                                     @if ($riwayat->id_mitra == $item->id)
                                                         <tr>
                                                             <th scope="row">{{ $riwayat->id_pembayaran }}</th>
                                                             <td>{{ $riwayat->jenis_pembayaran }}
                                                             </td>
-                                                            <td>{{ $riwayat->jumlah_pembayaran }}
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                             </td>
-                                                            <td>{{ $riwayat->denda }}</td>
-                                                            <td>{{ $riwayat->fee }}</td>
-                                                            <td>{{ $riwayat->total }}
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->denda, 0, ',', '.') ?? '-' }}
+                                                            </td>
+                                                            <td>
+                                                                Rp.{{ number_format($riwayat->fee, 0, ',', '.') ?? '-' }}
+                                                            </td>
+                                                            <td>Rp.{{ number_format($riwayat->total, 0, ',', '.') ?? '-' }}
                                                             </td>
                                                             <td>{{ $riwayat->waktu_pembayaran }}
                                                             </td>
