@@ -1,50 +1,70 @@
-<!-- resources/views/login.blade.php -->
+@extends('layouts.app')
+@section('content')
+@push('style-css')
+<link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
+@endpush
+    <div class="container">
+      <div class="wrapper">
+        <div class="form_wrapper">
+          <div class="text__header">
+            <p>Login</p>
 
-<html>
-
-<head>
-    <title>Login</title>
-</head>
-
-<body>
-    <h2>Login</h2>
-
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @if ($errors->any())
+            <div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session('success'))
+            <div>
+                {{ session('success') }}
+            </div>
+        @endif
+          </div>
+          <div class="img_container">
+            <img
+              src="{{ asset('assets/images/svg/login.svg') }}"
+              class="img_main"
+              alt="img_main"
+            />
+          </div>
+          <div class="form">
+            <form action="{{ URL('login') }}" method="POST">
+                @csrf
+              <div class="form_group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email address"
+                />
+                <i class="fa-regular fa-envelope fa-xl icon_style"></i>
+              </div>
+              <div class="form_group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                />
+                <i class="fa-solid fa-key fa-xl icon_style"></i>
+              </div>
+              <div class="label_forgot_pswd">
+                <a href="#" class="forgot_pswd">Forgot password?</a>
+              </div>
+              <div class="btn_group">
+                <button type="submit">LOGIN</button>
+              </div>
+              <div class="text_footer">
+                <p>Don't have an account?</p>
+                <a href="{{ URL('register') }}" class="sign_up_text">Sign Up</a>
+              </div>
+            </form>
+          </div>
         </div>
-    @endif
-    @if (session('success'))
-        <div>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <div>
-            <p>Belum punya akun?<a href="{{ route("register") }}"><i>silahkan daftar</i></a></p>
-        </div>
-
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </form>
-</body>
-
-</html>
+      </div>
+    </div>
+@endsection

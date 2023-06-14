@@ -9,6 +9,7 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\DetailUsahaController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,9 @@ Route::middleware(['auth','user-role:user'])->group(function() {
 // LOGIN
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+// LOGOUT
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // REGISTER
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
@@ -61,5 +65,13 @@ Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name
 
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
+// TOP-UP
+Route::get('/topup', [ProfilController::class, 'showTopupForm'])->name('topup.form');
+Route::post('/topup', [ProfilController::class, 'processTopup'])->name('topup.process');
+
+// UPLOAD KTP & FOTO
+Route::get('/upload', [ProfilController::class, 'showUploadForm'])->name('upload.form');
+Route::post('/upload', [ProfilController::class, 'processUpload'])->name('upload.process');
 
 
