@@ -9,7 +9,6 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\DetailUsahaController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\DetailUsahaController;
 
 /*
 |--------------------------------------------------------------------------
