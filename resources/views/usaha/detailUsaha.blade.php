@@ -3,7 +3,14 @@
 @section('content')
 
     <div class="page-wrapper">
-
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <!--Project Details Top-->
         @foreach ($details as $item)
             <section class="project_details_top">

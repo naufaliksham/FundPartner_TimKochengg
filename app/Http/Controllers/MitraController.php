@@ -44,7 +44,7 @@ class MitraController extends Controller
         $usaha->id_mitra = $request->id_mitra;
         $usaha->nama_usaha = $request->nama_usaha;
         $usaha->deskripsi = $request->input('deskripsi');
-        $usaha->dana = $request->dana;
+        $usaha->dana = $request->dana *;
         $usaha->waktu = $request->waktu;
         $usaha->pembayaran = $request->pembayaran;
         $usaha->gambar = $path;
@@ -53,7 +53,7 @@ class MitraController extends Controller
         //GENERATE PEMBAYARANA AND  
         $usaha = Usaha::where('nama_usaha', $request->nama_usaha)->first();
         if ($request->pembayaran == 'lunas') {
-            $pelunasan = $request->dana;
+            $pelunasan = $request->dana * 1.1;
             $tempo = Carbon::now()->addDays(7*$request->waktu);
         
             $newPayment = new Pembayaran;
@@ -63,8 +63,9 @@ class MitraController extends Controller
             $newPayment->jenis_pembayaran = $request->pembayaran;
             $newPayment->tanggal_jatuh_tempo = $tempo;
             $newPayment->save();
+            $request->session()->flash('success', 'Usaha berhasil ditambahkan');
         } else {
-            $pelunasan = ($request->dana / $request->waktu);
+            $pelunasan = (($request->dana * 1.1) / $request->waktu);
             $tempo = Carbon::now()->addDays(7);
             // dd($usaha->id);
             for ($i = 0; $i <= $request->waktu; $i++) {
@@ -75,8 +76,8 @@ class MitraController extends Controller
                 $newPayment->jenis_pembayaran = $request->pembayaran;
                 $newPayment->tanggal_jatuh_tempo = $tempo;
                 $newPayment->save();
-        
                 $tempo = $tempo->addDays(7);
+                $request->session()->flash('success', 'Usaha berhasil ditambahkan');
             };
         }
         
