@@ -1,4 +1,5 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
     <div class="page-wrapper">
 
@@ -32,6 +33,7 @@
                                 @endif
                             </div>
                         </div>
+                        
                         <div class="col-xl-4 col-lg-4">
                             <div class="project_details_right_content">
                                 <div class="project_detail_creator">
@@ -53,6 +55,8 @@
                         </div>
 
                     </div>
+                    
+                    
                     <div class="row">
                         <div class="col-xl-12">
                             <h5>Tenggat: </h5>
@@ -92,6 +96,38 @@
 
                         </div>
                     </div>
+
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-sm">
+                          </div>
+                          
+                          <div class="col-sm">
+                            <br>
+                            @if($item->status =='Belum didanai')         
+                                <div class="project_details_btn_box">
+                                    <div class="container text-center">
+                                        <div class="row">
+                                          <div class="col">
+                                            <a href="/editUsaha/{{ $item->id }}" class="thm-btn follow_btn">Edit</a>
+                                          </div>
+                                          <div class="col">
+                                            <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="thm-btn back_this_project_btn">Delete</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                    </div>     
+                                </div>     
+                                @else
+                                       
+                                @endif
+                          </div>
+                        </div>
+                      </div>
                 </div>
     </div>
     </section>
