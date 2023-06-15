@@ -1,4 +1,5 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
     <div class="page-wrapper">
 
@@ -32,6 +33,7 @@
                                 @endif
                             </div>
                         </div>
+                        
                         <div class="col-xl-4 col-lg-4">
                             <div class="project_details_right_content">
                                 <div class="project_detail_creator">
@@ -43,9 +45,9 @@
                                         <h4>{{ $item->usaha->name }}</h4>
                                     </div>
                                     <div class="project_detail_creator_text">
-                                        <p>Crochet designer and Creator of the Woolly Chic brand.
+                                        {{-- <p>Crochet designer and Creator of the Woolly Chic brand.
                                             Loves British wool and is passionate about the
-                                            environment.</p>
+                                            environment.</p> --}}
                                     </div>
                                 </div>
 
@@ -53,6 +55,8 @@
                         </div>
 
                     </div>
+                    
+                    
                     <div class="row">
                         <div class="col-xl-12">
                             <h5>Tenggat: </h5>
@@ -92,6 +96,38 @@
 
                         </div>
                     </div>
+
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-sm">
+                          </div>
+                          
+                          <div class="col-sm">
+                            <br>
+                            @if($item->status =='Belum didanai')         
+                                <div class="project_details_btn_box">
+                                    <div class="container text-center">
+                                        <div class="row">
+                                          <div class="col">
+                                            <a href="/editUsaha/{{ $item->id }}" class="thm-btn follow_btn">Edit</a>
+                                          </div>
+                                          <div class="col">
+                                            <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="thm-btn back_this_project_btn">Delete</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                    </div>     
+                                </div>     
+                                @else
+                                       
+                                @endif
+                          </div>
+                        </div>
+                      </div>
                 </div>
     </div>
     </section>
@@ -144,8 +180,19 @@
                                                             <th scope="row">{{ $bayar->tanggal_jatuh_tempo }}</th>
                                                             <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                             </td>
+                                                            @php
+                                                                $tempo = $bayar->tanggal_jatuh_tempo;
+                                                                $today = now()->format('Y-m-d');
+                                                                $diffInDays = now()->diffInDays($tempo);
+
+                                                            @endphp
                                                             @if ($bayar->status == 0)
+                                                                @if ($today > $tempo)
+                                                                    <td style="background-color: red">Sudah Lewat {{$diffInDays}} Hari</td>
+                                                                @else
                                                                 <td>Belum dibayar</td>
+                                                                @endif
+                                                            
                                                             @else
                                                                 <td>Lunas</td>
                                                             @endif

@@ -16,7 +16,7 @@
 
             <div class="main-nav__header-one-top clearfix">
                 <div class="border-bottom"></div>
-                <div class="button"><a href="#">Start a Project</a></div>
+                <div class="button"><a href="/form_umkm">Daftarkan UMKM</a></div>
                 <div class="main-nav__header-one-top-left">
                     <ul>
                         <li><a href="#">Customer Support</a></li>
@@ -49,24 +49,23 @@
                         <ul class=" main-nav__navigation-box">
                             <li class="dropdown current">
                                 <a href="indexmitra">Home</a>
-                                <ul>
+                                {{-- <ul>
                                     <li><a href="indexmitra">Halaman Mitra</a></li>
                                     <li><a href="index2.html">Halaman Investor</a></li>
                                     
-                                </ul><!-- /.sub-menu -->
+                                </ul><!-- /.sub-menu --> --}}
                             </li>
                             <li class="dropdown">
-                                <a href="#">Jelajahi</a>
-                                <ul>
+                                <a href="/rincian">UMKM saya</a>
+                                {{-- <ul>
                                     <li><a href="project.html">UMKM</a></li>
-                                    <li><a href="/usaha">UMKM saya</a></li>
-                                </ul><!-- /.sub-menu -->
+                                    <li><a href="/rincian">UMKM saya</a></li>
+                                </ul><!-- /.sub-menu --> --}}
                             </li>
                             <li class="dropdown">
                                 <a href="#">Halaman</a>
                                 <ul>
                                     <li><a href="about.html">Tentang Kami</a></li>
-                                    <li><a href="why-choose-us.html">Kenapa harus memilih FundPartner</a></li>
                                     <li><a href="faq.html">FAQs</a></li>
                                 </ul><!-- /.sub-menu -->
                             </li>

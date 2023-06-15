@@ -47,7 +47,7 @@
                                 <div class="funfact_one_icon">
                                     <i class="icon-list"></i>
                                 </div>
-                                <h3><span class="counter">780</span></h3>
+                                <h3><span class="counter">{{ $usaha5 }}</span></h3>
                                 <p>UMKM Terdaftar</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <div class="funfact_one_icon">
                                     <i class="icon-save-money"></i>
                                 </div>
-                                <h3><span class="counter">8080</span></h3>
+                                <h3><span class="counter">{{ $usaha4 }}</span></h3>
                                 <p>UMKM Didanai</p>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                 <div class="funfact_one_icon">
                                     <i class="icon-volunteer"></i>
                                 </div>
-                                <h3><span class="counter">440</span></h3>
+                                <h3><span class="counter">{{ $usaha3 }}</span></h3>
                                 <p>Investor Terdaftar</p>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                 <div class="funfact_one_icon">
                                     <i class="icon-rating"></i>
                                 </div>
-                                <h3><span class="counter">2870</span></h3>
+                                <h3><span class="counter">2</span></h3>
                                 <p>Respon positif</p>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                 @foreach ($usaha2 as $no => $item)
                                 <div class="projects_one_single">
                                     <div class="projects_one_img">
-                                        <img src="{{asset('storage/'.$item->gambar)}}" alt="">
+                                        <a href="/usaha/{{ $item->id }}"><img src="{{asset('storage/'.$item->gambar)}}" alt=""></a>
                                         <div class="project_one_icon">
                                             <i class="fa fa-heart"></i>
                                         </div>
@@ -105,7 +105,7 @@
                                     <div class="projects_one_content">
                                         <div class="porjects_one_text">
                                             <p><span>by</span> {{ $item->usaha->name }}</p>
-                                            <h3><a href="#">UMKM<br>{{ $item->nama_usaha }}</a></h3>
+                                            <h3><a href="/usaha/{{ $item->id }}">UMKM<br>{{ $item->nama_usaha }}</a></h3>
                                         </div>
                                         <div class="progress-levels">
                                             <!--Skill Box-->
@@ -115,10 +115,10 @@
                                                         <div class="bar-innner">
                                                             <div class="skill-percent">
                                                                 <span class="count-text" data-speed="3000"
-                                                                    data-stop="86">0</span>
+                                                                    data-stop="0">0</span>
                                                                 <span class="percent">%</span>
                                                             </div>
-                                                            <div class="bar-fill" data-percent="86"></div>
+                                                            <div class="bar-fill" data-percent="0"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,18 +251,16 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="projects_four_carousel owl-theme owl-carousel">
-                                @foreach ($usaha as $no => $item)
+                                @foreach ($usaha6 as $no => $item)
                                 <div class="projects_one_single">
                                     <div class="projects_one_img">
-                                        <img src="{{asset('storage/'.$item->gambar)}}" alt="">
-                                        <div class="project_one_icon">
-                                            <i class="fa fa-heart"></i>
-                                        </div>
+                                        <a href="/usaha/{{ $item->id }}"><img src="{{asset('storage/'.$item->gambar)}}" alt=""></a>
+                                        
                                     </div>
                                     <div class="projects_one_content">
                                         <div class="porjects_one_text">
                                             <p><span>by</span> {{ $item->usaha->name }}</p>
-                                            <h3><a href="#">UMKM<br>{{ $item->nama_usaha }}</a></h3>
+                                            <h3><a href="/usaha/{{ $item->id }}">UMKM<br>{{ $item->nama_usaha }}</a></h3>
                                         </div>
                                         <div class="progress-levels">
                                             <!--Skill Box-->
@@ -272,10 +270,10 @@
                                                         <div class="bar-innner">
                                                             <div class="skill-percent">
                                                                 <span class="count-text" data-speed="3000"
-                                                                    data-stop="86">0</span>
+                                                                    data-stop="100">0</span>
                                                                 <span class="percent">%</span>
                                                             </div>
-                                                            <div class="bar-fill" data-percent="86"></div>
+                                                            <div class="bar-fill" data-percent="100"></div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1,4 +1,5 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
     <div class="centered">
         <div class="card" style="width: 400px;">
@@ -16,7 +17,10 @@
                         // dd($today, $tempo);
                         if ($today > $tempo) {
                             $test = true;
-                            $denda = now()->diffInDays($tempo) * 100;
+                            $denda = now()->diffInDays($tempo) * 3000;
+                            $diffInDays = now()->diffInDays($tempo);
+                            $diffInWeeks = ceil($diffInDays / 7);
+                            $denda = $diffInWeeks * 3000;
                         } else {
                             $test = false;
                             $denda = 0;
@@ -40,17 +44,17 @@
                             <input type="hidden" name="jumlah" value="{{ $biaya->jumlah_pembayaran }}">
                         </tr>
                         <tr>
-                            <th style="text-align: left;">Denda</th>
+                            <th style="text-align: left;">Denda (Rp.3k/minggu)</th>
                             <td></td>
                             <td></td>
                             <td style="text-align: right;">Rp.{{ number_format($denda, 0, ',', '.') ?? '-' }}</td>
                             <input type="hidden" name="denda" value="{{ $denda }}">
                         </tr>
                         <tr>
-                            <th style="text-align: left;">Biaya aplikasi</th>
+                            <th style="text-align: left;">Biaya aplikasi(5%)</th>
                             <td></td>
                             <td></td>
-                            <td style="text-align: right;">Rp.{{ number_format($fee, 0, ',', '.') ?? '-' }} (5%)</td>
+                            <td style="text-align: right;">Rp.{{ number_format($fee, 0, ',', '.') ?? '-' }}</td>
                             <input type="hidden" name="fee" value="{{ $fee }}">
                         </tr>
                         <tr>

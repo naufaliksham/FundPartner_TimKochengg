@@ -1,7 +1,16 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
-    <div class="page-wrapper">
 
+    <div class="page-wrapper">
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <!--Project Details Top-->
         @foreach ($details as $item)
             <section class="project_details_top">
@@ -95,6 +104,7 @@
                                         </li>
                                     </ul>
                                 </div> --}}
+                                {{-- @if($item->status =='Belum didanai')         
                                 <div class="project_details_btn_box">
                                     <div class="container text-center">
                                         <div class="row">
@@ -110,10 +120,13 @@
                                             </form>
                                           </div>
                                         </div>
-                                      </div>
+                                    </div>     
+                                </div>     
+                                @else
+                                       
+                                @endif --}}
 
-                                    
-                                </div>
+                                
                                 {{-- <div class="project_detail_share_box">
                                     <div class="share_box_title">
                                         <h2>Share with friends</h2>
