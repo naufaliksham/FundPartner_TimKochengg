@@ -22,7 +22,7 @@ use App\Http\Controllers\ProfilController;
 |
 */
 
-Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
+
 Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
 Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
 Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
