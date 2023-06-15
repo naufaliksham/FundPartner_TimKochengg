@@ -43,9 +43,9 @@
                                         <h4>{{ $item->usaha->name }}</h4>
                                     </div>
                                     <div class="project_detail_creator_text">
-                                        <p>Crochet designer and Creator of the Woolly Chic brand.
+                                        {{-- <p>Crochet designer and Creator of the Woolly Chic brand.
                                             Loves British wool and is passionate about the
-                                            environment.</p>
+                                            environment.</p> --}}
                                     </div>
                                 </div>
 
@@ -144,8 +144,19 @@
                                                             <th scope="row">{{ $bayar->tanggal_jatuh_tempo }}</th>
                                                             <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                             </td>
+                                                            @php
+                                                                $tempo = $bayar->tanggal_jatuh_tempo;
+                                                                $today = now()->format('Y-m-d');
+                                                                $diffInDays = now()->diffInDays($tempo);
+
+                                                            @endphp
                                                             @if ($bayar->status == 0)
+                                                                @if ($today > $tempo)
+                                                                    <td style="background-color: red">Sudah Lewat {{$diffInDays}} Hari</td>
+                                                                @else
                                                                 <td>Belum dibayar</td>
+                                                                @endif
+                                                            
                                                             @else
                                                                 <td>Lunas</td>
                                                             @endif
