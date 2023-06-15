@@ -5,13 +5,35 @@
 
         <!--Project Details Top-->
         @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session('success') }}</strong> 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
+        @foreach ($biaya as $bayar)
+            @php
+                $tempo = $bayar->tanggal_jatuh_tempo;
+                $today = now()->format('Y-m-d');
+                $diffInDays = now()->diffInDays($tempo);
+                
+            @endphp
+            @if ($bayar->status == 0)
+                @if ($today > $tempo)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Anda Memiliki Pembayaran Jatuh Tempo</strong>
+                    </div>
+
+                    <script>
+                        $(".alert").alert();
+                    </script>
+                @endif
+            @endif
+        @endforeach
         @foreach ($details as $item)
             {{-- {{dd($item->id)}} --}}
             <section class="project_details_top">
@@ -33,7 +55,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="col-xl-4 col-lg-4">
                             <div class="project_details_right_content">
                                 <div class="project_detail_creator">
@@ -55,8 +77,8 @@
                         </div>
 
                     </div>
-                    
-                    
+
+
                     <div class="row">
                         <div class="col-xl-12">
                             <h5>Tenggat: </h5>
@@ -99,35 +121,35 @@
 
                     <div class="container">
                         <div class="row">
-                          <div class="col-sm">
-                          </div>
-                          
-                          <div class="col-sm">
-                            <br>
-                            @if($item->status =='Belum didanai')         
-                                <div class="project_details_btn_box">
-                                    <div class="container text-center">
-                                        <div class="row">
-                                          <div class="col">
-                                            <a href="/editUsaha/{{ $item->id }}" class="thm-btn follow_btn">Edit</a>
-                                          </div>
-                                          <div class="col">
-                                            <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="thm-btn back_this_project_btn">Delete</button>
-                                            </form>
-                                          </div>
+                            <div class="col-sm">
+                            </div>
+
+                            <div class="col-sm">
+                                <br>
+                                @if ($item->status == 'Belum didanai')
+                                    <div class="project_details_btn_box">
+                                        <div class="container text-center">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="/editUsaha/{{ $item->id }}"
+                                                        class="thm-btn follow_btn">Edit</a>
+                                                </div>
+                                                <div class="col">
+                                                    <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="thm-btn back_this_project_btn">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>     
-                                </div>     
+                                    </div>
                                 @else
-                                       
                                 @endif
-                          </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
     </div>
     </section>
@@ -160,6 +182,10 @@
                                         <div class="col-xl-8 col-lg-8">
                                             <div class="project_idea_details_content">
                                                 <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
+                                                <h5> Total yang harus dibayarkan:
+                                                    Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +
+                                                    Rp.{{ number_format($item->dana * 0.1, 0, ',', '.') ?? '-' }}
+                                                    (Investor) </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -167,6 +193,7 @@
                                         <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Tanggal Tempo</th>
                                                     <th scope="col">Jumlah</th>
                                                     <th scope="col">Status</th>
@@ -177,22 +204,23 @@
                                                 @foreach ($biaya as $bayar)
                                                     @if ($bayar->id_mitra == $item->id)
                                                         <tr>
-                                                            <th scope="row">{{ $bayar->tanggal_jatuh_tempo }}</th>
+                                                            <th scope="row">{{ $loop->iteration }}</th>
+                                                            <td>{{ $bayar->tanggal_jatuh_tempo }}</td>
                                                             <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                             </td>
                                                             @php
                                                                 $tempo = $bayar->tanggal_jatuh_tempo;
                                                                 $today = now()->format('Y-m-d');
                                                                 $diffInDays = now()->diffInDays($tempo);
-
+                                                                
                                                             @endphp
                                                             @if ($bayar->status == 0)
                                                                 @if ($today > $tempo)
-                                                                    <td style="background-color: red">Sudah Lewat {{$diffInDays}} Hari</td>
+                                                                    <td style="background-color: red">Sudah Lewat
+                                                                        {{ $diffInDays }} Hari</td>
                                                                 @else
-                                                                <td>Belum dibayar</td>
+                                                                    <td>Belum dibayar</td>
                                                                 @endif
-                                                            
                                                             @else
                                                                 <td>Lunas</td>
                                                             @endif

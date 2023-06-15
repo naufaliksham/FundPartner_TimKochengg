@@ -36,7 +36,9 @@
                             <div class="project_details_right">
                                 <div class="project_details_right_top">
                                     <ul class="project_details_rate_list list-unstyled">
-                                        <li><span>Rp.{{ $item->dana }}</span>Dibutuhkan</li>
+                                        <li>Membutuhkan <span>Rp.{{ $item->dana }}</span></li>
+                                        <li>Metode pengembalian: <span>{{$item->pembayaran}}</span></li>
+                                        <li>Waktu pengembalian: <span>{{$item->waktu}} Minggu</span></li>
                                         {{-- <li><span>60</span>Backers</li> --}}
                                     </ul>
                                 </div>
@@ -167,19 +169,19 @@
                                                 <div class="col-xl-4 col-lg-4">
                                                     <div class="project_details_right_content">
                                                         <div class="project_detail_creator">
-                                                            <div class="project_detail_creator_image">
+                                                            {{-- <div class="project_detail_creator_image">
                                                                 <img src="assets/images/project/person-img-1.png"
                                                                     alt="">
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="creator_info">
                                                                 <h3>{{$item->usaha->name}}</h3>
                                                                 <h6 style="color: grey">Pemilik</h6>
                                                             </div>
-                                                            <div class="project_detail_creator_text">
+                                                            {{-- <div class="project_detail_creator_text">
                                                                 <p>Crochet designer and Creator of the Woolly Chic brand.
                                                                     Loves British wool and is passionate about the
                                                                     environment.</p>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                         {{-- <div class="project_detail_pledge">
                                                             <div class="title">
