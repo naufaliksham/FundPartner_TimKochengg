@@ -1,6 +1,3 @@
-resource/view/layouts/app.blade
-
-code app.blade :
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
