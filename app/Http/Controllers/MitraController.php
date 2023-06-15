@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pembayaran;
+use App\Models\User;
 use App\Models\Usaha;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rules\File;
@@ -14,10 +15,17 @@ class MitraController extends Controller
 {
     public function index()
     {
-        $data["usaha"] = Usaha::all();
-        $data2["usaha2"] = Usaha::orderBy('created_at','desc')->take(5)->get();
+        $data = Usaha::all();
+        $data2 = Usaha::orderBy('created_at','desc')->take(8)->get();
+        $data3= User::where('role', 'investor')->count();
+        $data4 = Usaha::where('status', 'Didanai')->count();
+        $data5 = Usaha::count();
+        $data6 = Usaha::where('status', 'Didanai')->get();
+        
 
-        return view("mitra.index",$data,$data2);
+        // return view("mitra.index",$data,$data2);
+        return view('mitra.index')->with('usaha',$data)->with('usaha2',$data2)->with('usaha3',$data3)
+        ->with('usaha4',$data4)->with('usaha5',$data5)->with('usaha6',$data6);
     }
 
     public function create()
