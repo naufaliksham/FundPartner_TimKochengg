@@ -52,7 +52,7 @@ class MitraController extends Controller
         $usaha->id_mitra = $request->id_mitra;
         $usaha->nama_usaha = $request->nama_usaha;
         $usaha->deskripsi = $request->input('deskripsi');
-        $usaha->dana = $request->dana *;
+        $usaha->dana = $request->dana;
         $usaha->waktu = $request->waktu;
         $usaha->pembayaran = $request->pembayaran;
         $usaha->gambar = $path;

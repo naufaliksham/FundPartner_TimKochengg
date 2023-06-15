@@ -40,6 +40,16 @@ class PembayaranController extends Controller
             $user->saldo = $saldo - $request->total;
             $user->save();
 
+            //update saldo investor
+            $mitra= Usaha::where('id_mitra', $userID)->first();
+            $investorID = $mitra->id_investor;
+            $user = User::find($investorID);
+            $saldo = $user->saldo;
+            $user->saldo = $saldo + $request->jumlah;
+            $user->save();
+
+
+
             //Update status pembayaran
             $bayar = Pembayaran::find($id);
             $bayar->status = 1;

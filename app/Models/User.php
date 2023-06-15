@@ -59,6 +59,9 @@ class User extends Authenticatable
     public function usaha(){
         return $this->hasMany(Usaha::class, 'id_mitra', 'id');
     }
+    public function usaha2(){
+        return $this->hasMany(Usaha::class, 'id_investor', 'id');
+    }
     public function transaksi(): HasMany
     {
         return $this->hasMany(Transaksi::class, 'id_user', 'id');
