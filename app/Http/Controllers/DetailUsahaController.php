@@ -19,6 +19,12 @@ class DetailUsahaController extends Controller
         return view('usaha.detailUsaha', compact('details'));
     }
 
+    public function showDetailUsaha2($id)
+    {
+        $details = Usaha::with('usaha')->where('id', $id)->get();
+        return view('usaha.detailUsaha', compact('details'));
+    }
+
     public function edit($id)
     {
         $item = Usaha::find($id);

@@ -1,5 +1,7 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
+
     <div class="page-wrapper">
 
         <!--Project Details Top-->
@@ -95,6 +97,7 @@
                                         </li>
                                     </ul>
                                 </div> --}}
+                                {{-- @if($item->status =='Belum didanai')         
                                 <div class="project_details_btn_box">
                                     <div class="container text-center">
                                         <div class="row">
@@ -110,10 +113,13 @@
                                             </form>
                                           </div>
                                         </div>
-                                      </div>
+                                    </div>     
+                                </div>     
+                                @else
+                                       
+                                @endif --}}
 
-                                    
-                                </div>
+                                
                                 {{-- <div class="project_detail_share_box">
                                     <div class="share_box_title">
                                         <h2>Share with friends</h2>

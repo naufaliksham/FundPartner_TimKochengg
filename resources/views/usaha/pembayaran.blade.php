@@ -1,4 +1,5 @@
-@extends('layout')
+{{-- @extends('layout') --}}
+@extends('mitra.layout_mitra')
 @section('content')
     <div class="centered">
         <div class="card" style="width: 400px;">
