@@ -68,6 +68,14 @@ class AuthController extends Controller
         return view('register');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/login')->with('success', 'Anda berhasil keluar.');
+    }
+
+
     public function forgotPassword(Request $request)
     {
         $request->validate([

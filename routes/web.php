@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\InvestorController;
-use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailUsahaController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,10 @@ use App\Http\Controllers\DetailUsahaController;
 */
 
 Route::get('/usaha', [DetailUsahaController::class, 'showDetailUsaha'])->name('detailUsaha');
-Route::get('/rincian', [TransaksiController::class, 'show'])->name('rincianInvestment');
+Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
+Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
+Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
+Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
 // Auth::routes();
 
 Route::middleware(['auth','user-role:user'])->group(function() {
@@ -31,6 +36,9 @@ Route::middleware(['auth','user-role:user'])->group(function() {
 // LOGIN
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+// LOGOUT
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // REGISTER
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
@@ -58,5 +66,13 @@ Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name
 
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
+// TOP-UP
+Route::get('/topup', [ProfilController::class, 'showTopupForm'])->name('topup.form');
+Route::post('/topup', [ProfilController::class, 'processTopup'])->name('topup.process');
+
+// UPLOAD KTP & FOTO
+Route::get('/upload', [ProfilController::class, 'showUploadForm'])->name('upload.form');
+Route::post('/upload', [ProfilController::class, 'processUpload'])->name('upload.process');
 
 

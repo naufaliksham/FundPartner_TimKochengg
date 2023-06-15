@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
+        "nesbot/carbon": "^2.67",
         "tinymce/tinymce": "^6.4"
     },
     "require-dev": {
