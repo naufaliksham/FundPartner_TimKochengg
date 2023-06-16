@@ -31,25 +31,16 @@
             <form action="{{ URL('register') }}" method="POST">
                 @csrf
               <div class="form_group">
-                <label for="username">Username</label>
+                <label for="username">Nama Lengkap</label>
                 <input
                   type="text"
-                  name="username"
-                  placeholder="Enter your username"
+                  name="name"
+                  placeholder="Masukkan nama lengkap"
                 />
                 <i class="fa-regular fa-user fa-xl icon_style"></i>
               </div>
               <div class="form_group">
-                <label for="fullname">Full Name</label>
-                <input
-                  type="text"
-                  name="fullname"
-                  placeholder="Enter your full name"
-                />
-                <i class="fa-regular fa-address-card fa-xl icon_style"></i>
-              </div>
-              <div class="form_group">
-                <label for="email">Email Address</label>
+                <label for="email">Alamat Email</label>
                 <input
                   type="email"
                   name="email"
@@ -62,29 +53,38 @@
                 <input
                   type="password"
                   name="password"
-                  placeholder="Enter your password"
+                  placeholder="Masukan password"
                 />
                 <i class="fa-solid fa-key fa-xl icon_style"></i>
               </div>
 
               <div class="form_group">
-                <label for="role">Login Sebagai</label>
+                <label for="password_confirmation">Konfirmasi Password</label>
+                <input type="password" 
+                id="password_confirmation" 
+                name="password_confirmation" 
+                placeholder="Ulangi password"required>
+                <i class="fa-solid fa-key fa-xl icon_style"></i>
+              </div>
+
+              <div class="form_group">
+                <label for="role">Daftar Sebagai</label>
                 <select name="role" id="role" class="role_select">
-                    <option value="Mitra">--- </option>
-                  <option value="Mitra">MITRA </option>
-                  <option value="Investor">INVESTOR</option>
+                  <option value="Mitra">--- </option>
+                  <option value="1">MITRA </option>
+                  <option value="0">INVESTOR</option>
                 </select>
               </div>
         
               <div class="label_forgot_pswd">
-                <a href="#" class="forgot_pswd">Forgot password?</a>
+                <a href="#" class="forgot_pswd">Lupa password?</a>
               </div>
               <div class="btn_group">
-                <button type="submit">REGISTER</button>
+                <button type="submit">DAFTAR</button>
               </div>
               <div class="text_footer">
-                <p>Already Have an Account?</p>
-                <a href="{{ URL('login') }}" class="sign_in_text">Sign In</a>
+                <p>Sudah punya akun?</p>
+                <a href="{{ URL('login') }}" class="sign_in_text">&nbsp;Masuk</a>
               </div>
             </form>
           </div>

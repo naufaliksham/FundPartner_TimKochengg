@@ -14,11 +14,11 @@
         @csrf
         <div>
             <label for="ktp">KTP:</label>
-            <input type="file" id="ktp" name="ktp" required>
+            <input type="file" id="ktp" name="ktp">
         </div>
         <div>
             <label for="foto">Foto:</label>
-            <input type="file" id="foto" name="foto" required>
+            <input type="file" id="foto" name="foto">
         </div>
         <button type="submit">Upload</button>
     </form>

@@ -24,7 +24,9 @@ class AuthController extends Controller
             $user = Auth::user();
             $userRole = ($user->role == 0) ? 'Investor' : 'Mitra UMKM';
 
-            return "User " . $user->name . ", Role: " . $userRole;
+            // return "User " . $user->name . ", Role: " . $userRole;
+            
+            return redirect('/login')->with('success', 'Berhasil mendaftarkan akun, silahkan login.');
         }
 
         // Autentikasi gagal
@@ -46,8 +48,19 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'integer', 'in:0,1'],
         ], [
+            'name.required' => 'Nama lengkap harus diisi.',
+            'name.string' => 'Nama lengkap harus berupa teks.',
+            'name.max' => 'Nama lengkap tidak boleh melebihi 255 karakter.',
+            'email.required' => 'Alamat email harus diisi.',
+            'email.string' => 'Alamat email harus berupa teks.',
+            'email.email' => 'Alamat email tidak valid.',
+            'email.max' => 'Alamat email tidak boleh melebihi 255 karakter.',
             'email.unique' => 'Alamat email sudah digunakan.',
+            'password.required' => 'Password harus diisi.',
+            'password.string' => 'Password harus berupa teks.',
+            'password.min' => 'Password harus memiliki panjang minimal 8 karakter.',
             'password.confirmed' => 'Password tidak sesuai.',
+            'role.integer' => 'Pilih peran yang sesuai.',
             'role.in' => 'Pilih peran yang sesuai.',
         ]);
 
