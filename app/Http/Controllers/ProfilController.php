@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -43,6 +44,10 @@ class ProfilController extends Controller
             // Proses penyimpanan file KTP
             $ktpPath = $ktpFile->store('ktp', 'public');
             // Simpan path KTP ke database atau lakukan operasi lainnya sesuai kebutuhan Anda
+
+            $user = User::findOrFail(Auth::user()->id);
+            $user->foto = $ktpPath;
+            $user->save();
         }
 
         if ($request->hasFile('foto')) {
@@ -50,6 +55,10 @@ class ProfilController extends Controller
             // Proses penyimpanan file foto
             $fotoPath = $fotoFile->store('foto', 'public');
             // Simpan path foto ke database atau lakukan operasi lainnya sesuai kebutuhan Anda
+
+            $user = User::findOrFail(Auth::user()->id);
+            $user->foto = $fotoPath;
+            $user->save();
         }
 
         return redirect()->back()->with('success', 'Upload berhasil!');
