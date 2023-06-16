@@ -46,7 +46,7 @@ class DetailUsahaController extends Controller
             $usaha->gambar = $path;
             $usaha->save();
 
-            return redirect('rincianInvestment');
+            return redirect('rincian');
 
         } else {
             $usaha = Usaha::findorfail($id);
@@ -58,7 +58,7 @@ class DetailUsahaController extends Controller
             $usaha->pembayaran = $request->pembayaran;
             $usaha->save();
 
-            return redirect('rincianInvestment');
+            return redirect('rincian');
         }
     }
 
@@ -66,7 +66,7 @@ class DetailUsahaController extends Controller
     {
         $usaha = Usaha::find($id);
         $usaha->delete();
-        return redirect('rincianInvestment');
+        return redirect('indexmitra');
     }
 
 
