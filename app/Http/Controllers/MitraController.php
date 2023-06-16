@@ -93,6 +93,6 @@ class MitraController extends Controller
         
         // $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
         // return view('usaha.detailUsaha', compact('details'));
-        return redirect()->route('detailUsaha');
+        return redirect()->route('rincianInvestment');
     }
 }
