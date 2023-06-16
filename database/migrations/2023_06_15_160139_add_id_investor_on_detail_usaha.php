@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('detail_usaha', function (Blueprint $table) {
             $table->foreignId('id_investor')->nullable();
-            $table->foreign('id_investor')->after('id_mitra')->references('id')->on('users');
+            $table->foreign('id_investor')->after('id_mitra')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

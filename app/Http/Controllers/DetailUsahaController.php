@@ -65,7 +65,7 @@ class DetailUsahaController extends Controller
     public function destroy($id)
     {
         $usaha = Usaha::find($id);
-        $usaha->delete();
+        $usaha->usaha2()->delete();
         return redirect('indexmitra');
     }
 
