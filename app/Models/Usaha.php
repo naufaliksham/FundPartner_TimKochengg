@@ -29,7 +29,8 @@ class Usaha extends Model
         'gambar',
         'dana_terkumpul',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'id_investor'
     ];
 
     /**
@@ -46,6 +47,9 @@ class Usaha extends Model
 
      public function usaha(){
         return $this->belongsTo(User::class, 'id_mitra');
+    }
+    public function usaha2(){
+        return $this->belongsTo(User::class, 'id_investor');
     }
     public function transaksi(): HasMany
     {

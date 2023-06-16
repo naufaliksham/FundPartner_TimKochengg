@@ -31,7 +31,7 @@
                         <div class="mb-3">
                             <label for="waktu" class="form-label input-runded"> Waktu pelunasan</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="waktu">
-                                <option value="{{ $item->dana}}" selected>{{ $item->dana}} Minggu dari pendanaan</option>
+                                <option value="{{ $item->waktu}}" selected>{{ $item->waktu}} Minggu dari pendanaan</option>
                                 <option value="4"> 4 Minggu dari pendanaan</option>
                                 <option value="12"> 12 Minggu dari pendanaan</option>
                                 <option value="24"> 24 Minggu dari pendanaan</option>
@@ -46,7 +46,7 @@
                         <div class="mb-3">
                             <label for="pembayaran" class="form-label input-runded"> Opsi Pembayaran</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pembayaran">
-                                <option value="{{ $item->dana}}" selected>{{ $item->dana}}</option>
+                                <option value="{{ $item->pembayaran}}" selected>{{ $item->pembayaran}}</option>
                                 <option value="lunas"> Dibayar langsung lunas</option>
                                 <option value="dicicil"> Dicicil tiap minggu</option>
                             </select>

@@ -46,7 +46,7 @@ class DetailUsahaController extends Controller
             $usaha->gambar = $path;
             $usaha->save();
 
-            return redirect('usaha');
+            return redirect('rincian');
 
         } else {
             $usaha = Usaha::findorfail($id);
@@ -58,15 +58,15 @@ class DetailUsahaController extends Controller
             $usaha->pembayaran = $request->pembayaran;
             $usaha->save();
 
-            return redirect('usaha');
+            return redirect('rincian');
         }
     }
 
     public function destroy($id)
     {
         $usaha = Usaha::find($id);
-        $usaha->delete();
-        return redirect('usaha');
+        $usaha->usaha2()->delete();
+        return redirect('indexmitra');
     }
 
 
