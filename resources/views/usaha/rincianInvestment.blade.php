@@ -161,8 +161,10 @@
                     <div class="project-tab-box tabs-box">
                         <ul class="tab-btns tab-buttons clearfix list-unstyled">
                             <li data-tab="#idea" class="tab-btn active-btn"><span>Detail Usaha</span></li>
-                            <li data-tab="#finance" class="tab-btn"><span>Investment</span></li>
-                            <li data-tab="#transaksi" class="tab-btn"><span>Riwayat Transaksi</span></li>
+                            @if ($item->status == 'didanai')
+                                <li data-tab="#finance" class="tab-btn"><span>Investment</span></li>
+                                <li data-tab="#transaksi" class="tab-btn"><span>Riwayat Transaksi</span></li>
+                            @endif
                         </ul>
                         <div class="tabs-content">
                             <div class="tab active-tab" id="idea">
@@ -176,123 +178,127 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab" id="finance">
-                                <div class="project_idea_details">
-                                    <div class="row">
-                                        <div class="col-xl-8 col-lg-8">
-                                            <div class="project_idea_details_content">
-                                                <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
-                                                <h5> Total yang harus dibayarkan:
-                                                    Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +
-                                                    Rp.{{ number_format($item->dana * 0.1, 0, ',', '.') ?? '-' }}
-                                                    (Investor) </h5>
+                            @if ($item->status == 'didanai')
+                                <div class="tab" id="finance">
+                                    <div class="project_idea_details">
+                                        <div class="row">
+                                            <div class="col-xl-8 col-lg-8">
+                                                <div class="project_idea_details_content">
+                                                    <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
+                                                    <h5> Total yang harus dibayarkan:
+                                                        Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +
+                                                        Rp.{{ number_format($item->dana * 0.1, 0, ',', '.') ?? '-' }}
+                                                        (Investor)
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Tanggal Tempo</th>
-                                                    <th scope="col">Jumlah</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($biaya as $bayar)
-                                                    @if ($bayar->id_mitra == $item->id)
-                                                        <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $bayar->tanggal_jatuh_tempo }}</td>
-                                                            <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
-                                                            </td>
-                                                            @php
-                                                                $tempo = $bayar->tanggal_jatuh_tempo;
-                                                                $today = now()->format('Y-m-d');
-                                                                $diffInDays = now()->diffInDays($tempo);
-                                                                
-                                                            @endphp
-                                                            @if ($bayar->status == 0)
-                                                                @if ($today > $tempo)
-                                                                    <td style="background-color: red">Sudah Lewat
-                                                                        {{ $diffInDays }} Hari</td>
-                                                                @else
-                                                                    <td>Belum dibayar</td>
-                                                                @endif
-                                                            @else
-                                                                <td>Lunas</td>
-                                                            @endif
-                                                            <td>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tanggal Tempo</th>
+                                                        <th scope="col">Jumlah</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($biaya as $bayar)
+                                                        @if ($bayar->id_mitra == $item->id)
+                                                            <tr>
+                                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                                <td>{{ $bayar->tanggal_jatuh_tempo }}</td>
+                                                                <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
+                                                                </td>
+                                                                @php
+                                                                    $tempo = $bayar->tanggal_jatuh_tempo;
+                                                                    $today = now()->format('Y-m-d');
+                                                                    $diffInDays = now()->diffInDays($tempo);
+                                                                    
+                                                                @endphp
                                                                 @if ($bayar->status == 0)
-                                                                    <a href="{{ route('bayar', ['id' => $bayar->id]) }}"
-                                                                        class="btn btn-sm btn-primary">Bayar</a>
+                                                                    @if ($today > $tempo)
+                                                                        <td style="background-color: red">Sudah Lewat
+                                                                            {{ $diffInDays }} Hari</td>
+                                                                    @else
+                                                                        <td>Belum dibayar</td>
+                                                                    @endif
                                                                 @else
-                                                                    <i class="fas fa-check-circle"></i>
+                                                                    <td>Lunas</td>
                                                                 @endif
+                                                                <td>
+                                                                    @if ($bayar->status == 0)
+                                                                        <a href="{{ route('bayar', ['id' => $bayar->id]) }}"
+                                                                            class="btn btn-sm btn-primary">Bayar</a>
+                                                                    @else
+                                                                        <i class="fas fa-check-circle"></i>
+                                                                    @endif
 
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab" id="transaksi">
-                                <div class="project_idea_details">
-                                    <div class="row">
-                                        <div class="col-xl-8 col-lg-8">
-                                            <div class="project_idea_details_content">
-                                                <h4>Riwayat Transaksi</h4>
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"> Id</th>
-                                                    <th scope="col">Jenis Pembayaran</th>
-                                                    <th scope="col">Jumlah Pembayaran</th>
-                                                    <th scope="col">Denda</th>
-                                                    <th scope="col">Fee</th>
-                                                    <th scope="col">Total Pembayaran</th>
-                                                    <th scope="col">Tanggal Pembayaran</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($transaksi as $riwayat)
-                                                    {{-- {{dd($riwayat->id)}} --}}
-                                                    @if ($riwayat->id_mitra == $item->id)
-                                                        <tr>
-                                                            <th scope="row">{{ $riwayat->id_pembayaran }}</th>
-                                                            <td>{{ $riwayat->jenis_pembayaran }}
-                                                            </td>
-                                                            <td>
-                                                                Rp.{{ number_format($riwayat->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
-                                                            </td>
-                                                            <td>
-                                                                Rp.{{ number_format($riwayat->denda, 0, ',', '.') ?? '-' }}
-                                                            </td>
-                                                            <td>
-                                                                Rp.{{ number_format($riwayat->fee, 0, ',', '.') ?? '-' }}
-                                                            </td>
-                                                            <td>Rp.{{ number_format($riwayat->total, 0, ',', '.') ?? '-' }}
-                                                            </td>
-                                                            <td>{{ $riwayat->waktu_pembayaran }}
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                </div>
+                                <div class="tab" id="transaksi">
+                                    <div class="project_idea_details">
+                                        <div class="row">
+                                            <div class="col-xl-8 col-lg-8">
+                                                <div class="project_idea_details_content">
+                                                    <h4>Riwayat Transaksi</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> Id</th>
+                                                        <th scope="col">Jenis Pembayaran</th>
+                                                        <th scope="col">Jumlah Pembayaran</th>
+                                                        <th scope="col">Denda</th>
+                                                        <th scope="col">Fee</th>
+                                                        <th scope="col">Total Pembayaran</th>
+                                                        <th scope="col">Tanggal Pembayaran</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($transaksi as $riwayat)
+                                                        {{-- {{dd($riwayat->id)}} --}}
+                                                        @if ($riwayat->id_mitra == $item->id)
+                                                            <tr>
+                                                                <th scope="row">{{ $riwayat->id_pembayaran }}</th>
+                                                                <td>{{ $riwayat->jenis_pembayaran }}
+                                                                </td>
+                                                                <td>
+                                                                    Rp.{{ number_format($riwayat->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
+                                                                </td>
+                                                                <td>
+                                                                    Rp.{{ number_format($riwayat->denda, 0, ',', '.') ?? '-' }}
+                                                                </td>
+                                                                <td>
+                                                                    Rp.{{ number_format($riwayat->fee, 0, ',', '.') ?? '-' }}
+                                                                </td>
+                                                                <td>Rp.{{ number_format($riwayat->total, 0, ',', '.') ?? '-' }}
+                                                                </td>
+                                                                <td>{{ $riwayat->waktu_pembayaran }}
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
