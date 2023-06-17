@@ -145,13 +145,10 @@
                                     </div>
                                     <div class="projects_one_bottom">
                                         <ul class="list-unstyled">
-                                            <li>
-                                                <h5>Rp {{ $item->dana_terkumpul }}</h5>
-                                                <p>Pledged</p>
-                                            </li>
+
                                             <li>
                                                 <h5>Rp {{ $item->dana }}</h5>
-                                                <p>Goal</p>
+                                                <p>Dibutuhkan</p>
                                             </li>
                                             {{-- <li>
                                                 <h5>{{ $item->waktu*7 }}</h5>
