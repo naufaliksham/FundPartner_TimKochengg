@@ -59,10 +59,6 @@ class MitraController extends Controller
         $usaha->gambar = $path;
         $usaha->save();
         $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-
-        }
-        
-
         
         // $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
         // return view('usaha.detailUsaha', compact('details'));
@@ -75,7 +71,8 @@ class MitraController extends Controller
         if ($usaha->pembayaran == 'lunas') {
             $pelunasan = $usaha->dana * 1.1;
             $tempo = Carbon::now()->addDays(7 * $usaha->waktu);
-
+            $usaha->status = 'didanai';
+            $usaha->save();
             $newPayment = new Pembayaran;
             $newPayment->id_mitra = $usaha->id;
             $newPayment->jumlah_pembayaran = $pelunasan;
@@ -83,21 +80,25 @@ class MitraController extends Controller
             $newPayment->jenis_pembayaran = $usaha->pembayaran;
             $newPayment->tanggal_jatuh_tempo = $tempo;
             $newPayment->save();
-            $request->session()->flash('success', 'Usaha berhasil ditambahkan');
+            session()->flash('success', 'Usaha berhasil didanai');
         } else {
             $pelunasan = (($usaha->dana * 1.1) / $usaha->waktu);
             $tempo = Carbon::now()->addDays(7);
             // dd($usaha->id);
-            for ($i = 1; $i <= $request->waktu; $i++) {
+            for ($i = 1; $i <= $usaha->waktu; $i++) {
                 $newPayment = new Pembayaran;
                 $newPayment->id_mitra = $usaha->id;
+                $usaha->status = 'didanai';
+                $usaha->save();
                 $newPayment->jumlah_pembayaran = $pelunasan;
                 $newPayment->status = false;
                 $newPayment->jenis_pembayaran = $usaha->pembayaran;
                 $newPayment->tanggal_jatuh_tempo = $tempo;
                 $newPayment->save();
                 $tempo = $tempo->addDays(7);
-                $request->session()->flash('success', 'Usaha berhasil ditambahkan');
+                session()->flash('success', 'Usaha berhasil didanai');
             };
         }
+        return redirect()->route('rincianInvestment');
+    }
 }
