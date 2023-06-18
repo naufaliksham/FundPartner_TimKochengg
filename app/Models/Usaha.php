@@ -55,7 +55,7 @@ class Usaha extends Model
     {
         return $this->hasMany(Transaksi::class, 'id_mitra', 'id');
     }
-    public function pembayaran(): HasMany
+    public function payment(): HasMany
     {
         return $this->hasMany(Pembayaran::class, 'id_mitra', 'id');
     }
