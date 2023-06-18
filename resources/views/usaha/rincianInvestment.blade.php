@@ -139,6 +139,15 @@
                                                     <a href="/editUsaha/{{ $item->id }}"
                                                         class="thm-btn follow_btn">Edit</a>
                                                 </div>
+                                                {{-- Test tombol bayar --}}
+                                                {{-- <div class="col">
+                                                    <form action="{{ route('tagihan', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('POST')
+                                                        <button type="submit"
+                                                            class="thm-btn back_this_project_btn">Bayar</button>
+                                                    </form>
+                                                </div> --}}
                                                 <div class="col">
                                                     <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
                                                         @csrf
