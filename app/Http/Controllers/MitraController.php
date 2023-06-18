@@ -66,15 +66,18 @@ class MitraController extends Controller
     }
 
     function tagihan($id){
-        //GENERATE PEMBAYARANA 
+        //GENERATE PEMBAYARAN
+        //Fungsi ini akan menggenerate pembayaran sesuai dengan waktu fungsi ini digunakan, dan mengubah status usaha menjadi didanai
+        //karena fungsi ini hanya digunakan ketika investor menekan tombol bayar
+        //kurangnya yaitu menambahkan id investor dan mentransfer saldo investor ke mitra
         $usaha = Usaha::find($id);
         if ($usaha->pembayaran == 'lunas') {
-            $pelunasan = $usaha->dana * 1.1;
+            $pelunasan = $usaha->dana * 1.1; //Menghitung pelunasan ,1.1 = 10% keuntungan
             $tempo = Carbon::now()->addDays(7 * $usaha->waktu);
-            $usaha->status = 'didanai';
+            $usaha->status = 'didanai'; //Mengubah status menjadi didanai
             $usaha->save();
             $newPayment = new Pembayaran;
-            $newPayment->id_mitra = $usaha->id;
+            $newPayment->id_mitra = $usaha->id; //Mengisi id_mitra
             $newPayment->jumlah_pembayaran = $pelunasan;
             $newPayment->status = false;
             $newPayment->jenis_pembayaran = $usaha->pembayaran;
@@ -88,7 +91,7 @@ class MitraController extends Controller
             for ($i = 1; $i <= $usaha->waktu; $i++) {
                 $newPayment = new Pembayaran;
                 $newPayment->id_mitra = $usaha->id;
-                $usaha->status = 'didanai';
+                $usaha->status = 'didanai'; //Mengubah status menjadi didanai
                 $usaha->save();
                 $newPayment->jumlah_pembayaran = $pelunasan;
                 $newPayment->status = false;
