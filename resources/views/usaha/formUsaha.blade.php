@@ -1,7 +1,7 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-    @if (Auth::user()->ktp == null)
+    @if (empty(Auth::user()->ktp))
         <section class="manage_one" >
             <div class="container">
                 <div class="row">
