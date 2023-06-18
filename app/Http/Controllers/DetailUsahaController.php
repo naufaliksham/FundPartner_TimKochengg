@@ -48,40 +48,7 @@ class DetailUsahaController extends Controller
             $usaha->gambar = $path;
             $usaha->save();
 
-            //Pembayaran
-            $pembayaran = Pembayaran::where('id_mitra', $id);
-            $pembayaran->delete();
-
-            $usaha = Usaha::where('nama_usaha', $request->nama_usaha)->first();
-            if ($request->pembayaran == 'lunas') {
-                $pelunasan = $request->dana * 1.1;
-                $tempo = Carbon::now()->addDays(7*$request->waktu);
             
-                $newPayment = new Pembayaran;
-                $newPayment->id_mitra = $usaha->id;
-                $newPayment->jumlah_pembayaran = $pelunasan;
-                $newPayment->status = false;
-                $newPayment->jenis_pembayaran = $request->pembayaran;
-                $newPayment->tanggal_jatuh_tempo = $tempo;
-                $newPayment->save();
-                $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-            } else {
-                $pelunasan = (($request->dana * 1.1) / $request->waktu);
-                $tempo = Carbon::now()->addDays(7);
-                // dd($usaha->id);
-                for ($i = 1; $i <= $request->waktu; $i++) {
-                    $newPayment = new Pembayaran;
-                    $newPayment->id_mitra = $usaha->id;
-                    $newPayment->jumlah_pembayaran = $pelunasan;
-                    $newPayment->status = false;
-                    $newPayment->jenis_pembayaran = $request->pembayaran;
-                    $newPayment->tanggal_jatuh_tempo = $tempo;
-                    $newPayment->save();
-                    $tempo = $tempo->addDays(7);
-                    $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-                };
-            }
-
             return redirect('rincian');
 
         } else {
@@ -94,39 +61,7 @@ class DetailUsahaController extends Controller
             $usaha->pembayaran = $request->pembayaran;
             $usaha->save();
 
-            //Pembayaran
-            $pembayaran = Pembayaran::where('id_mitra', $id);
-            $pembayaran->delete();
-
-            $usaha = Usaha::where('nama_usaha', $request->nama_usaha)->first();
-            if ($request->pembayaran == 'lunas') {
-                $pelunasan = $request->dana * 1.1;
-                $tempo = Carbon::now()->addDays(7*$request->waktu);
             
-                $newPayment = new Pembayaran;
-                $newPayment->id_mitra = $usaha->id;
-                $newPayment->jumlah_pembayaran = $pelunasan;
-                $newPayment->status = false;
-                $newPayment->jenis_pembayaran = $request->pembayaran;
-                $newPayment->tanggal_jatuh_tempo = $tempo;
-                $newPayment->save();
-                $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-            } else {
-                $pelunasan = (($request->dana * 1.1) / $request->waktu);
-                $tempo = Carbon::now()->addDays(7);
-                // dd($usaha->id);
-                for ($i = 1; $i <= $request->waktu; $i++) {
-                    $newPayment = new Pembayaran;
-                    $newPayment->id_mitra = $usaha->id;
-                    $newPayment->jumlah_pembayaran = $pelunasan;
-                    $newPayment->status = false;
-                    $newPayment->jenis_pembayaran = $request->pembayaran;
-                    $newPayment->tanggal_jatuh_tempo = $tempo;
-                    $newPayment->save();
-                    $tempo = $tempo->addDays(7);
-                    $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-                };
-            }
 
             return redirect('rincian');
         }
@@ -137,8 +72,6 @@ class DetailUsahaController extends Controller
         $usaha = Usaha::find($id);
         $usaha->usaha2()->delete();
         $usaha->delete();
-        $pembayaran = Pembayaran::where('id_mitra', $id);
-        $pembayaran->delete();
         return redirect('indexmitra');
     }
 
