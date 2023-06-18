@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             // 0 = investor, 1 = mitra umkm
             $table->tinyInteger("role")->default(0);
-            $table->decimal('saldo', 8, 2)->default(0.00);
+            $table->decimal('saldo', 50, 2)->default(0.00);
             $table->string('ktp')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
