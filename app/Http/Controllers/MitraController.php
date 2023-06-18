@@ -16,16 +16,17 @@ class MitraController extends Controller
     public function index()
     {
         $data = Usaha::all();
-        $data2 = Usaha::orderBy('created_at','desc')->take(8)->get();
-        $data3= User::where('role', 'investor')->count();
+        $data2 = Usaha::where('status', 'Belum didanai')->orderBy('created_at','desc')->take(8)->get();
+        $data3= User::where('role', '0')->count();
         $data4 = Usaha::where('status', 'Didanai')->count();
         $data5 = Usaha::count();
         $data6 = Usaha::where('status', 'Didanai')->get();
+        $data7= User::where('role', '1')->count();
         
 
         // return view("mitra.index",$data,$data2);
         return view('mitra.index')->with('usaha',$data)->with('usaha2',$data2)->with('usaha3',$data3)
-        ->with('usaha4',$data4)->with('usaha5',$data5)->with('usaha6',$data6);
+        ->with('usaha4',$data4)->with('usaha5',$data5)->with('usaha6',$data6)->with('usaha7',$data7);
     }
 
     public function create()
@@ -57,42 +58,50 @@ class MitraController extends Controller
         $usaha->pembayaran = $request->pembayaran;
         $usaha->gambar = $path;
         $usaha->save();
-
-        //GENERATE PEMBAYARANA AND  
-        $usaha = Usaha::where('nama_usaha', $request->nama_usaha)->first();
-        if ($request->pembayaran == 'lunas') {
-            $pelunasan = $request->dana * 1.1;
-            $tempo = Carbon::now()->addDays(7*$request->waktu);
-        
-            $newPayment = new Pembayaran;
-            $newPayment->id_mitra = $usaha->id;
-            $newPayment->jumlah_pembayaran = $pelunasan;
-            $newPayment->status = false;
-            $newPayment->jenis_pembayaran = $request->pembayaran;
-            $newPayment->tanggal_jatuh_tempo = $tempo;
-            $newPayment->save();
-            $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-        } else {
-            $pelunasan = (($request->dana * 1.1) / $request->waktu);
-            $tempo = Carbon::now()->addDays(7);
-            // dd($usaha->id);
-            for ($i = 0; $i <= $request->waktu; $i++) {
-                $newPayment = new Pembayaran;
-                $newPayment->id_mitra = $usaha->id;
-                $newPayment->jumlah_pembayaran = $pelunasan;
-                $newPayment->status = false;
-                $newPayment->jenis_pembayaran = $request->pembayaran;
-                $newPayment->tanggal_jatuh_tempo = $tempo;
-                $newPayment->save();
-                $tempo = $tempo->addDays(7);
-                $request->session()->flash('success', 'Usaha berhasil ditambahkan');
-            };
-        }
-        
-
+        $request->session()->flash('success', 'Usaha berhasil ditambahkan');
         
         // $details = Usaha::with('usaha')->where('id_mitra', $request->id_mitra)->get();
         // return view('usaha.detailUsaha', compact('details'));
+        return redirect()->route('rincianInvestment');
+    }
+
+    function tagihan($id){
+        //GENERATE PEMBAYARAN
+        //Fungsi ini akan menggenerate pembayaran sesuai dengan waktu fungsi ini digunakan, dan mengubah status usaha menjadi didanai
+        //karena fungsi ini hanya digunakan ketika investor menekan tombol bayar
+        //kurangnya yaitu menambahkan id investor dan mentransfer saldo investor ke mitra
+        $usaha = Usaha::find($id);
+        if ($usaha->pembayaran == 'lunas') {
+            $pelunasan = $usaha->dana * 1.1; //Menghitung pelunasan ,1.1 = 10% keuntungan
+            $tempo = Carbon::now()->addDays(7 * $usaha->waktu);
+            $usaha->status = 'didanai'; //Mengubah status menjadi didanai
+            $usaha->save();
+            $newPayment = new Pembayaran;
+            $newPayment->id_mitra = $usaha->id; //Mengisi id_mitra
+            $newPayment->jumlah_pembayaran = $pelunasan;
+            $newPayment->status = false;
+            $newPayment->jenis_pembayaran = $usaha->pembayaran;
+            $newPayment->tanggal_jatuh_tempo = $tempo;
+            $newPayment->save();
+            session()->flash('success', 'Usaha berhasil didanai');
+        } else {
+            $pelunasan = (($usaha->dana * 1.1) / $usaha->waktu);
+            $tempo = Carbon::now()->addDays(7);
+            // dd($usaha->id);
+            for ($i = 1; $i <= $usaha->waktu; $i++) {
+                $newPayment = new Pembayaran;
+                $newPayment->id_mitra = $usaha->id;
+                $usaha->status = 'didanai'; //Mengubah status menjadi didanai
+                $usaha->save();
+                $newPayment->jumlah_pembayaran = $pelunasan;
+                $newPayment->status = false;
+                $newPayment->jenis_pembayaran = $usaha->pembayaran;
+                $newPayment->tanggal_jatuh_tempo = $tempo;
+                $newPayment->save();
+                $tempo = $tempo->addDays(7);
+                session()->flash('success', 'Usaha berhasil didanai');
+            };
+        }
         return redirect()->route('rincianInvestment');
     }
 }

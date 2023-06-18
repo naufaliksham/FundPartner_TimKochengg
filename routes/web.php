@@ -23,14 +23,11 @@ use App\Http\Controllers\ProfilController;
 */
 
 
-Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
-Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
-Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
-Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
+
 // Auth::routes();
 
-Route::middleware(['auth','user-role:user'])->group(function() {
-    Route::get("/home",[]);
+Route::middleware(['auth', 'user-role:user'])->group(function () {
+    Route::get("/home", []);
 });
 
 // LOGIN
@@ -46,16 +43,22 @@ Route::post('/register', [AuthController::class, 'register']);
 
 //MITRA
 // Route::group(['as' => 'mitra.', 'prefix' => 'mitra'], function () {
-    Route::get('/indexmitra', [MitraController::class, 'index'])->name('index');
-    Route::get('/form_umkm', [MitraController::class, 'create'])->name('create');
+Route::get('/indexmitra', [MitraController::class, 'index'])->name('index');
+Route::get('/form_umkm', [MitraController::class, 'create'])->name('create');
 
-    //form mitra
-    Route::post('/store_umkm', [MitraController::class, 'store'])->name('store');
-    Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit']);
-    Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha');
-    Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha');
+//form mitra
+Route::post('/store_umkm', [MitraController::class, 'store'])->name('store');
+Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit']);
+Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha');
+Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha');
 
-    // });
+Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
+Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
+Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
+Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
+Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan');
+
+// });
 
 // INVESTOR
 Route::get('investor-page', [InvestorController::class, 'index']);
@@ -77,5 +80,3 @@ Route::post('/topup', [ProfilController::class, 'processTopup'])->name('topup.pr
 // UPLOAD KTP & FOTO
 Route::get('/upload', [ProfilController::class, 'showUploadForm'])->name('upload.form');
 Route::post('/upload', [ProfilController::class, 'processUpload'])->name('upload.process');
-
-

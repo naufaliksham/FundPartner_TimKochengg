@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Usaha;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,6 +48,7 @@ class DetailUsahaController extends Controller
             $usaha->gambar = $path;
             $usaha->save();
 
+            
             return redirect('rincian');
 
         } else {
@@ -58,6 +61,8 @@ class DetailUsahaController extends Controller
             $usaha->pembayaran = $request->pembayaran;
             $usaha->save();
 
+            
+
             return redirect('rincian');
         }
     }
@@ -66,6 +71,7 @@ class DetailUsahaController extends Controller
     {
         $usaha = Usaha::find($id);
         $usaha->usaha2()->delete();
+        $usaha->delete();
         return redirect('indexmitra');
     }
 
