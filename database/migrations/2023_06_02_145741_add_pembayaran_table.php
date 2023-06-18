@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_mitra')->references('id')->on('detail_usaha');
             $table->string('jenis_pembayaran');
-            $table->decimal('jumlah_pembayaran', 100, 2);
+            $table->decimal('jumlah_pembayaran', 50, 2);
             $table->boolean('status', false);
             $table->date('tanggal_jatuh_tempo');
             $table->timestamps();

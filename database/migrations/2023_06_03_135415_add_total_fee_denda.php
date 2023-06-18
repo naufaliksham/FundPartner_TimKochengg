@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('transaksi', function(Blueprint $table){
-            $table->decimal('denda', 100, 2)->after('jumlah_pembayaran')->nullable();
-            $table->decimal('fee', 100, 2)->after('denda')->nullable();
-            $table->decimal('total', 100, 2)->after('fee')->nullable();
+            $table->decimal('denda', 50, 2)->after('jumlah_pembayaran')->nullable();
+            $table->decimal('fee', 50, 2)->after('denda')->nullable();
+            $table->decimal('total', 50, 2)->after('fee')->nullable();
         });
     }
 
