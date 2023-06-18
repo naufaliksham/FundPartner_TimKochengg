@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('detail_usaha', function (Blueprint $table) {
-            $table->foreignId('id_investor')->nullable();
-            $table->foreign('id_investor')->after('id_mitra')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreignId('id_investor')->nullable()->onDelete('cascade');
+            $table->foreign('id_investor')->after('id_mitra')->references('id')->on('users');
         });
     }
 

@@ -60,8 +60,13 @@
                             <div class="project_details_right_content">
                                 <div class="project_detail_creator">
                                     <div class="project_detail_creator_image">
-                                        <h3>Investor</h3>
-                                        <img src="assets/images/project/person-img-1.png" alt="">
+                                        <h3>Pemilik</h3>
+                                        @if ($item->usaha->name == null)
+                                            <img src="assets/images/project/person-img-1.png" alt="">
+                                        @else
+                                            <img src="{{ asset('storage/' . $item->usaha->name) }}" alt="Gambar_Pemilik">
+                                        @endif
+                                        
                                     </div>
                                     <div class="creator_info">
                                         <h4>{{ $item->usaha->name }}</h4>

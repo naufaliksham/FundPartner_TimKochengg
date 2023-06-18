@@ -1,7 +1,25 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-
+    @if (Auth::user()->ktp == null)
+        <section class="manage_one" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="manage_one_content">
+                            <div class="manage_one_text">
+                                <h2>Akun anda belum terverivikasi<br>Verivikasikan akun anda</h2>
+                            </div>
+                            <div class="manage_one_btn">
+                                <a href="#" class="thm-btn">Disini</a>
+                                {{-- "#" diganti route ke validasi akun --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @else
         <!--Project Details Top-->
             <section class="about_one">
                 <div class="card">
@@ -22,7 +40,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="dana" class="form-label input-runded"> Dana yang dibutuhkan</label>
-                            <input type="text" class="form-control Background" name="dana" placeholder="5000000" value="{{ old('dana') }}">
+                            <input type="text" class="form-control Background" name="dana" placeholder="contoh: 5000000" value="{{ old('dana') }}">
                             @error('dana')
                             <div id="danaHelp" class="form-text">{{ $message }}</div>
                             @enderror
@@ -105,5 +123,5 @@
     
 </div>
     </div>
-
+    @endif
 @endsection

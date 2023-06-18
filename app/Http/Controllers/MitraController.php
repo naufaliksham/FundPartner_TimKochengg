@@ -16,16 +16,17 @@ class MitraController extends Controller
     public function index()
     {
         $data = Usaha::all();
-        $data2 = Usaha::orderBy('created_at','desc')->take(8)->get();
-        $data3= User::where('role', 'investor')->count();
+        $data2 = Usaha::where('status', 'Belum didanai')->orderBy('created_at','desc')->take(8)->get();
+        $data3= User::where('role', '0')->count();
         $data4 = Usaha::where('status', 'Didanai')->count();
         $data5 = Usaha::count();
         $data6 = Usaha::where('status', 'Didanai')->get();
+        $data7= User::where('role', '1')->count();
         
 
         // return view("mitra.index",$data,$data2);
         return view('mitra.index')->with('usaha',$data)->with('usaha2',$data2)->with('usaha3',$data3)
-        ->with('usaha4',$data4)->with('usaha5',$data5)->with('usaha6',$data6);
+        ->with('usaha4',$data4)->with('usaha5',$data5)->with('usaha6',$data6)->with('usaha7',$data7);
     }
 
     public function create()
@@ -76,7 +77,7 @@ class MitraController extends Controller
             $pelunasan = (($request->dana * 1.1) / $request->waktu);
             $tempo = Carbon::now()->addDays(7);
             // dd($usaha->id);
-            for ($i = 0; $i <= $request->waktu; $i++) {
+            for ($i = 1; $i <= $request->waktu; $i++) {
                 $newPayment = new Pembayaran;
                 $newPayment->id_mitra = $usaha->id;
                 $newPayment->jumlah_pembayaran = $pelunasan;
