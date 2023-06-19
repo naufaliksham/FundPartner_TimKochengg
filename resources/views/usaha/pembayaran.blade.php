@@ -89,7 +89,7 @@
                             <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Bayar Sekarang</button>
                         @else
                             <button type="submit" class="btn btn-primary" disabled>Bayar Sekarang</button>
-                            <div class="alert alert-success mt-3" role="alert">
+                            <div class="alert alert-danger mt-3" role="alert">
                                 <p class="mb-0">Saldo tidak cukup</p>
                             </div>
                         @endif

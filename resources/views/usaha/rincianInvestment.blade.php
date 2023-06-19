@@ -213,6 +213,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
+                                                            <th scope="col">Id</th>
                                                             <th scope="col">Tanggal Tempo</th>
                                                             <th scope="col">Jumlah</th>
                                                             <th scope="col">Status</th>
@@ -224,6 +225,7 @@
                                                             @if ($bayar->id_mitra == $item->id)
                                                                 <tr>
                                                                     <th scope="row">{{ $loop->iteration }}</th>
+                                                                    <td>{{$bayar->id}}</td>
                                                                     <td>{{ $bayar->tanggal_jatuh_tempo }}</td>
                                                                     <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                                     </td>
@@ -286,8 +288,9 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($transaksi as $riwayat)
-                                                            {{-- {{dd($riwayat->id)}} --}}
+                                                        {{-- {{dd($transaksi)}} --}}
+                                                        @forelse ($transaksi as $riwayat)
+                                                            {{-- {{dd($riwayat)}} --}}
                                                             @if ($riwayat->id_mitra == $item->id)
                                                                 <tr>
                                                                     <th scope="row">{{ $riwayat->id_pembayaran }}</th>
@@ -308,7 +311,11 @@
                                                                     </td>
                                                                 </tr>
                                                             @endif
-                                                        @endforeach
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="7" class="text-center">Belum ada Transaksi</td>
+                                                            </tr>
+                                                        @endforelse
                                                     </tbody>
                                                 </table>
                                             </div>
