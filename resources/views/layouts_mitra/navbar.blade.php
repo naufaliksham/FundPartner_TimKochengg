@@ -55,14 +55,14 @@
                         @endguest
                     </ul>
                 </div>
-                <div class="main-nav__header-one-top-right">
+                {{-- <div class="main-nav__header-one-top-right">
                     <div class="one__social">
                         <a href="#"><i class="fab fa-facebook-square"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-dribbble"></i></a>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <nav class="header-navigation one stricky">
@@ -93,7 +93,7 @@
                                     <li><a href="/rincian">UMKM saya</a></li>
                                 </ul><!-- /.sub-menu --> --}}
                             </li>
-                            <li class="dropdown">
+                            {{-- <li class="dropdown">
                                 <a href="#">Halaman</a>
                                 <ul>
                                     <li><a href="about.html">Tentang Kami</a></li>
@@ -109,11 +109,11 @@
                             </li>
                             <li>
                                 <a href="contact.html">Kontak Kami</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div><!-- /.navbar-collapse -->
 
-                    <div class="main-nav__right">
+                    {{-- <div class="main-nav__right">
                         <div class="phone-mail-box">
                             <ul>
                                 <li><span class="fas fa-envelope"></span><a
@@ -132,7 +132,7 @@
                                 <span class="icon-shopping-cart"></span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </nav>
