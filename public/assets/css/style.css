@@ -4407,7 +4407,7 @@ li {
   font-weight: 700;
   display: inline-block;
   float: none;
-  margin-left: -2px;
+  margin-left: -px;
 }
 
 .projects_categories {
@@ -9444,6 +9444,7 @@ li {
 }
 
 .project_idea_details_content {
+  /* Make fit the page */
   position: relative;
   display: block;
   margin-top: -9px;
