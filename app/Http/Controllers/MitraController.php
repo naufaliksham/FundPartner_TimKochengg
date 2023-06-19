@@ -8,6 +8,7 @@ use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +25,7 @@ class MitraController extends Controller
         $data6 = Usaha::where('status', 'Didanai')->get();
         $data7 = User::where('role', '1')->count();
 
+        
 
         // return view("mitra.index",$data,$data2);
         return view('mitra.index')->with('usaha', $data)->with('usaha2', $data2)->with('usaha3', $data3)
@@ -32,8 +34,11 @@ class MitraController extends Controller
 
     public function create()
     {
+        $userID = Auth::id();
+        $umkm = Usaha::with('usaha')->where('id_mitra', $userID)->where('status', 'Belum didanai')->count();
+        $umkm2 = Usaha::with('usaha')->where('id_mitra', $userID)->where('status', 'didanai')->count();
 
-        return view("usaha.formUsaha");
+    return view("usaha.formUsaha")->with('usaha',$umkm)->with('usaha2',$umkm2);
     }
 
     public function store(Request $request)
