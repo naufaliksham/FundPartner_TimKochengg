@@ -62,6 +62,9 @@ Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan
 
 // INVESTOR
 Route::get('investor-page', [InvestorController::class, 'index']);
+Route::get('investor-page/pembayaran/{id}', [InvestorController::class, 'payment']);
+Route::post('bayar-sekarang/{id}', [InvestorController::class, 'handlePayment']);
+Route::get('investor-page/transaksi', [InvestorController::class, 'historyTransaction']);
 
 // LUPA PASSWORD
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');

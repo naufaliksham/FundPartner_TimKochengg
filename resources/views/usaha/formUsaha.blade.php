@@ -19,6 +19,42 @@
                 </div>
             </div>
         </section>
+    @elseif ($usaha != 0)
+    <section class="manage_one" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="manage_one_content">
+                        <div class="manage_one_text">
+                            <h2>Mohon maaf anda tidak bisa menambahkan umkm<br>Salah satu UMKM anda sedang dalam proses pendanaan </h2>
+                        </div>
+                        <div class="manage_one_btn">
+                            <a href="/rincian" class="thm-btn">UMKM saya</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @elseif ($usaha2 != 0)
+    <section class="manage_one" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="manage_one_content">
+                        <div class="manage_one_text">
+                            <h2>Mohon maaf anda tidak bisa menambahkan umkm<br>Salah satu UMKM anda sedang dalam proses pendanaan </h2>
+                        </div>
+                        <div class="manage_one_btn">
+                            <a href="/rincian" class="thm-btn">UMKM saya</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     @else
         <!--Project Details Top-->
             <section class="about_one">
