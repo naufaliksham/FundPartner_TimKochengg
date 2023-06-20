@@ -1,7 +1,8 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-    @if (empty(Auth::user()->ktp))
+    {{-- @if (empty(Auth::user()->ktp)) --}}
+    @if (Auth::user()->validasi_ktp == 'invalid')
         <section class="manage_one" >
             <div class="container">
                 <div class="row">
