@@ -19,9 +19,6 @@
                                 <div class="about_one_text">
                                     <p>Platform kami memberikan manfaat kepada anda yang ingin mengembangkan usaha yang anda miliki dengan pelayanan dan kualitas tebaik</p>
                                 </div>
-                                <div class="about_one_read_more">
-                                    <a href="#">Read More</a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-12">
