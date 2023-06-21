@@ -83,8 +83,9 @@ Route::post('/upload', [ProfilController::class, 'processUpload'])->name('upload
 // ADMIN
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/mitra', [AdminController::class, 'mitraUmkmList'])->name('mitraAdmin');
+Route::put('/admin/mitra/{id}/validasi-ktp', [AdminController::class, 'validasi'])->name('validasiKtpMitra');
 Route::get('/admin/investor', [AdminController::class, 'investorList'])->name('investorAdmin');
-Route::get('/admin/investor/{id}/edit-saldo', [AdminController::class, 'editInvestorSaldo'])->name('editInvestorSaldo');
-Route::put('/admin/investor/{id}/update-saldo', [AdminController::class, 'updateInvestorSaldo'])->name('updateInvestorSaldo');
-Route::put('/admin/investor/{id}/validasi-foto', [AdminController::class, 'validasiFoto'])->name('validasiFoto');
+Route::put('/admin/investor/{id}/validasi-ktp', [AdminController::class, 'validasi'])->name('validasiKtpInvestor');
+// Route::get('/admin/investor/{id}/edit-saldo', [AdminController::class, 'editInvestorSaldo'])->name('editInvestorSaldo');
+// Route::put('/admin/investor/{id}/update-saldo', [AdminController::class, 'updateInvestorSaldo'])->name('updateInvestorSaldo');
 

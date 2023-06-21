@@ -12,7 +12,7 @@
                     <th class="py-2 px-4">Nama</th>
                     <th class="py-2 px-4">Email</th>
                     <th class="py-2 px-4">Saldo</th>
-                    <th class="py-2 px-4">Edit Saldo</th>
+                    {{-- <th class="py-2 px-4">Edit Saldo</th> --}}
                     <th class="py-2 px-4">Foto</th>
                     <th class="py-2 px-4">Validasi Foto</th>
                 </tr>
@@ -24,9 +24,9 @@
                     <td class="py-2 px-4"><center>{{ $user->name }}</center></td>
                     <td class="py-2 px-4"><center>{{ $user->email }}</center></td>
                     <td class="py-2 px-4"><center>Rp{{ $user->saldo }}</center></td>
-                    <td class="py-2 px-4">
+                    {{-- <td class="py-2 px-4">
                         <a href="{{ route('editInvestorSaldo', $user->id) }}" class="bg-gray-700 hover:bg-gray-900 text-white rounded-md py-1 px-4 shadow">Edit Saldo</a>
-                    </td>
+                    </td> --}}
                     <td>
                         <center>
                             @if (is_null($user->foto))
@@ -43,15 +43,17 @@
                         </center>
                     </td>
                     <td class="py-2 px-4">
-                        @if ($user->validasi_foto == "invalid")
+                        @if (is_null($user->ktp))
+                            <p><center>Belum upload</center></p>
+                        @elseif ($user->validasi_ktp == "invalid")
                             {{-- <a href="{{ route('editInvestorSaldo', $user->id) }}" class="bg-gray-700 hover:bg-gray-900 text-white rounded-md py-1 px-4 shadow">Validasi</a> --}}
-                            <form action="" method="POST">
+                            <form action="{{ route('validasiKtpInvestor', ['id' => $user->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="bg-gray-700 hover:bg-gray-900 text-white rounded-md py-1 px-4 shadow">Validasi</button>
-                            </form>
+                            </form>                            
                         @else
-                            <p>Sudah valid</p>
+                            <p><center>Sudah valid</center></p>
                         @endif
                     </td>
                 </tr>

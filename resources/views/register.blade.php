@@ -3,15 +3,7 @@
 @push('style-css')
 <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}" />
 @endpush
-@if ($errors->any())
-    <div style="color:red">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-    </div>
-@endif
+
     <div class="container">
       <div class="wrapper">
         <div class="form_wrapper">
@@ -25,6 +17,15 @@
               alt="img_main"
             />
           </div>
+          @if ($errors->any())
+    <div style="color:red">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+    </div>
+@endif
           <div class="form">
             <form action="{{ URL('register') }}" method="POST">
                 @csrf
@@ -67,7 +68,7 @@
 
               <div class="form_group"><br>
                 <center>
-                <label for="role">Daftar Sebagai</label><br>
+                  <label for="role">Daftar Sebagai</label><br>
                   <div class="wrapper2">
                   <input type="radio" name="role" value="0" id="option-1" checked>
                   <input type="radio" name="role" value="1" id="option-2">

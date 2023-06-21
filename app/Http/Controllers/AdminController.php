@@ -27,20 +27,29 @@ class AdminController extends Controller
     }
 
     // edit saldo
-    public function editInvestorSaldo($id)
-{
-    $investorUser = User::findOrFail($id);
+//     public function editInvestorSaldo($id)
+// {
+//     $investorUser = User::findOrFail($id);
 
-    return view('admin.edit_saldo', compact('investorUser'));
+//     return view('admin.edit_saldo', compact('investorUser'));
+// }
+
+// public function updateInvestorSaldo(Request $request, $id)
+// {
+//     $investorUser = User::findOrFail($id);
+//     $investorUser->saldo = $request->input('saldo');
+//     $investorUser->save();
+
+//     return redirect()->route('investorAdmin')->with('success', 'Saldo investor berhasil diperbarui.');
+// }
+
+public function validasi($id) {
+    $investor = User::findOrFail($id);
+    $investor->validasi_ktp = "valid";
+    $investor->save();
+
+    $nama = $investor->name;
+    return back()->with('success', 'Validasi foto ' . $nama . ' berhasil');
+
 }
-
-public function updateInvestorSaldo(Request $request, $id)
-{
-    $investorUser = User::findOrFail($id);
-    $investorUser->saldo = $request->input('saldo');
-    $investorUser->save();
-
-    return redirect()->route('investorAdmin')->with('success', 'Saldo investor berhasil diperbarui.');
-}
-
 }

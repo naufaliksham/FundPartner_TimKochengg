@@ -64,7 +64,7 @@
                                         @if ($item->usaha->name == null)
                                             <img src="assets/images/project/person-img-1.png" alt="">
                                         @else
-                                            <img src="{{ asset('storage/' . $item->usaha->name) }}" alt="Gambar_Pemilik">
+                                            <img src="{{ asset('storage/' . Auth::User()->foto) }}" alt="Gambar_Pemilik">
                                         @endif
 
                                     </div>
@@ -96,7 +96,8 @@
                                                 <div class="skill-percent">
                                                     {{-- Menghitung persen --}}
                                                     @php
-                                                        $day = $item->waktu * 7;
+                                                        if ($waktuDidanai != null) {
+                                                                                                                $day = $item->waktu * 7;
                                                         $date = $waktuDidanai->created_at;
                                                         $today = date('Y-m-d');
                                                         $addedDay = date('Y-m-d', strtotime($date . '+' . $day . ' days'));
@@ -107,6 +108,10 @@
                                                         } else {
                                                             $data = 0;
                                                         }
+                                                    }else {
+                                                        $remain = 0;
+                                                        $data = 0;
+                                                    }
                                                     @endphp
                                                     <span>- </span>
                                                     <span class="count-text" data-speed="3000"
@@ -119,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6>{{ $addedDay }}</h6>
+                            {{-- <h6>{{ $addedDay }}</h6> --}}
 
                         </div>
                     </div>
@@ -140,14 +145,14 @@
                                                         class="thm-btn follow_btn">Edit</a>
                                                 </div>
                                                 {{-- Test tombol bayar --}}
-                                                <div class="col">
+                                                {{-- <div class="col">
                                                     <form action="{{ route('tagihan', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('POST')
                                                         <button type="submit"
                                                             class="thm-btn back_this_project_btn">Bayar</button>
                                                     </form>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col">
                                                     <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
                                                         @csrf
@@ -186,6 +191,15 @@
                                     <div class="row">
                                         <div class="col-xl-8 col-lg-8">
                                             <div class="project_idea_details_content">
+                                                <div class="project_details_right_top">
+                                                    <ul class="project_details_rate_list list-unstyled">
+                                                        <li>Membutuhkan <span>Rp.{{ $item->dana }}</span></li>
+                                                        <li>Metode pengembalian: <span>{{$item->pembayaran}}</span></li>
+                                                        <li>Waktu pengembalian: <span>{{$item->waktu}} Minggu</span></li>
+                                                        {{-- <li><span>60</span>Backers</li> --}}
+                                                    </ul>
+                                                </div>
+                                                <h4>Keterangan</h4>
                                                 {!! $item->deskripsi !!}
                                             </div>
                                         </div>

@@ -1,18 +1,34 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-    {{-- @if (empty(Auth::user()->ktp)) --}}
-    @if (Auth::user()->validasi_ktp == 'invalid')
+    @if (empty(Auth::user()->ktp))
         <section class="manage_one" >
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="manage_one_content">
                             <div class="manage_one_text">
-                                <h2>Akun anda belum terverivikasi<br>Verivikasikan akun anda</h2>
+                                <h2>Silahkan upload foto dan KTP<br>terlebih dahulu</h2>
                             </div>
                             <div class="manage_one_btn">
-                                <a href="{{ route('profile.index') }}" class="thm-btn">Disini</a>
+                                <a href="{{ route('profile.index') }}" class="thm-btn">Halaman Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @elseif (Auth::user()->validasi_ktp == 'invalid')
+        <section class="manage_one" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="manage_one_content">
+                            <div class="manage_one_text">
+                                <h2>Akun anda belum divalidasi oleh admin<br>Mohon ditunggu</h2>
+                            </div>
+                            <div class="manage_one_btn">
+                                <a href="{{ url('profile') }}" class="thm-btn">Halaman Profil</a>
                             </div>
                         </div>
                     </div>

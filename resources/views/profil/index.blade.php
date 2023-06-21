@@ -118,15 +118,16 @@
             <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
                 <h2 class="text-center text-5xl font-bold mb-5">Halaman Profil</h2>
                 <div class="mb-4">
-                    <label class="text-gray-700">Foto:</label>
                     @if ($user->foto)
-                        <img src="{{ asset('storage/' . $user->foto) }}" alt="Foto" style="width:50%;max-width:200px">
-                        <br><a href="{{ route('upload.foto') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
-                                Ganti Foto
-                            </span>
-                        </a>
+                    {{-- <label class="text-gray-700"><center>Foto</center></label> --}}
+                    <center><img src="{{ asset('storage/' . $user->foto) }}" class="rounded" alt="Foto" style="width:50%;max-width:200px"></center>
+                    <center><a href="{{ route('upload.foto') }}" class="mt-2 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
+                            Ganti Foto
+                        </span>
+                    </a></center>
                     @else
+                    <label class="text-gray-700">Foto:</label>
                     <br><a href="{{ route('upload.foto') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-red-900 rounded-lg group bg-gradient-to-br from-red-600 to-red-500 dark:text-red focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
                         <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-red-900 rounded-md">
                             Upload Foto
@@ -157,17 +158,22 @@
                 <div class="mb-4">
                     <label class="text-gray-700">Saldo:</label>
                     <p class="text-gray-900">Rp{{ $user->saldo }}</p>
+                    <a href="{{ route('topup.form') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
+                            Topup
+                        </span>
+                    </a>
                 </div>
                 <div class="mb-4">
                     <label class="text-gray-700">KTP:</label>
                     @if ($user->ktp)
-                    <i>tekan gambar untuk memperbesar</i>
                     <img id="myImg" src="{{ asset('storage/' . $user->ktp) }}" class="p-1 cursor-pointer" alt="KTP" style="width:30%;max-width:100px">
-                        <a href="{{ route('upload.ktp') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
-                                Ganti KTP
-                            </span>
-                        </a>
+                    <p><i>tekan gambar untuk memperbesar</i></p>
+                    <a href="{{ route('upload.ktp') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
+                            Ganti KTP
+                        </span>
+                    </a>
                         @else
                     <br><a href="{{ route('upload.ktp') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-red-900 rounded-lg group bg-gradient-to-br from-red-600 to-red-500 dark:text-red focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
                         <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-red-900 rounded-md">
@@ -178,20 +184,30 @@
                 </div>
                 <div class="mb-4">
                     <label class="text-gray-700">Status Validasi KTP:</label>
-                    <p class="text-gray-900">{{ $user->validasi_ktp }}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-700">Status Validasi Foto:</label>
-                    <p class="text-gray-900">{{ $user->validasi_foto }}</p>
+                    @if ($user->validasi_ktp == "valid")
+                        <br><p class="relative inline-flex items-center justify-center p-0.5 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                            <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
+                                {{ 'Status '.$user->validasi_ktp }}
+                            </span>
+                        </p>
+                    @endif
+                    @if ($user->validasi_ktp == "invalid")
+                        <br><p class="relative inline-flex items-center justify-center p-0.5 mr-2 overflow-hidden text-sm text-red-900 rounded-lg group bg-gradient-to-br from-red-600 to-red-500 dark:text-red focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
+                            <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-red-900 rounded-md">
+                                {{ 'Status '.$user->validasi_ktp }}
+                            </span>
+                        </p>
+                        <p><i>mohon ditunggu, admin akan mengecek terlebih dahulu</i></p>
+                    @endif
                 </div>
                 <div class="mb-4">
                     @if (Auth::user()->role == "investor")
-                        <a href="{{ route('indexInvestor') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Kembali ke Halaman Investor
-                        </a>
+                    <a href="{{ route('indexInvestor') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center">
+                        <p>Kembali ke Halaman Investor</p>
+                    </a>
                     @elseif (Auth::user()->role == "mitra_umkm")
-                        <a href="{{ route('index') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Kembali ke Halaman Mitra
+                        <a href="{{ route('index') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center">
+                            <p>Kembali ke Halaman Mitra</p>
                         </a>
                     @endif
 

@@ -56,6 +56,7 @@ class ProfilController extends Controller
     
             $user = User::findOrFail(Auth::user()->id);
             $user->ktp = $ktpPath;
+            $user->validasi_ktp = "invalid";
             $user->save();
         } else if ($request->hasFile('foto')) {
             $validatedFotoData = $request->validate([
@@ -69,6 +70,7 @@ class ProfilController extends Controller
     
             $user = User::findOrFail(Auth::user()->id);
             $user->foto = $fotoPath;
+            $user->validasi_ktp = "invalid";
             $user->save();
         } else {
             return redirect()->back()->withErrors(['foto' => 'Pilih file terlebih dahulu.'])->withInput();

@@ -178,7 +178,7 @@
                                     <div class="steps_circle">03</div>
                                     <div class="step_counter">
                                         <h6>Langkah 03</h6>
-                                        <p>Setujui surat perjanjian bersama investor yang tertarik</p>
+                                        <p>Kamu berhasil mendapatkan dana dari investor</p>
                                     </div>
                                 </li>
                             </ul>
@@ -193,7 +193,14 @@
                                     <div class="steps_circle">04</div>
                                     <div class="step_counter">
                                         <h6>Langkah 04</h6>
-                                        <p>Berhasil! Kamu mendapatkan dana dari Investor</p>
+                                        <p>Selesaikan proses pengembalian dana</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="steps_circle">05</div>
+                                    <div class="step_counter">
+                                        <h6>Langkah 05</h6>
+                                        <p>Setelah selesai kamu bisa mendaftarkan usahamu yang lain</p>
                                     </div>
                                 </li>
                                 

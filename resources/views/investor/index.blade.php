@@ -62,7 +62,7 @@
     <div class="container">
         <div class="row">
             @foreach ($datas as $data)
-            @foreach ($data->payment as $pembayaran)
+            {{-- @foreach ($data->payment as $pembayaran) --}}
             <div class="col-md-12 mb-5 mt-3">
                 <div class="card mb-3">
                     <img src="{{asset('storage/'.$data->gambar)}}" class="card-img-top"
@@ -77,7 +77,7 @@
                         <div class="row" style="gap: 20px">
                             <div class="col-md-4 text-center">
                                 <i class="fas fa-money-bill" style="font-size: 1.5rem"></i>
-                                <p style="text-transform: capitalize">{{ $pembayaran->status ? "Sudah Didanai" : "Belum Didanai" }}</p>
+                                <p style="text-transform: capitalize">{{ $data->status ? "Belum Didanai" : "Sudah Didanai"}}</p>
                             </div>
                             <div class="col text-center">
                                 <i class="fas fa-clock" style="font-size: 1.5rem"></i>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-md-4 text-center">
                                 <i class="fas fa-credit-card" style="font-size: 1.5rem;"></i>
-                                <p style="text-transform: capitalize">{{ $pembayaran->status ? "Lunas" : "Belum Lunas" }}</p>
+                                <p style="text-transform: capitalize">{{ $data->status ? "Belum Lunas" : "Lunas"}}</p>
                             </div>
                         </div>
                         <hr>
@@ -94,17 +94,31 @@
                             <p>{!! $data->deskripsi !!}</p>
                         </div>
                         <div class="footer d-flex justify-content-between align-items-center">
-                            @if ($pembayaran->status)
+                            @if ($data->status == "didanai")
                             <div>
                                 <button class="btn btn-success" style="cursor: not-allowed" disabled>Sudah Dibayar</button>
                             </div>
                             @else
-                                @if (Auth::user()->role == 'investor')
-                                <div>
-                                    <a href="{{ URL('investor-page/pembayaran/' . $data->id) }}"
-                                        class="btn btn-info">Bayar Sekarang</a>
+                                {{-- @if (Auth::user()->role == 'investor') --}}
+                                @if (Auth::user()->saldo >= $data->dana && Auth::user()->validasi_ktp == "valid")
+
+                                <div class="col">
+                                    <form action="{{ route('tagihan', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-info">Bayar Sekarang</button>
+                                    </form>
+                                </div>
+                                @elseif (Auth::user()->validasi_ktp == "invalid")
+                                <div class="col">
+                                    <button class="btn btn-info" style="cursor: not-allowed" disabled>Akun anda belum divalidasi</button>
+                                </div>
+                                @else
+                                <div class="col">
+                                    <button class="btn btn-info" style="cursor: not-allowed" disabled>Saldo Tidak Cukup</button>
                                 </div>
                                 @endif
+                                {{-- @endif --}}
                             @endif
                             <div>
                                 <p style="font-size: 12px; text-align: end">Dibuat Pada:
@@ -114,7 +128,7 @@
                     </div>
                 </div>
             </div>
-                 @endforeach
+                 {{-- @endforeach --}}
             @endforeach
         </div>
     </div>

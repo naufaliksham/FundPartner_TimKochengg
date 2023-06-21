@@ -1,24 +1,47 @@
         <!--Site Footer Start-->
         <footer class="site-footer">
             <div class="container">
-                <div class="row">
+                <div class="row" style="justify-content: space-around;">
                     <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="footer-widget__column footer-widget__about wow fadeInUp animated"
                             data-wow-delay="100ms"
-                            style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                            style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                             <div class="footer-widget__title">
                                 <h3>About Us</h3>
                             </div>
                             <div class="footer-widget_about_text">
-                                <p>Platform kami memberikan manfaat kepada anda yang ingin mengembangkan usaha yang anda miliki dengan pelayanan dan kualitas tebaik</p>
+                                <p>Platform kami memberikan manfaat kepada anda yang ingin mengembangkan usaha yang anda miliki dengan pelayanan dan kualitas terbaik</p>
                             </div>
                         </div>
                     </div>
-                    
-                    
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="footer-widget__column footer-widget__contact wow fadeInUp animated"
+                            data-wow-delay="200ms"
+                            style="visibility: visible; animation-delay: 200ms; animation-name: fadeInUp; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                            <div class="footer-widget__title">
+                                <h3>Hubungi Kami</h3>
+                            </div>
+                            <div class="footer-widget_about_text">
+                                <a href="wa.me/6282243090750">Naufal +62 822-4309-0750</a>
+                            </div>
+                            <div class="footer-widget_about_text">
+                                <a href="wa.me/6281274419210">Fio +62 812-7441-9210</a>
+                            </div>
+                            <div class="footer-widget_about_text">
+                                <a href="{{ url('wa.me/6289632172873') }}">Mahez +62 896-3217-2873</a>
+                            </div>
+                            <div class="footer-widget_about_text">
+                                <a href="wa.me/6285231585058">Akbar +62 852-3158-5058</a>
+                            </div>
+                            <div class="footer-widget_about_text">
+                                <a href="wa.me/6285322165023">Fadlan +62 853-2216-5023</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
+        
 
         <!--Site Footer Bottom Start-->
         <div class="site-footer_bottom">

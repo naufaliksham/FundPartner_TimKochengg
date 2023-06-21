@@ -143,7 +143,7 @@
                         class="block py-2 px-4 text-white hover:text-gray-300">Investor</a>
                 </li>
                 <li class="border-t-2 border-gray-800 hover:bg-gray-700 rounded">
-                    <a href="{{ route('mitraAdmin') }}" class="block py-2 px-4 text-white hover:text-gray-300">Admin</a>
+                    <a href="{{ route('mitraAdmin') }}" class="block py-2 px-4 text-white hover:text-gray-300">Mitra UMKM</a>
                 </li>
             </ul>
         </div>
