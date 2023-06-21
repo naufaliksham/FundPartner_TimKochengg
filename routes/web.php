@@ -56,7 +56,7 @@ Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->n
 Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment')->middleware('mitra');
 Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar')->middleware('mitra');
 Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran')->middleware('mitra');
-Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan')->middleware('mitra');
+Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan');
 
 // });
 

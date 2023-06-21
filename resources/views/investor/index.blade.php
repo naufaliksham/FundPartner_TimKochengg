@@ -167,7 +167,7 @@
                             @else
                                 {{-- @if (Auth::user()->role == 'investor') --}}
                                 <div class="col">
-                                    <form action="{{ route('tagihan', $item->id) }}" method="POST">
+                                    <form action="{{ route('tagihan', $data->id) }}" method="POST">
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="btn btn-info">Bayar Sekarang</button>
