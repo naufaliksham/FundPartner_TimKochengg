@@ -81,11 +81,18 @@ class MitraController extends Controller
 
 
             $usaha = Usaha::find($id);
+            $investor = User::find(Auth::id());
+            $mitra = User::find($usaha->id_mitra);
             if ($usaha->pembayaran == 'lunas') {
                 $pelunasan = $usaha->dana * 1.1; //Menghitung pelunasan ,1.1 = 10% keuntungan
                 $tempo = Carbon::now()->addDays(7 * $usaha->waktu);
                 $usaha->status = 'didanai'; //Mengubah status menjadi didanai
+                $usaha->id_investor = Auth::id(); //Mengisi id_investor
                 $usaha->save();
+                $mitra->saldo = $mitra->saldo + $usaha->dana; //Mentransfer saldo investor ke mitra
+                $mitra->save();
+                $investor->saldo = $investor->saldo - $usaha->dana; //Mengurangi saldo investor
+                $investor->save();
                 $newPayment = new Pembayaran;
                 $newPayment->id_mitra = $usaha->id; //Mengisi id_mitra
                 $newPayment->jumlah_pembayaran = $pelunasan;
@@ -94,6 +101,7 @@ class MitraController extends Controller
                 $newPayment->tanggal_jatuh_tempo = $tempo;
                 $newPayment->save();
                 session()->flash('success', 'Usaha berhasil didanai');
+                return redirect()->route('indexinvestor');
             } else {
                 $pelunasan = (($usaha->dana * 1.1) / $usaha->waktu);
                 $tempo = Carbon::now()->addDays(7);
@@ -102,7 +110,12 @@ class MitraController extends Controller
                     $newPayment = new Pembayaran;
                     $newPayment->id_mitra = $usaha->id;
                     $usaha->status = 'didanai'; //Mengubah status menjadi didanai
+                    $usaha->id_investor = Auth::id(); //Mengisi id_investor
                     $usaha->save();
+                    $mitra->saldo = $mitra->saldo + $usaha->dana; //Mentransfer saldo investor ke mitra
+                    $mitra->save();
+                    $investor->saldo = $investor->saldo - $usaha->dana; //Mengurangi saldo investor
+                    $investor->save();
                     $newPayment->jumlah_pembayaran = $pelunasan;
                     $newPayment->status = false;
                     $newPayment->jenis_pembayaran = $usaha->pembayaran;
@@ -110,9 +123,10 @@ class MitraController extends Controller
                     $newPayment->save();
                     $tempo = $tempo->addDays(7);
                     session()->flash('success', 'Usaha berhasil didanai');
+                    return redirect()->route('indexinvestor');
                 };
             }
-            return redirect()->route('rincianInvestment');
+            return redirect()->route('indexinvestor');
         });
     }
 }
