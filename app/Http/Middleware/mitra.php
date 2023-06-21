@@ -19,6 +19,8 @@ class mitra
     {
         if (Auth::check() && Auth::user()->role == 'mitra_umkm') {
             return $next($request);
+        } elseif (Auth::check() && Auth::user()->role == 'investor') {
+            return redirect('/investor-page');
         }
      return redirect('/login');
     }

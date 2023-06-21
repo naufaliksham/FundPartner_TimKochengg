@@ -19,6 +19,8 @@ class investor
     {
         if (Auth::check() && Auth::user()->role == 'investor') {
             return $next($request);
+        } elseif (Auth::check() && Auth::user()->role == 'mitra_umkm') {
+            return redirect('/indexmitra');
         }
      return redirect('/login');
     }
