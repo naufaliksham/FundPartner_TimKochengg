@@ -12,8 +12,7 @@
                                 <h2>Akun anda belum terverivikasi<br>Verivikasikan akun anda</h2>
                             </div>
                             <div class="manage_one_btn">
-                                <a href="#" class="thm-btn">Disini</a>
-                                {{-- "#" diganti route ke validasi akun --}}
+                                <a href="{{ route('profile.index') }}" class="thm-btn">Disini</a>
                             </div>
                         </div>
                     </div>

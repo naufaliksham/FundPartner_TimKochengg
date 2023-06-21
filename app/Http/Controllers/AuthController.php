@@ -18,15 +18,26 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // Autentikasi berhasil
-            // return redirect()->intended('/dashboard');
 
             $user = Auth::user();
-            $userRole = ($user->role == 0) ? 'Investor' : 'Mitra UMKM';
 
+            // $userRole = ($user->role == 0) ? 'Investor' : 'Mitra UMKM';
             // return "User " . $user->name . ", Role: " . $userRole;
             
-            return redirect('/login')->with('success', 'Berhasil mendaftarkan akun, silahkan login.');
+            // return redirect('/login')->with('success', 'Berhasil mendaftarkan akun, silahkan login.'. $userRole);
+            
+            $userRole = $user->role;
+            if ($userRole == "mitra_umkm") {
+                return redirect('/indexmitra');
+            }
+
+            if ($userRole == "investor") {
+                return redirect('/investor-page');
+            }
+
+            if ($userRole == "admin") {
+                return redirect('/admin');
+            }
         }
 
         // Autentikasi gagal
@@ -71,7 +82,7 @@ class AuthController extends Controller
             'role' => $validatedData['role'],
         ]);
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect('/login')->with('success', 'Berhasil mendaftarkan akun, silahkan login.');
     }
@@ -88,59 +99,4 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Anda berhasil keluar.');
     }
 
-
-    public function forgotPassword(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            return back()->withErrors(['email' => 'Email tidak ditemukan']);
-        }
-
-        $user->password = Hash::make($request->password);
-        $user->save();
-
-        return redirect('/login')->with('status', 'Password berhasil diatur ulang. Silahkan login dengan password baru Anda.');
-    }
-
-    public function showForgotPasswordForm()
-    {
-        return view('forgot_password');
-    }
-
-    public function showResetPasswordForm($token)
-    {
-        return view('reset_password', ['token' => $token]);
-    }
-
-
-    public function resetPassword(Request $request)
-    {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $response = Password::reset($request->only(
-            'email',
-            'password',
-            'password_confirmation',
-            'token'
-        ), function ($user, $password) {
-            $user->password = Hash::make($password);
-            $user->save();
-        });
-
-        if ($response == Password::PASSWORD_RESET) {
-            return redirect('/login')->with('status', 'Password berhasil diatur ulang. Silahkan login dengan password baru Anda.');
-        } else {
-            return back()->withErrors(['email' => 'Terjadi kesalahan saat mengatur ulang password. Silahkan coba kembali.']);
-        }
-    }
 }

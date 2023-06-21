@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}" />
 @endpush
 @if ($errors->any())
-    <div class="alert alert-danger">
+    <div style="color:red">
         <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
         </ul>
     </div>
 @endif
@@ -17,8 +17,6 @@
         <div class="form_wrapper">
           <div class="text__header">
             <p>Register</p>
-
-
           </div>
           <div class="img_container">
             <img
@@ -35,7 +33,7 @@
                 <input
                   type="text"
                   name="name"
-                  placeholder="Masukkan nama lengkap"
+                  placeholder="Masukkan nama lengkap"required
                 />
                 <i class="fa-regular fa-user fa-xl icon_style"></i>
               </div>
@@ -44,7 +42,7 @@
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter your email address"
+                  placeholder="Masukan email"required
                 />
                 <i class="fa-regular fa-envelope fa-xl icon_style"></i>
               </div>
@@ -53,7 +51,7 @@
                 <input
                   type="password"
                   name="password"
-                  placeholder="Masukan password"
+                  placeholder="Masukan password"required
                 />
                 <i class="fa-solid fa-key fa-xl icon_style"></i>
               </div>
@@ -67,14 +65,24 @@
                 <i class="fa-solid fa-key fa-xl icon_style"></i>
               </div>
 
-              <div class="form_group">
-                <label for="role">Daftar Sebagai</label>
-                <select name="role" id="role" class="role_select">
-                  <option value="Mitra">--- </option>
-                  <option value="1">MITRA </option>
-                  <option value="0">INVESTOR</option>
-                </select>
-              </div>
+              <div class="form_group"><br>
+                <center>
+                <label for="role">Daftar Sebagai</label><br>
+                  <div class="wrapper2">
+                  <input type="radio" name="role" value="0" id="option-1" checked>
+                  <input type="radio" name="role" value="1" id="option-2">
+                    <label for="option-1" class="option option-1">
+                      <div class="dot"></div>
+                       <span>Investor</span>
+                       </label>
+                    <label for="option-2" class="option option-2">
+                      <div class="dot"></div>
+                       <span>Mitra UMKM</span>
+                    </label>
+                  </div>
+                </center>
+            </div>
+            
         
               <div class="label_forgot_pswd">
                 <a href="#" class="forgot_pswd">Lupa password?</a>

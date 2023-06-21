@@ -1,5 +1,5 @@
 :root {
-    --collor-primary: #19a7ce;
+    --collor-primary: #4299ff;
 }
 
 *,
@@ -20,6 +20,8 @@ body {
 }
 
 .container {
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgb(228, 222, 222);
@@ -54,6 +56,7 @@ body {
     text-transform: uppercase;
     text-align: center;
     font-size: 30px;
+    font-weight: bold;
 }
 
 .img_container {
@@ -131,7 +134,7 @@ button {
 }
 
 button:hover {
-    background-color: #00c4ff;
+    background-color: #1a6ac5;
 }
 
 .text_footer {
@@ -144,6 +147,25 @@ button:hover {
 .sign_in_text {
     text-decoration: none;
     color: var(--collor-primary);
+}
+
+.sign_in_text:hover {
+    text-decoration: none;
+    color: #1a6ac5;
+}
+
+.success_message {
+    color: blue;
+    border: 1px solid blue;
+    padding: 3px;
+    display: inline-block;
+}
+
+.error_message {
+    color: red;
+    border: 1px solid red;
+    padding: 3px;
+    display: inline-block;
 }
 
 @media screen and (min-width: 640px) {
@@ -160,4 +182,74 @@ button:hover {
         display: flex;
         justify-content: center;
     }
+}
+
+.wrapper2 {
+    display: inline-flex;
+    background: #fff;
+    width: 400px;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    padding: 20px 15px;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper2 .option {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 10px;
+    border: 2px solid lightgrey;
+    transition: all 0.3s ease;
+}
+.wrapper2 .option .dot {
+    height: 20px;
+    width: 20px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    position: relative;
+}
+.wrapper2 .option .dot::before {
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background: #4299ff;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1.5);
+    transition: all 0.3s ease;
+}
+input[type="radio"] {
+    display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2 {
+    border-color: #4299ff;
+    background: #4299ff;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot {
+    background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before {
+    opacity: 1;
+    transform: scale(1);
+}
+.wrapper2 .option span {
+    font-size: 20px;
+    color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span {
+    color: #fff;
 }

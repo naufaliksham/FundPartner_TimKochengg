@@ -18,22 +18,39 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Hapus data pengguna yang sudah ada (optional)
-        DB::table('users')->truncate();
+        // DB::table('users')->truncate();
 
         // Buat user investor
         User::create([
-            'name' => 'User1',
-            'email' => 'user1@gmail.com',
-            'password' => Hash::make('password'),
+            'name' => 'UserInvestor',
+            'email' => 'investor1@gmail.com',
+            'password' => Hash::make('12345678'),
             'role' => 0,
+            'saldo' => 1000000000.00,
+            'validasi_ktp' => 'invalid',
+            'validasi_foto' => 'invalid',
         ]);
 
         // Buat user mitra_umkm
         User::create([
-            'name' => 'User2',
-            'email' => 'user2@gmail.com',
-            'password' => Hash::make('password'),
+            'name' => 'UserMitra',
+            'email' => 'mitra1@gmail.com',
+            'password' => Hash::make('12345678'),
             'role' => 1,
+            'saldo' => 1000000000.00,
+            'validasi_ktp' => 'invalid',
+            'validasi_foto' => 'invalid',
+        ]);
+
+        // Buat user ADMIN
+        User::create([
+            'name' => 'Admin',
+            'email' => 'user@admin.com',
+            'password' => Hash::make('useradmin'),
+            'role' => 2,
+            'saldo' => 1000000000.00,
+            'validasi_ktp' => 'invalid',
+            'validasi_foto' => 'invalid',
         ]);
     }
 }
