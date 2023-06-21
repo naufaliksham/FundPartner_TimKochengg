@@ -29,11 +29,5 @@
                     </div>
                     <p>@ All copyright 2023, <a href="#">FUNDPARTNER</a></p>
                 </div>
-                <div class="site-footer__social">
-                    <a href="#" class="tw-clr"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="fb-clr"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#" class="dr-clr"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="ins-clr"><i class="fab fa-instagram"></i></a>
-                </div>
             </div>
         </div>

@@ -97,7 +97,7 @@
                                                     {{-- Menghitung persen --}}
                                                     @php
                                                         $day = $item->waktu * 7;
-                                                        $date = $item->created_at;
+                                                        $date = $waktuDidanai->created_at;
                                                         $today = date('Y-m-d');
                                                         $addedDay = date('Y-m-d', strtotime($date . '+' . $day . ' days'));
                                                         $diff = strtotime($addedDay) - strtotime($today);
@@ -175,7 +175,7 @@
                     <div class="project-tab-box tabs-box">
                         <ul class="tab-btns tab-buttons clearfix list-unstyled">
                             <li data-tab="#idea" class="tab-btn active-btn"><span>Detail Usaha</span></li>
-                            @if ($item->status == 'didanai')
+                            @if ($item->status != 'Belum didanai')
                                 <li data-tab="#finance" class="tab-btn"><span>Investment</span></li>
                                 <li data-tab="#transaksi" class="tab-btn"><span>Riwayat Transaksi</span></li>
                             @endif
@@ -192,12 +192,21 @@
                                     </div>
                                 </div>
                             </div>
-                            @if ($item->status == 'didanai')
+                            @if ($item->status != 'Belum didanai')
                                 <div class="tab" id="finance">
                                     <div class="project_idea_details">
                                         <div class="row">
                                             <div class="col-xl-8 col-lg-8">
                                                 <div class="project_idea_details_content">
+                                                    {{-- {{dd($item->status)}} --}}
+                                                    @if ($item->status == "lunas")
+                                                    <div class="alert alert-success" role="alert">
+                                                      <h4 class="alert-heading"></h4>
+                                                      <h5>Mitra Ini Sudah lunas</h5>
+                                                      <p class="mb-0"></p>
+                                                    </div>
+                                                        
+                                                    @endif
                                                     <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
                                                     <h5> Total yang harus dibayarkan:
                                                         Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +

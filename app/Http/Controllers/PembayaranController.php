@@ -20,8 +20,11 @@ class PembayaranController extends Controller
         $biaya = Pembayaran::all();
         $details = Usaha::with('usaha')->where('id_mitra', $userID)->get();
         $transaksi = Transaksi::where('id_user', $userID)->get();
+        $first = Usaha::where('id_mitra', $userID)->first();
+        $waktuDidanai = Pembayaran::where('id_mitra', $first->id)->first();
+        // dd($waktuDidanai);
         
-        return view('usaha.rincianInvestment', compact('biaya', 'details', 'transaksi'));
+        return view('usaha.rincianInvestment', compact('biaya', 'details', 'transaksi', 'waktuDidanai'));
     }
     public function bayar($id){
         $biaya = Pembayaran::find($id);
@@ -71,6 +74,14 @@ class PembayaranController extends Controller
             $transaksi->save();
             $request->session()->flash('success', 'Transaksi berhasil.');
         });
+        $userID = Auth::id();
+        $mitra = Usaha::where('id_mitra', $userID)->first();
+        $tagihanBelumLunas = Pembayaran::where('id_mitra', $mitra->id)->where('status', 0)->count();
+        if ($tagihanBelumLunas == 0) {
+
+            $mitra->status = 'lunas'; // Mengubah status menjadi "lunas"
+            $mitra->save();
+        }
         return redirect()->route('rincianInvestment');
     }
     

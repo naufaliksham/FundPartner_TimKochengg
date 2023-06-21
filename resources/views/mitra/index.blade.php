@@ -1,7 +1,7 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-
+@if (Auth::user()->role == 'mitra_umkm')
         <!--Project Details Top-->
             <section class="about_one">
                 <div class="about_one_shape_one" style="background-image: url(assets/images/shapes/about_onee_shape-1.png)">
@@ -19,19 +19,18 @@
                                 <div class="about_one_text">
                                     <p>Platform kami memberikan manfaat kepada anda yang ingin mengembangkan usaha yang anda miliki dengan pelayanan dan kualitas tebaik</p>
                                 </div>
-                                <div class="about_one_read_more">
-                                    <a href="#">Read More</a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-12">
                             <div class="about_one_right">
                                 <div class="about_one_image_one">
-                                    <img src="assets/images/about/about-one-img-1.jpg" alt="">
+                                    {{-- style="width:375px;height:325px; --}}
+                                    {{-- 430 310 --}}
+                                    <img src="assets/images/about/toko.webp" style="width:500px;height:596px;" alt="">
                                     <div class="image_one_shape"></div>
                                 </div>
                                 <div class="about_one_image_two">
-                                    <img src="assets/images/about/about-one-img-2.jpg" alt="">
+                                    <img src="assets/images/about/usaha.jpg" style="width:430px;height:310px;" alt="">
                                 </div>
                             </div>
                         </div>
@@ -312,5 +311,6 @@
             </div> --}}
         </div>
     </div>
-
+    @else
+    @endif
 @endsection
