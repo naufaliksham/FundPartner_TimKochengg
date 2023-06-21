@@ -10,6 +10,14 @@
         </ul>
     </div>
 </section>
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session('success') }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
 <section class="explorep_projects_one">
     <div class="container">
@@ -166,6 +174,8 @@
                             </div>
                             @else
                                 {{-- @if (Auth::user()->role == 'investor') --}}
+                                @if (Auth::user()-saldo >= $data->dana)
+                                    
                                 <div class="col">
                                     <form action="{{ route('tagihan', $data->id) }}" method="POST">
                                         @csrf
@@ -173,6 +183,11 @@
                                         <button type="submit" class="btn btn-info">Bayar Sekarang</button>
                                     </form>
                                 </div>
+                                @else
+                                <div class="col">
+                                    <button class="btn btn-info" style="cursor: not-allowed" disabled>Saldo Tidak Cukup</button>
+                                </div>
+                                @endif
                                 {{-- @endif --}}
                             @endif
                             <div>
