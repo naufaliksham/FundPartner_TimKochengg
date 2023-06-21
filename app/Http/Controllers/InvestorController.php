@@ -19,7 +19,8 @@ class InvestorController extends Controller
      * Views page for investor
      */
     public function index() {
-        $datas = Usaha::with('payment')->get();
+        // $datas = Usaha::with('payment')->get();
+        $datas = Usaha::with('payment')->where('status', 'Belum didanai')->get();
         // foreach ($datas as $data) {
         //     dd($data->payment->status);
         // }
