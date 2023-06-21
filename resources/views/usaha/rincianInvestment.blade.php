@@ -1,6 +1,7 @@
 {{-- @extends('layout') --}}
 @extends('mitra.layout_mitra')
 @section('content')
+    
     <div class="page-wrapper">
 
         <!--Project Details Top-->

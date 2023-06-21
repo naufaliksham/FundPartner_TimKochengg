@@ -17,11 +17,19 @@ class PembayaranController extends Controller
     
     public function show(){
         $userID = Auth::id();
-        $biaya = Pembayaran::all();
         $details = Usaha::with('usaha')->where('id_mitra', $userID)->get();
         $transaksi = Transaksi::where('id_user', $userID)->get();
         $first = Usaha::where('id_mitra', $userID)->first();
-        $waktuDidanai = Pembayaran::where('id_mitra', $first->id)->first();
+
+        if (empty($first)){
+            return redirect('/indexmitra');
+        }
+        else{
+            $biaya = Pembayaran::all();
+            $waktuDidanai = Pembayaran::where('id_mitra', $first->id)->first();
+        }
+        
+        
         // dd($waktuDidanai);
         
         return view('usaha.rincianInvestment', compact('biaya', 'details', 'transaksi', 'waktuDidanai'));
