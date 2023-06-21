@@ -21,16 +21,19 @@ class InvestorController extends Controller
     public function index() {
         // $datas = Usaha::with('payment')->get();
         $datas = Usaha::where('status', 'Belum didanai')->paginate(5);
-        $data2 = Usaha::where('status', 'Didanai')->where('id_investor', Auth::user()->id)->where('status', 'didanai')->orderBy('created_at', 'desc')->take(8)->get();
-        // foreach ($datas as $data) {
-        //     dd($data->payment->status);
-        // }
+        $statusToExclude = ['Belum didanai'];
+
+        $data2 = Usaha::where('id_investor', Auth::user()->id)
+            ->whereNotIn('status', $statusToExclude)
+            ->orderByRaw('RAND()')
+            ->take(8)
+            ->get();
         return view('investor.index')->with('datas', $datas)->with('usaha2', $data2);
     }
 
     public function showRincian($id){
         $userID = Auth::id();
-        $details = Usaha::with('usaha')->where('id_investor', $userID)->get();
+        $details = Usaha::with('usaha')->where('id_investor', $userID)->where('id', $id)->get();
         $transaksi = Transaksi::where('id_mitra', $id)->get();
 
         // if (empty($first)){

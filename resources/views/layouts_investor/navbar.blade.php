@@ -71,11 +71,6 @@
                         <ul class=" main-nav__navigation-box">
                             <li class="dropdown current">
                                 <a href="{{route('indexinvestor')}}">Home</a>
-                                <ul>
-                                    <li><a href="indexmitra">Halaman Mitra</a></li>
-                                    {{-- <li><a href="index2.html">Halaman Investor</a></li> --}}
-                                    
-                                </ul><!-- /.sub-menu -->
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->

@@ -31,8 +31,8 @@
                     @foreach ($usaha2 as $no => $item)
                     <div class="projects_one_single">
                         <div class="projects_one_img">
-                            @if (Auth::user()->role == 1)
-                                <a href="/usaha/{{ $item->id }}"><img src="{{asset('storage/'.$item->gambar)}}" style="width:375px;height:325px;" alt=""></a>
+                            @if (Auth::user()->role == 'investor')
+                                <a href="{{ route('showRincian', ['id' => $item->id]) }}"><img src="{{asset('storage/'.$item->gambar)}}" style="width:375px;height:325px;" alt=""></a>
                             @else
                                 <a><img src="{{asset('storage/'.$item->gambar)}}" style="width:375px;height:325px;" alt=""></a>
                             @endif
@@ -57,10 +57,10 @@
                                     <h5>Rp {{ $item->dana }}</h5>
                                     <p>Dana didapatkan</p>
                                 </li>
-                                {{-- <li>
-                                    <h5>{{ $item->waktu*7 }}</h5>
-                                    <p>Days Left</p>
-                                </li> --}}
+                                <li>
+                                    <h5>{{ $item->status }}</h5>
+                                    <p>Status</p>
+                                </li>
                             </ul>
                         </div>
                     </div>
