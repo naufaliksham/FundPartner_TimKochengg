@@ -20,11 +20,12 @@ class InvestorController extends Controller
      */
     public function index() {
         // $datas = Usaha::with('payment')->get();
-        $datas = Usaha::with('payment')->where('status', 'Belum didanai')->get();
+        $datas = Usaha::with('payment')->where('status', 'Belum didanai')->paginate(2);
+        $data2 = Usaha::where('status', 'Didanai')->where('id_investor', Auth::user()->id)->where('status', 'didanai')->orderBy('created_at', 'desc')->take(8)->get();
         // foreach ($datas as $data) {
         //     dd($data->payment->status);
         // }
-        return view('investor.index', compact('datas'));
+        return view('investor.index')->with('datas', $datas)->with('usaha2', $data2);
     }
 
     /**
