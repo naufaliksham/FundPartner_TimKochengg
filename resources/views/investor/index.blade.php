@@ -99,12 +99,12 @@
                                 <button class="btn btn-success" style="cursor: not-allowed" disabled>Sudah Dibayar</button>
                             </div>
                             @else
-                                @if (Auth::user()->role == 'investor')
+                                {{-- @if (Auth::user()->role == 'investor') --}}
                                 <div>
                                     <a href="{{ URL('investor-page/pembayaran/' . $data->id) }}"
                                         class="btn btn-info">Bayar Sekarang</a>
                                 </div>
-                                @endif
+                                {{-- @endif --}}
                             @endif
                             <div>
                                 <p style="font-size: 12px; text-align: end">Dibuat Pada:

@@ -1,7 +1,7 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-@if (Auth::user()->role == 'mitra_umkm')
+{{-- @if (Auth::user()->role == 'mitra_umkm') --}}
         <!--Project Details Top-->
             <section class="about_one">
                 <div class="about_one_shape_one" style="background-image: url(assets/images/shapes/about_onee_shape-1.png)">
@@ -312,5 +312,5 @@
         </div>
     </div>
     @else
-    @endif
+    {{-- @endif --}}
 @endsection
