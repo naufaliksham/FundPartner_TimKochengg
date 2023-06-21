@@ -15,7 +15,7 @@
                 <div class="form">
                     <center>
                         @if ($errors->any())
-                            <div>
+                            <div class="error_message">
                                 @foreach ($errors->all() as $error)
                                     {{ $error }}</li>
                                 @endforeach
@@ -24,7 +24,7 @@
                     </center>
                     <center>
                         @if (session('success'))
-                            <div>
+                            <div class="success_message">
                                 {{ session('success') }}
                             </div>
                         @endif

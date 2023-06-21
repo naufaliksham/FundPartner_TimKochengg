@@ -3,6 +3,7 @@
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\InvestorController;
@@ -61,22 +62,29 @@ Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan
 // });
 
 // INVESTOR
-Route::get('investor-page', [InvestorController::class, 'index']);
+Route::get('investor-page', [InvestorController::class, 'index'])->name('indexInvestor');
 Route::get('investor-page/pembayaran/{id}', [InvestorController::class, 'payment']);
 Route::post('bayar-sekarang/{id}', [InvestorController::class, 'handlePayment']);
 Route::get('investor-page/transaksi', [InvestorController::class, 'historyTransaction']);
-
-// LUPA PASSWORD
-Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.forgot');
-
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
-Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 // TOP-UP
 Route::get('/topup', [ProfilController::class, 'showTopupForm'])->name('topup.form');
 Route::post('/topup', [ProfilController::class, 'processTopup'])->name('topup.process');
 
+
+//PROFILE
+Route::get('/profile', [ProfilController::class, 'index'])->name('profile.index');
+
 // UPLOAD KTP & FOTO
-Route::get('/upload', [ProfilController::class, 'showUploadForm'])->name('upload.form');
+Route::get('/upload/ktp', [ProfilController::class, 'showUploadForKtp'])->name('upload.ktp');
+Route::get('/upload/foto', [ProfilController::class, 'showUploadForFoto'])->name('upload.foto');
 Route::post('/upload', [ProfilController::class, 'processUpload'])->name('upload.process');
+
+// ADMIN
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin/mitra', [AdminController::class, 'mitraUmkmList'])->name('mitraAdmin');
+Route::get('/admin/investor', [AdminController::class, 'investorList'])->name('investorAdmin');
+Route::get('/admin/investor/{id}/edit-saldo', [AdminController::class, 'editInvestorSaldo'])->name('editInvestorSaldo');
+Route::put('/admin/investor/{id}/update-saldo', [AdminController::class, 'updateInvestorSaldo'])->name('updateInvestorSaldo');
+Route::put('/admin/investor/{id}/validasi-foto', [AdminController::class, 'validasiFoto'])->name('validasiFoto');
+

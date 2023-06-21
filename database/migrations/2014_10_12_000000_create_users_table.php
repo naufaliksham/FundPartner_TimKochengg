@@ -20,11 +20,13 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            // 0 = investor, 1 = mitra umkm
+            // 0 = investor, 1 = mitra umkm, 2 = admin
             $table->tinyInteger("role")->default(0);
             $table->decimal('saldo', 50, 2)->default(0.00);
             $table->string('ktp')->nullable();
             $table->string('foto')->nullable();
+            $table->string('validasi_ktp')->default('invalid');
+            $table->string('validasi_foto')->default('invalid');
             $table->timestamps();
         });
     }
