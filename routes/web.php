@@ -43,28 +43,28 @@ Route::post('/register', [AuthController::class, 'register']);
 
 //MITRA
 // Route::group(['as' => 'mitra.', 'prefix' => 'mitra'], function () {
-Route::get('/indexmitra', [MitraController::class, 'index'])->name('index');
-Route::get('/form_umkm', [MitraController::class, 'create'])->name('create');
+Route::get('/indexmitra', [MitraController::class, 'index'])->name('indexmitra')->middleware('mitra');
+Route::get('/form_umkm', [MitraController::class, 'create'])->name('create')->middleware('mitra');
 
 //form mitra
-Route::post('/store_umkm', [MitraController::class, 'store'])->name('store');
-Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit']);
-Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha');
-Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha');
+Route::post('/store_umkm', [MitraController::class, 'store'])->name('store')->middleware('mitra');
+Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit'])->middleware('mitra');
+Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha')->middleware('mitra');
+Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha')->middleware('mitra');
 
-Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
-Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment');
-Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
-Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
-Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan');
+Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha')->middleware('mitra');
+Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment')->middleware('mitra');
+Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar')->middleware('mitra');
+Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran')->middleware('mitra');
+Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan')->middleware('mitra');
 
 // });
 
 // INVESTOR
-Route::get('investor-page', [InvestorController::class, 'index']);
-Route::get('investor-page/pembayaran/{id}', [InvestorController::class, 'payment']);
-Route::post('bayar-sekarang/{id}', [InvestorController::class, 'handlePayment']);
-Route::get('investor-page/transaksi', [InvestorController::class, 'historyTransaction']);
+Route::get('investor-page', [InvestorController::class, 'index'])->name('indexinvestor')->middleware('investor');
+Route::get('investor-page/pembayaran/{id}', [InvestorController::class, 'payment'])->middleware('investor');
+Route::post('bayar-sekarang/{id}', [InvestorController::class, 'handlePayment'])->middleware('investor');
+Route::get('investor-page/transaksi', [InvestorController::class, 'historyTransaction'])->middleware('investor');
 
 // LUPA PASSWORD
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
