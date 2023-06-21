@@ -1,5 +1,5 @@
 {{-- @extends('layout') --}}
-@extends('mitra.layout_mitra')
+@extends('investor.layout_investor')
 @section('content')
     
     <div class="page-wrapper">
@@ -13,28 +13,6 @@
                 </button>
             </div>
         @endif
-        @foreach ($biaya as $bayar)
-            @php
-                $tempo = $bayar->tanggal_jatuh_tempo;
-                $today = now()->format('Y-m-d');
-                $diffInDays = now()->diffInDays($tempo);
-                
-            @endphp
-            @if ($bayar->status == 0)
-                @if ($today > $tempo)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Anda Memiliki Pembayaran Jatuh Tempo</strong>
-                    </div>
-
-                    <script>
-                        $(".alert").alert();
-                    </script>
-                @endif
-            @endif
-        @endforeach
         @foreach ($details as $item)
             {{-- {{dd($item->id)}} --}}
             <section class="project_details_top">
@@ -85,92 +63,8 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <h5>Tenggat: </h5>
-                            <div class="progress-levels project_details_progress-levels">
-                                <!--Skill Box-->
-                                <div class="progress-box">
-                                    <div class="inner count-box">
-                                        <div class="bar">
-                                            <div class="bar-innner">
-                                                <div class="skill-percent">
-                                                    {{-- Menghitung persen --}}
-                                                    @php
-                                                        if ($waktuDidanai != null) {
-                                                                                                                $day = $item->waktu * 7;
-                                                        $date = $waktuDidanai->created_at;
-                                                        $today = date('Y-m-d');
-                                                        $addedDay = date('Y-m-d', strtotime($date . '+' . $day . ' days'));
-                                                        $diff = strtotime($addedDay) - strtotime($today);
-                                                        $remain = floor($diff / (60 * 60 * 24));
-                                                        if ($remain != $day) {
-                                                            $data = number_format(($remain / $day) * 100);
-                                                        } else {
-                                                            $data = 0;
-                                                        }
-                                                    }else {
-                                                        $remain = 0;
-                                                        $data = 0;
-                                                    }
-                                                    @endphp
-                                                    <span>- </span>
-                                                    <span class="count-text" data-speed="3000"
-                                                        data-stop={{ $remain }}></span>
-                                                    <span class="percent"> Hari</span>
-                                                </div>
-                                                <div class="bar-fill" data-percent={{ $data }}></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <h6>{{ $addedDay }}</h6> --}}
-
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm">
-                            </div>
-
-                            <div class="col-sm">
-                                <br>
-                                @if ($item->status == 'Belum didanai')
-                                    <div class="project_details_btn_box">
-                                        <div class="container text-center">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a href="/editUsaha/{{ $item->id }}"
-                                                        class="thm-btn follow_btn">Edit</a>
-                                                </div>
-                                                {{-- Test tombol bayar --}}
-                                                {{-- <div class="col">
-                                                    <form action="{{ route('tagihan', $item->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <button type="submit"
-                                                            class="thm-btn back_this_project_btn">Bayar</button>
-                                                    </form>
-                                                </div> --}}
-                                                <div class="col">
-                                                    <form action="{{ route('destroyUsaha', $item->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="thm-btn back_this_project_btn">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                @endif
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                
     </div>
     </section>
 
@@ -222,12 +116,13 @@
                                                     </div>
                                                         
                                                     @endif
-                                                    <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
-                                                    <h5> Total yang harus dibayarkan:
+                                                    <h4>Metode Pembayaran oleh Mitra: {{ $item->pembayaran }}</h4>
+                                                    <h5> Total Pengembalian:
                                                         Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +
                                                         Rp.{{ number_format($item->dana * 0.1, 0, ',', '.') ?? '-' }}
                                                         (Investor)
                                                     </h5>
+                                                    <h4 style="font-weight: bold">Saldo: Rp.{{ number_format(Auth::user()->saldo, 0, ',', '.') ?? '-' }}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,7 +136,6 @@
                                                             <th scope="col">Tanggal Tempo</th>
                                                             <th scope="col">Jumlah</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -264,20 +158,11 @@
                                                                             <td style="background-color: red">Sudah Lewat
                                                                                 {{ $diffInDays }} Hari</td>
                                                                         @else
-                                                                            <td>Belum dibayar</td>
+                                                                            <td>Belum dibayarkan</td>
                                                                         @endif
                                                                     @else
                                                                         <td>Lunas</td>
                                                                     @endif
-                                                                    <td>
-                                                                        @if ($bayar->status == 0)
-                                                                            <a href="{{ route('bayar', ['id' => $bayar->id]) }}"
-                                                                                class="btn btn-sm btn-primary">Bayar</a>
-                                                                        @else
-                                                                            <i class="fas fa-check-circle"></i>
-                                                                        @endif
-
-                                                                    </td>
                                                                 </tr>
                                                             @endif
                                                         @endforeach
@@ -293,7 +178,7 @@
                                         <div class="row">
                                             <div class="col-xl-8 col-lg-8">
                                                 <div class="project_idea_details_content">
-                                                    <h4>Riwayat Transaksi</h4>
+                                                    <h4>Riwayat Pengembalian Mitra</h4>
                                                 </div>
                                             </div>
                                         </div>

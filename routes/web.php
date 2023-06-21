@@ -32,6 +32,7 @@ Route::middleware(['auth', 'user-role:user'])->group(function () {
 });
 
 // LOGIN
+Route::get('/', [MitraController::class, 'index'])->name('indexmitra');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -53,20 +54,22 @@ Route::get('/editUsaha/{id}', [DetailUsahaController::class, 'edit'])->middlewar
 Route::post('/updateUsaha/{id}', [DetailUsahaController::class, 'update'])->name('updateUsaha')->middleware('mitra');
 Route::delete('/destroyUsaha/{id}', [DetailUsahaController::class, 'destroy'])->name('destroyUsaha')->middleware('mitra');
 
-Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha')->middleware('mitra');
+Route::get('/usaha/{id}', [DetailUsahaController::class, 'showDetailUsaha2'])->name('detailUsaha');
 Route::get('/rincian', [PembayaranController::class, 'show'])->name('rincianInvestment')->middleware('mitra');
 Route::get('/bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar')->middleware('mitra');
 Route::post('/bayar/{id}', [PembayaranController::class, 'pembayaran'])->name('pembayaran')->middleware('mitra');
-Route::post('/tagihan/{id}', [MitraController::class, 'tagihan'])->name('tagihan');
+
 
 // });
 
 // INVESTOR
 
 Route::get('investor-page', [InvestorController::class, 'index'])->name('indexinvestor')->middleware('investor');
-Route::get('investor-page/pembayaran/{id}', [InvestorController::class, 'payment'])->middleware('investor');
 Route::post('bayar-sekarang/{id}', [InvestorController::class, 'handlePayment'])->middleware('investor');
 Route::get('investor-page/transaksi', [InvestorController::class, 'historyTransaction'])->middleware('investor');
+Route::get('investor-page/danai/{id}', [InvestorController::class, 'danai'])->name('danai')->middleware('investor');
+Route::post('investor-page/danai/{id}', [InvestorController::class, 'tagihan'])->name('tagihan')->middleware('investor');
+Route::get('investor-page/rincian/{id}', [InvestorController::class, 'showRincian'])->name('showRincian')->middleware('investor');
 
 // TOP-UP
 Route::get('/topup', [ProfilController::class, 'showTopupForm'])->name('topup.form');

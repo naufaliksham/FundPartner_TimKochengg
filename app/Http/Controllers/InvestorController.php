@@ -28,6 +28,23 @@ class InvestorController extends Controller
         return view('investor.index')->with('datas', $datas)->with('usaha2', $data2);
     }
 
+    public function showRincian($id){
+        $userID = Auth::id();
+        $details = Usaha::with('usaha')->where('id_investor', $userID)->get();
+        $transaksi = Transaksi::where('id_mitra', $id)->get();
+
+        // if (empty($first)){
+        //     return redirect('/indexmitra');
+        // }
+        // else{
+            $biaya = Pembayaran::where('id_mitra', $id)->get();
+        // }
+        
+        
+        // dd($waktuDidanai);
+        
+        return view('investor.rincian_mitra', compact('biaya', 'details', 'transaksi'));
+    }
     /**
      * Return data will be to paid
      * 
@@ -43,6 +60,66 @@ class InvestorController extends Controller
         return view('investor.pembayaran_investor', [
             'payment_data' => $dataToBePaid
         ]);
+    }
+
+    public function danai($id){
+        $usaha = Usaha::find($id);
+        $saldo = Auth::user()->saldo;
+        return view('investor.pembayaran_investor', compact('usaha', 'saldo'));
+    }
+    function tagihan(Request $request, $id)
+    {
+        //GENERATE PEMBAYARAN
+        //Fungsi ini akan menggenerate pembayaran sesuai dengan waktu fungsi ini digunakan, dan mengubah status usaha menjadi didanai
+        //karena fungsi ini hanya digunakan ketika investor menekan tombol bayar
+        //kurangnya yaitu menambahkan id investor dan mentransfer saldo investor ke mitra
+        DB::transaction(function () use ($request, $id){
+
+
+            $usaha = Usaha::find($id);
+            $investor = User::find(Auth::id());
+            $mitra = User::find($usaha->id_mitra);
+            //generate pembayaran
+            if ($usaha->pembayaran == 'lunas') {
+                $pelunasan = $usaha->dana * 1.1; //Menghitung pelunasan ,1.1 = 10% keuntungan
+                $tempo = Carbon::now()->addDays(7 * $usaha->waktu);
+                $newPayment = new Pembayaran;
+                $newPayment->id_mitra = $usaha->id; //Mengisi id_mitra
+                $newPayment->jumlah_pembayaran = $pelunasan;
+                $newPayment->status = false;
+                $newPayment->jenis_pembayaran = $usaha->pembayaran;
+                $newPayment->tanggal_jatuh_tempo = $tempo;
+                $newPayment->save();
+                session()->flash('success', 'Usaha berhasil didanai');
+            } else {
+                $pelunasan = (($usaha->dana * 1.1) / $usaha->waktu);
+                $tempo = Carbon::now()->addDays(7);
+                for ($i = 1; $i <= $usaha->waktu; $i++) {
+                    $newPayment = new Pembayaran;
+                    $newPayment->id_mitra = $usaha->id;
+                    $newPayment->jumlah_pembayaran = $pelunasan;
+                    $newPayment->status = false;
+                    $newPayment->jenis_pembayaran = $usaha->pembayaran;
+                    $newPayment->tanggal_jatuh_tempo = $tempo;
+                    $newPayment->save();
+                    $tempo = $tempo->addDays(7);
+                    session()->flash('success', 'Usaha berhasil didanai');
+                };
+            };
+            $usaha->status = 'didanai'; //Mengubah status menjadi didanai
+            $usaha->id_investor = Auth::id(); //Mengisi id_investor
+            $usaha->save();
+            $mitra->saldo = $mitra->saldo + $usaha->dana; //Mentransfer saldo investor ke mitra
+            $mitra->save();
+            $investor->saldo = $investor->saldo - $request->total; //Mengurangi saldo investor
+            $investor->save();
+        });
+        if(Auth()->user()->role == 'investor'){
+            return redirect()->route('indexinvestor');
+        }
+        else{
+            return redirect()->route('indexmitra');
+        }
     }
 
     /**

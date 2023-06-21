@@ -12,54 +12,74 @@
             <h5 class="card-title" style="text-align:center; text-transform: uppercase">Pembayaran</h5>
             <p class="card-text" style="text-align: right">Saldo: Rp. {{ number_format(Auth::user()->saldo, 2) }}</p>
             <p>Nama Usaha <span
-                    style="text-transform: uppercase; font-weight: 800">{{ $payment_data->pembayaran->nama_usaha }}</span>
+                    style="text-transform: uppercase; font-weight: 800">{{ $usaha->nama_usaha }}</span>
             </p>
-            <form method="POST" action="{{ URL('bayar-sekarang', $payment_data->id) }}">
+            <form method="POST" action="{{ route('tagihan', ['id' =>$usaha->id ]) }}">
                 @csrf
 
                 @php
-                $tempo = $payment_data->tanggal_jatuh_tempo;
+
                 $today = now()->format('Y-m-d');
-                $fee = round(($payment_data->jumlah_pembayaran * 0.05), 2);
-                $fee_apk = "5000";
-                if ($today > $tempo) {
-                $denda = now()->diffInDays($tempo) * 100;
-                }else {
-                $denda = 0;
+                if ($saldo < '5000') {
+                    $fee_apk = "0";
                 }
-
-                $total = $payment_data->jumlah_pembayaran + $denda + $fee_apk;
+                else {
+                    # code...
+                    $fee_apk = "5000";
+                }
+                            $total = $usaha->dana +  + $fee_apk;
                 @endphp
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h5 style="text-align: left; margin-bottom: 0;">Saldo:
+                            Rp.{{ number_format($saldo, 0, ',', '.') ?? '-' }}</h5>
+                    </div>
+                    <hr>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th style="text-align: left;">Jumlah</th>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right;">
+                                Rp.{{ number_format($usaha->dana, 0, ',', '.') ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left;">Biaya aplikasi(5k)</th>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right;">Rp.{{ number_format($fee_apk, 0, ',', '.') ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left;">Total</th>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right;">Rp.{{ number_format($total, 0, ',', '.') ?? '-' }}</td>
+                            <input type="hidden" name="total" value="{{ $total }}">
+                        </tr>
+                    </table>
+                    <hr>
+                    <div class="text-center">
 
-                <div class="form-group">
-                    <p>Jumlah Pembayaran: <span>Rp. {{ number_format($payment_data->jumlah_pembayaran, 2) }}</span></p>
-                    <input type="hidden" class="form-control" id="jumlah" name="jumlah"
-                        value={{$payment_data->jumlah_pembayaran}}>
-                </div>
-
-                <div class="form-group">
-                    <p> <span>Denda: {{$denda}}</span></p>
-                    <input type="hidden" class="form-control" name="denda" value={{$denda}}>
-                </div>
-                <div class="form-group">
-                    <p> <span>Biaya aplikasi: </span> Rp. {{ number_format($fee_apk, 2) }}</p>
-                    <input type="hidden" class="form-control" name="fee" value={{$fee}}>
-                </div>
-                <div class="form-group">
-                    <p> <span>Jenis Pembayaran: {{$payment_data->jenis_pembayaran}}</span></p>
-                    <input type="hidden" class="form-control" name="jenis_pembayaran"
-                        value={{$payment_data->jenis_pembayaran}}>
-                </div>
-                <div class="form-group">
-                    <p> <span>Total: Rp. {{ number_format($total, 2) }}</span></p>
-                    <input type="hidden" class="form-control" name="total" value={{$total}}>
-                </div>
-                <p class="card-text mt-1" style="text-align: left">Tanggal Jatuh Tempo:
-                    {{$payment_data->tanggal_jatuh_tempo}}</p>
-                <button type="submit" class="btn btn-primary">BAYAR</button>
-            </form>
+                        <script>
+                            function confirmSubmit() {
+                                var agree = confirm("Apakah anda yakin ingin membayar?");
+                                if (agree) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>
+                        @if ($saldo >= $usaha->dana)
+                            <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Bayar Sekarang</button>
+                        @else
+                            <button type="submit" class="btn btn-primary" disabled>Bayar Sekarang</button>
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p class="mb-0">Saldo tidak cukup</p>
+                            </div>
+                        @endif
+                    </div>
+                </form>
         </div>
     </div>
-</div>
 </div>
 @endsection

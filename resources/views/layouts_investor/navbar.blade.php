@@ -16,7 +16,6 @@
 
             <div class="main-nav__header-one-top clearfix">
                 <div class="border-bottom"></div>
-                <div class="button"><a href="#">Start a Project</a></div>
                 <div class="main-nav__header-one-top-left">
                     <ul>
                         @guest
@@ -32,7 +31,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('profile') }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -71,62 +70,15 @@
                     <div class="main-nav__main-navigation">
                         <ul class=" main-nav__navigation-box">
                             <li class="dropdown current">
-                                <a href="indexmitra">Home</a>
+                                <a href="{{route('indexinvestor')}}">Home</a>
                                 <ul>
                                     <li><a href="indexmitra">Halaman Mitra</a></li>
-                                    <li><a href="index2.html">Halaman Investor</a></li>
+                                    {{-- <li><a href="index2.html">Halaman Investor</a></li> --}}
                                     
                                 </ul><!-- /.sub-menu -->
                             </li>
-                            <li class="dropdown">
-                                <a href="#">Jelajahi</a>
-                                <ul>
-                                    <li><a href="project.html">UMKM</a></li>
-                                    <li><a href="project-details.html">UMKM saya</a></li>
-                                </ul><!-- /.sub-menu -->
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Halaman</a>
-                                <ul>
-                                    <li><a href="about.html">Tentang Kami</a></li>
-                                    <li><a href="why-choose-us.html">Kenapa harus memilih FundPartner</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
-                                </ul><!-- /.sub-menu -->
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Berita</a>
-                                <ul>
-                                    <li><a href="news.html">Berita Terkini</a></li>
-                                    <li><a href="news-detail.html">Detail Berita</a></li>
-                                </ul><!-- /.sub-menu -->
-                            </li>
-                            <li>
-                                <a href="contact.html">Kontak Kami</a>
-                            </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
-
-                    <div class="main-nav__right">
-                        <div class="phone-mail-box">
-                            <ul>
-                                <li><span class="fas fa-envelope"></span><a
-                                        href="mailto:logistic@email.com">info@website.com</a></li>
-                                <li><span class="fa fa-phone"></span><a href="tel:123456789">+62xxxx xxxx xxxx</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="icon-search-box">
-                            <a href="#" class="main-nav__search search-popup__toggler">
-                                <i class="icon-magnifying-glass"></i>
-                            </a>
-                        </div>
-                        <div class="icon_cart_box">
-                            <a href="cart.html">
-                                <span class="icon-shopping-cart"></span>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </nav>
         </header>

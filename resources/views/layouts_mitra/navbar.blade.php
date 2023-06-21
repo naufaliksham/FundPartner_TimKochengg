@@ -15,8 +15,11 @@
         <header class="main-nav__header-one">
 
             <div class="main-nav__header-one-top clearfix">
-                <div class="border-bottom"></div>
-                <div class="button"><a href="/form_umkm">Daftarkan Usahamu</a></div>
+                @if (Auth::check() && Auth::user()->role == 'mitra_umkm')
+                <div class="button"><a href="{{route('create')}}">Daftarkan Usahamu</a></div>
+                @else
+                <div class="button"><a href="{{route('login')}}">Daftarkan Usahamu</a></div>
+                @endif
                 <div class="main-nav__header-one-top-left">
                     <ul>
                         @guest
@@ -55,14 +58,6 @@
                         @endguest
                     </ul>
                 </div>
-                {{-- <div class="main-nav__header-one-top-right">
-                    <div class="one__social">
-                        <a href="#"><i class="fab fa-facebook-square"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                    </div>
-                </div> --}}
             </div>
 
             <nav class="header-navigation one stricky">
@@ -86,30 +81,16 @@
                                     
                                 </ul><!-- /.sub-menu --> --}}
                             </li>
-                            <li class="dropdown">
-                                <a href="/rincian">UMKM saya</a>
-                                {{-- <ul>
-                                    <li><a href="project.html">UMKM</a></li>
-                                    <li><a href="/rincian">UMKM saya</a></li>
-                                </ul><!-- /.sub-menu --> --}}
-                            </li>
-                            {{-- <li class="dropdown">
-                                <a href="#">Halaman</a>
-                                <ul>
-                                    <li><a href="about.html">Tentang Kami</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
-                                </ul><!-- /.sub-menu -->
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Berita</a>
-                                <ul>
-                                    <li><a href="news.html">Berita Terkini</a></li>
-                                    <li><a href="news-detail.html">Detail Berita</a></li>
-                                </ul><!-- /.sub-menu -->
-                            </li>
-                            <li>
-                                <a href="contact.html">Kontak Kami</a>
-                            </li> --}}
+                            @if (Auth::check() && Auth::user()->role == 'mitra_umkm')
+                                <li class="dropdown">
+                                    <a href="/rincian">UMKM Saya</a>
+                                    {{-- <ul>
+                                        <li><a href="project.html">UMKM</a></li>
+                                        <li><a href="/rincian">UMKM saya</a></li>
+                                    </ul><!-- /.sub-menu --> --}}
+                                </li>
+                                
+                            @endif
                         </ul>
                     </div><!-- /.navbar-collapse -->
 

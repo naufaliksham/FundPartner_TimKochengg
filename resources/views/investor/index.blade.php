@@ -2,12 +2,9 @@
 @section('content')
 
 <!--Page Header Start-->
-<section class="page-header" style="background-image: url(assets/images/backgrounds/page-header-contact.jpg);">
+<section class="page-header" style="background-image: url(assets/images/backgrounds/page-header-contact.png);">
     <div class="container">
         <h2>MUDAHKAN INVESTASIMU</h2>
-        <ul class="thm-breadcrumb list-unstyled">
-            <li><a href="index.html">Mulai Sekarang</a></li>
-        </ul>
     </div>
 </section>
 @if (session('success'))
@@ -46,31 +43,12 @@
                         <div class="projects_one_content">
                             <div class="porjects_one_text">
                                 <p><span>by</span> {{ $item->usaha->name }}</p>
-                                @if (Auth::user()->role == 1)
-                                    <h3><a href="/usaha/{{ $item->id }}">Mitra UMKM<br>{{ $item->nama_usaha }}</a></h3>
+                                @if (Auth::user()->role == 'investor')
+                                    <h3><a href="{{ route('showRincian', ['id' => $item->id]) }}">Mitra UMKM<br>{{ $item->nama_usaha }}</a></h3>
                                 @else
                                     <h3><a>Mitra UMKM<br>{{ $item->nama_usaha }}</a></h3>
                                 @endif
                             </div>
-                            
-                            {{-- <div class="projects_categories">
-                                <div class="projects_categories_left">
-                                    <div class="left_icon">
-                                        <img src="assets/images/project/folder-icon.png" alt="">
-                                    </div>
-                                    <div class="left_text">
-                                        <p>Health & Fitness</p>
-                                    </div>
-                                </div>
-                                <div class="projects_categories_right">
-                                    <div class="right_icon">
-                                        <img src="assets/images/project/flag.png" alt="">
-                                    </div>
-                                    <div class="right_text">
-                                        <p>United Kingdom</p>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="projects_one_bottom">
                             <ul class="list-unstyled">
@@ -167,7 +145,7 @@
                             </div>
                             <div class="col-md-4 text-center">
                                 <i class="fas fa-credit-card" style="font-size: 1.5rem;"></i>
-                                <p style="text-transform: capitalize">{{ $data->status ? "Belum Lunas" : "Lunas"}}</p>
+                                <p style="text-transform: capitalize">{{ $data->pembayaran}}</p>
                             </div>
                         </div>
                         <hr>
@@ -183,13 +161,9 @@
                             @else
                                 {{-- @if (Auth::user()->role == 'investor') --}}
                                 @if (Auth::user()->saldo >= $data->dana && Auth::user()->validasi_ktp == "valid")
-
                                 <div class="col">
-                                    <form action="{{ route('tagihan', $data->id) }}" method="POST">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="btn btn-info">Bayar Sekarang</button>
-                                    </form>
+                                    <a href="{{ route('danai', ['id' => $data->id]) }}"
+                                        class="btn btn-sm btn-primary">Danai Seakarang</a>
                                 </div>
                                 @elseif (Auth::user()->validasi_ktp == "invalid")
                                 <div class="col">
