@@ -101,7 +101,7 @@ class MitraController extends Controller
                 $newPayment->tanggal_jatuh_tempo = $tempo;
                 $newPayment->save();
                 session()->flash('success', 'Usaha berhasil didanai');
-                return redirect()->route('indexinvestor');
+                // return redirect()->route('indexinvestor');
             } else {
                 $pelunasan = (($usaha->dana * 1.1) / $usaha->waktu);
                 $tempo = Carbon::now()->addDays(7);
@@ -123,10 +123,12 @@ class MitraController extends Controller
                     $newPayment->save();
                     $tempo = $tempo->addDays(7);
                     session()->flash('success', 'Usaha berhasil didanai');
-                    return redirect()->route('indexinvestor');
                 };
-            }
-            return redirect()->route('indexinvestor');
+                // return redirect()->route('indexinvestor');
+            };
         });
+        // return redirect()->route('indexinvestor');
+        $details = Usaha::with('usaha')->where('id', $id)->get();
+        return view('usaha.detailUsaha', compact('details'));
     }
 }
