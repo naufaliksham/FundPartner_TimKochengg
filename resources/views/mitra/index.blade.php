@@ -1,7 +1,7 @@
 @extends('mitra.layout_mitra')
 @section('content')
    
-@if (Auth::user()->role == 'mitra_umkm')
+{{-- @if (Auth::user()->role == 'mitra_umkm') --}}
         <!--Project Details Top-->
             <section class="about_one">
                 <div class="about_one_shape_one" style="background-image: url(assets/images/shapes/about_onee_shape-1.png)">
@@ -193,7 +193,7 @@
                                     <div class="steps_circle">04</div>
                                     <div class="step_counter">
                                         <h6>Langkah 04</h6>
-                                        <p>Selesaikan proses pengembalian dana</p>
+                                        <p>Selesaikan proses pengembalian dana tepat waktu</p>
                                     </div>
                                 </li>
                                 <li>
@@ -318,6 +318,6 @@
             </div> --}}
         </div>
     </div>
-    @else
-    @endif
+    {{-- @else --}}
+    {{-- @endif --}}
 @endsection

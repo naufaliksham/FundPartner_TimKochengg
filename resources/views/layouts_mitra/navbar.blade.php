@@ -16,7 +16,7 @@
 
             <div class="main-nav__header-one-top clearfix">
                 <div class="border-bottom"></div>
-                <div class="button"><a href="/form_umkm">Daftarkan UMKM</a></div>
+                <div class="button"><a href="/form_umkm">Daftarkan Usahamu</a></div>
                 <div class="main-nav__header-one-top-left">
                     <ul>
                         @guest

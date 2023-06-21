@@ -13,8 +13,8 @@
                     <th class="py-2 px-4">Email</th>
                     <th class="py-2 px-4">Saldo</th>
                     {{-- <th class="py-2 px-4">Edit Saldo</th> --}}
-                    <th class="py-2 px-4">Foto</th>
-                    <th class="py-2 px-4">Validasi Foto</th>
+                    <th class="py-2 px-4">ktp</th>
+                    <th class="py-2 px-4">Validasi KTP</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-700">
@@ -29,7 +29,7 @@
                     </td> --}}
                     <td>
                         <center>
-                            @if (is_null($user->foto))
+                            @if (is_null($user->ktp))
                                 X
                             @else
                                 <img id="myImg" src="{{ asset('storage/' . $user->ktp) }}" style="max-width:60px">

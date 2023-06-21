@@ -22,19 +22,19 @@
                                 <h3>Hubungi Kami</h3>
                             </div>
                             <div class="footer-widget_about_text">
-                                <a href="wa.me/6282243090750">Naufal +62 822-4309-0750</a>
+                                <a href="#">Naufal +62 822-4309-0750</a>
                             </div>
                             <div class="footer-widget_about_text">
-                                <a href="wa.me/6281274419210">Fio +62 812-7441-9210</a>
+                                <a href="#">Fio +62 812-7441-9210</a>
                             </div>
                             <div class="footer-widget_about_text">
-                                <a href="{{ url('wa.me/6289632172873') }}">Mahez +62 896-3217-2873</a>
+                                <a href="#">Mahez +62 896-3217-2873</a>
                             </div>
                             <div class="footer-widget_about_text">
-                                <a href="wa.me/6285231585058">Akbar +62 852-3158-5058</a>
+                                <a href="#">Akbar +62 852-3158-5058</a>
                             </div>
                             <div class="footer-widget_about_text">
-                                <a href="wa.me/6285322165023">Fadlan +62 853-2216-5023</a>
+                                <a href="#">Fadlan +62 853-2216-5023</a>
                             </div>
                         </div>
                     </div>

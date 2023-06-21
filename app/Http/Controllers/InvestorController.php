@@ -19,20 +19,12 @@ class InvestorController extends Controller
      * Views page for investor
      */
     public function index() {
-        // foreach ($datas as $data) {
-            //     dd($data->payment->status);
-            // }
-            
-        //     $datas = Usaha::with('payment')->get();
-        // return view('investor.index', compact('datas'));
-
         // $datas = Usaha::with('payment')->get();
         $datas = Usaha::where('status', 'Belum didanai')->paginate(5);
         $data2 = Usaha::where('status', 'Didanai')->where('id_investor', Auth::user()->id)->where('status', 'didanai')->orderBy('created_at', 'desc')->take(8)->get();
         // foreach ($datas as $data) {
         //     dd($data->payment->status);
         // }
-        // dd($datas);
         return view('investor.index')->with('datas', $datas)->with('usaha2', $data2);
     }
 

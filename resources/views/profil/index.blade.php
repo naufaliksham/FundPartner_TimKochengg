@@ -206,7 +206,7 @@
                         <p>Kembali ke Halaman Investor</p>
                     </a>
                     @elseif (Auth::user()->role == "mitra_umkm")
-                        <a href="{{ route('index') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center">
+                        <a href="{{ route('indexmitra') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center">
                             <p>Kembali ke Halaman Mitra</p>
                         </a>
                     @endif
