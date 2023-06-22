@@ -195,7 +195,7 @@
                                                 <div class="project_details_right_top">
                                                     <ul class="project_details_rate_list list-unstyled">
                                                         <li>Membutuhkan <span>Rp.{{ $item->dana }}</span></li>
-                                                        <li>Status: <span>{{$item->pembayaran}}</span></li>
+                                                        <li>Pembayaran: <span>{{$item->pembayaran}}</span></li>
                                                         <li>Waktu pengembalian: <span>{{$item->waktu}} Minggu</span></li>
                                                         {{-- <li><span>60</span>Backers</li> --}}
                                                     </ul>
