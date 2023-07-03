@@ -93,53 +93,59 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="projects_four_carousel owl-theme owl-carousel">
+                                @php $limit = 5; $count = 0; @endphp
                                 @foreach ($usaha2 as $no => $item)
-                                <div class="projects_one_single">
-                                    <div class="projects_one_img">
-                                        <a href="/usaha/{{ $item->id }}"><img src="{{asset('storage/'.$item->gambar)}}" style="width:375px;height:325px;" alt=""></a>
-                                        <div class="project_one_icon">
-                                            <i class="fa fa-heart"></i>
-                                        </div>
-                                    </div>
-                                    <div class="projects_one_content">
-                                        <div class="porjects_one_text">
-                                            <p><span>by</span> {{ $item->usaha->name }}</p>
-                                            <h3><a href="/usaha/{{ $item->id }}">UMKM<br>{{ $item->nama_usaha }}</a></h3>
-                                        </div>
-                                        
-                                        {{-- <div class="projects_categories">
-                                            <div class="projects_categories_left">
-                                                <div class="left_icon">
-                                                    <img src="assets/images/project/folder-icon.png" alt="">
-                                                </div>
-                                                <div class="left_text">
-                                                    <p>Health & Fitness</p>
+                                    @if ($count < $limit)
+                                        <div class="projects_one_single">
+                                            <div class="projects_one_img">
+                                                <a href="/usaha/{{ $item->id }}"><img src="{{asset('storage/'.$item->gambar)}}" style="width:375px;height:325px;" alt=""></a>
+                                                <div class="project_one_icon">
+                                                    <i class="fa fa-heart"></i>
                                                 </div>
                                             </div>
-                                            <div class="projects_categories_right">
-                                                <div class="right_icon">
-                                                    <img src="assets/images/project/flag.png" alt="">
+                                            <div class="projects_one_content">
+                                                <div class="porjects_one_text">
+                                                    <p><span>by</span> {{ $item->usaha->name }}</p>
+                                                    <h3><a href="/usaha/{{ $item->id }}">UMKM<br>{{ $item->nama_usaha }}</a></h3>
                                                 </div>
-                                                <div class="right_text">
-                                                    <p>United Kingdom</p>
-                                                </div>
+                                                
+                                                {{-- <div class="projects_categories">
+                                                    <div class="projects_categories_left">
+                                                        <div class="left_icon">
+                                                            <img src="assets/images/project/folder-icon.png" alt="">
+                                                        </div>
+                                                        <div class="left_text">
+                                                            <p>Health & Fitness</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="projects_categories_right">
+                                                        <div class="right_icon">
+                                                            <img src="assets/images/project/flag.png" alt="">
+                                                        </div>
+                                                        <div class="right_text">
+                                                            <p>United Kingdom</p>
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
                                             </div>
-                                        </div> --}}
-                                    </div>
-                                    <div class="projects_one_bottom">
-                                        <ul class="list-unstyled">
+                                            <div class="projects_one_bottom">
+                                                <ul class="list-unstyled">
 
-                                            <li>
-                                                <h5>Rp {{ $item->dana }}</h5>
-                                                <p>Dibutuhkan</p>
-                                            </li>
-                                            {{-- <li>
-                                                <h5>{{ $item->waktu*7 }}</h5>
-                                                <p>Days Left</p>
-                                            </li> --}}
-                                        </ul>
-                                    </div>
-                                </div>
+                                                    <li>
+                                                        <h5>Rp{{ number_format($item->dana, 0, ',', '.') ?? '-' }}</h5>
+                                                        <p>Dibutuhkan</p>
+                                                    </li>
+                                                    {{-- <li>
+                                                        <h5>{{ $item->waktu*7 }}</h5>
+                                                        <p>Days Left</p>
+                                                    </li> --}}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        @php $count++; @endphp
+                                    @else
+                                        @php $count = 0; @endphp
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -273,11 +279,11 @@
                                     <div class="projects_one_bottom">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <h5>Rp {{ $item->dana }}</h5>
+                                                <h5>Rp {{ number_format($item->dana, 0, ',', '.') ?? '-' }}</h5>
                                                 <p>Dana didapatkan</p>
                                             </li>
                                             <li>
-                                                <h5>Rp {{ $item->dana*10/100 }}</h5>
+                                                <h5>Rp {{ number_format($item->dana*10/100, 0, ',', '.') ?? '-' }}</h5>
                                                 <p>Bagi Hasil</p>
                                             </li>
                                             {{-- <li>

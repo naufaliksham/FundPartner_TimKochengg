@@ -194,7 +194,7 @@
                                             <div class="project_idea_details_content">
                                                 <div class="project_details_right_top">
                                                     <ul class="project_details_rate_list list-unstyled">
-                                                        <li>Membutuhkan <span>Rp.{{ $item->dana }}</span></li>
+                                                        <li>Membutuhkan <span>Rp{{ $item->dana }}</span></li>
                                                         <li>Pembayaran: <span>{{$item->pembayaran}}</span></li>
                                                         <li>Waktu pengembalian: <span>{{$item->waktu}} Minggu</span></li>
                                                         {{-- <li><span>60</span>Backers</li> --}}
@@ -224,8 +224,8 @@
                                                     @endif
                                                     <h4>Metode Pembayaran: {{ $item->pembayaran }}</h4>
                                                     <h5> Total yang harus dibayarkan:
-                                                        Rp.{{ number_format($item->dana, 0, ',', '.') ?? '-' }} +
-                                                        Rp.{{ number_format($item->dana * 0.1, 0, ',', '.') ?? '-' }}
+                                                        Rp{{ $item->dana.'.00' }} +
+                                                        Rp{{ $item->dana.'.00' }}
                                                         (Investor)
                                                     </h5>
                                                 </div>
@@ -251,7 +251,7 @@
                                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                                     <td>{{$bayar->id}}</td>
                                                                     <td>{{ $bayar->tanggal_jatuh_tempo }}</td>
-                                                                    <td>Rp.{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
+                                                                    <td>Rp{{ number_format($bayar->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                                     </td>
                                                                     @php
                                                                         $tempo = $bayar->tanggal_jatuh_tempo;
@@ -302,7 +302,7 @@
                                                 <table class="table table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col"> Id</th>
+                                                            <th scope="col">Id</th>
                                                             <th scope="col">Jenis Pembayaran</th>
                                                             <th scope="col">Jumlah Pembayaran</th>
                                                             <th scope="col">Denda</th>
@@ -321,15 +321,15 @@
                                                                     <td>{{ $riwayat->jenis_pembayaran }}
                                                                     </td>
                                                                     <td>
-                                                                        Rp.{{ number_format($riwayat->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
+                                                                        Rp{{ number_format($riwayat->jumlah_pembayaran, 0, ',', '.') ?? '-' }}
                                                                     </td>
                                                                     <td>
-                                                                        Rp.{{ number_format($riwayat->denda, 0, ',', '.') ?? '-' }}
+                                                                        Rp{{ number_format($riwayat->denda, 0, ',', '.') ?? '-' }}
                                                                     </td>
                                                                     <td>
-                                                                        Rp.{{ number_format($riwayat->fee, 0, ',', '.') ?? '-' }}
+                                                                        Rp{{ number_format($riwayat->fee, 0, ',', '.') ?? '-' }}
                                                                     </td>
-                                                                    <td>Rp.{{ number_format($riwayat->total, 0, ',', '.') ?? '-' }}
+                                                                    <td>Rp{{ number_format($riwayat->total, 0, ',', '.') ?? '-' }}
                                                                     </td>
                                                                     <td>{{ $riwayat->waktu_pembayaran }}
                                                                     </td>

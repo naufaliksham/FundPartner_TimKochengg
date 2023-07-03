@@ -36,8 +36,8 @@
                             <div class="project_details_right">
                                 <div class="project_details_right_top">
                                     <ul class="project_details_rate_list list-unstyled">
-                                        <li>Membutuhkan <span>Rp.{{ $item->dana }}</span></li>
-                                        <li>Metode pengembalian: <span>{{$item->pembayaran}}</span></li>
+                                        <li>Membutuhkan <span>{{ number_format($item->dana, 0, ',', '.') ?? '-' }}</span></li>
+                                        <li>Metode pengembalian: <span>{{ number_format($item->pembayaran, 0, ',', '.') ?? '-' }}</span></li>
                                         <li>Waktu pengembalian: <span>{{$item->waktu}} Minggu</span></li>
                                         {{-- <li><span>60</span>Backers</li> --}}
                                     </ul>

@@ -54,7 +54,7 @@
                             <ul class="list-unstyled">
 
                                 <li>
-                                    <h5>Rp {{ $item->dana }}</h5>
+                                    <h5>Rp{{ number_format($item->dana, 0, ',', '.') ?? '-' }}</h5>
                                     <p>Dana didapatkan</p>
                                 </li>
                                 <li>
@@ -131,8 +131,7 @@
                         <p class="text-black " style="font-size: 2.5rem; text-transform: uppercase; font-weight: 600">
                             {{ $data->nama_usaha }}</p>
                         <div style="border-radius: 6px; background-color: rgb(147, 232, 249); padding-top: 4px;">
-                            <p style="margin-left: 10px; color: rgb(22, 153, 180)">Jumlah Modal Yang Harus Dibayar Rp.
-                                {{ number_format($data->dana, 2) }}</p>
+                            <p style="margin-left: 10px; color: rgb(22, 153, 180)">Jumlah Modal Yang Harus Dibayar Rp{{ number_format($data->dana, 0, ',', '.') ?? '-' }}</p>
                         </div>
                         <div class="row" style="gap: 20px">
                             <div class="col-md-4 text-center">
@@ -184,9 +183,10 @@
                     </div>
                 </div>
             </div>
-                 {{-- @endforeach --}}
+            {{-- @endforeach --}}
             @endforeach
         </div>
+        {{ $datas->links() }}
     </div>
 </div>
 @endsection

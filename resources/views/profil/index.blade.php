@@ -157,7 +157,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="text-gray-700">Saldo:</label>
-                    <p class="text-gray-900">Rp{{ $user->saldo }}</p>
+                    <p class="text-gray-900">Rp{{ number_format($user->saldo, 0, ',', '.') ?? '-' }}</p>
                     <a href="{{ route('topup.form') }}" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm text-blue-900 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 dark:text-blue focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                         <span class="relative px-5 py-1 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md">
                             Topup

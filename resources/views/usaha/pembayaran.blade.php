@@ -30,7 +30,7 @@
                     @endphp
                     <div style="display: flex; justify-content: space-between; align-items: baseline;">
                         <h5 style="text-align: left; margin-bottom: 0;">Saldo:
-                            Rp.{{ number_format($saldo, 0, ',', '.') ?? '-' }}</h5>
+                            Rp{{ $saldo.".00" }}</h5>
                         <h5 style="text-align: left; margin-bottom: 0;">{{ $biaya->tanggal_jatuh_tempo }}</h5>
                     </div>
                     <hr>

@@ -10,7 +10,7 @@
     <div class="card" style="width: 400px;">
         <div class="card-body">
             <h5 class="card-title" style="text-align:center; text-transform: uppercase">Pembayaran</h5>
-            <p class="card-text" style="text-align: right">Saldo: Rp. {{ number_format(Auth::user()->saldo, 2) }}</p>
+            <p class="card-text" style="text-align: right">Saldo anda : Rp{{ number_format(Auth::user()->saldo, 0, ',', '.') ?? '-' }}</p>
             <p>Nama Usaha <span
                     style="text-transform: uppercase; font-weight: 800">{{ $usaha->nama_usaha }}</span>
             </p>
@@ -29,10 +29,10 @@
                 }
                             $total = $usaha->dana +  + $fee_apk;
                 @endphp
-                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    {{-- <div style="display: flex; justify-content: space-between; align-items: baseline;">
                         <h5 style="text-align: left; margin-bottom: 0;">Saldo:
-                            Rp.{{ number_format($saldo, 0, ',', '.') ?? '-' }}</h5>
-                    </div>
+                            Rp{{ $saldo }}</h5>
+                    </div> --}}
                     <hr>
                     <table style="width: 100%;">
                         <tr>
@@ -40,19 +40,19 @@
                             <td></td>
                             <td></td>
                             <td style="text-align: right;">
-                                Rp.{{ number_format($usaha->dana, 0, ',', '.') ?? '-' }}</td>
+                                Rp{{ number_format($usaha->dana, 0, ',', '.') ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th style="text-align: left;">Biaya aplikasi(5k)</th>
                             <td></td>
                             <td></td>
-                            <td style="text-align: right;">Rp.{{ number_format($fee_apk, 0, ',', '.') ?? '-' }}</td>
+                            <td style="text-align: right;">Rp{{ number_format($fee_apk, 0, ',', '.') ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th style="text-align: left;">Total</th>
                             <td></td>
                             <td></td>
-                            <td style="text-align: right;">Rp.{{ number_format($total, 0, ',', '.') ?? '-' }}</td>
+                            <td style="text-align: right;">Rp{{ number_format($total, 0, ',', '.') ?? '-' }}</td>
                             <input type="hidden" name="total" value="{{ $total }}">
                         </tr>
                     </table>

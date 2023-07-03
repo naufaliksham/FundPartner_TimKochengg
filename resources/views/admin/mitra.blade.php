@@ -12,8 +12,8 @@
                     <th class="py-2 px-4">Nama</th>
                     <th class="py-2 px-4">Email</th>
                     <th class="py-2 px-4">Saldo</th>
-                    {{-- <th class="py-2 px-4">Edit Saldo</th> --}}
-                    <th class="py-2 px-4">ktp</th>
+                    <th class="py-2 px-4">Foto</th>
+                    <th class="py-2 px-4">KTP</th>
                     <th class="py-2 px-4">Validasi KTP</th>
                 </tr>
             </thead>
@@ -29,17 +29,20 @@
                     </td> --}}
                     <td>
                         <center>
+                            @if (is_null($user->foto))
+                                X
+                            @else
+                                <img id="myImg" src="{{ asset('storage/' . $user->foto) }}" style="max-width:60px" onclick="openModal('{{ asset('storage/' . $user->foto) }}')">
+                            @endif
+                        </center>
+                    </td>
+                    <td>
+                        <center>
                             @if (is_null($user->ktp))
                                 X
                             @else
-                                <img id="myImg" src="{{ asset('storage/' . $user->ktp) }}" style="max-width:60px">
+                                <img id="myImg" src="{{ asset('storage/' . $user->ktp) }}" style="max-width:60px" onclick="openModal('{{ asset('storage/' . $user->ktp) }}')">
                             @endif
-
-                            <div id="myModal" class="modal">
-                                <span class="close">&times;</span>
-                                <img class="modal-content" id="img01">
-                                <div id="caption"></div>
-                            </div>
                         </center>
                     </td>
                     <td class="py-2 px-4">
@@ -66,23 +69,27 @@
     </div>
 </div>
 
-  
-  <script>
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script>
+function openModal(imageUrl) {
   var modal = document.getElementById("myModal");
-  
-  var img = document.getElementById("myImg");
   var modalImg = document.getElementById("img01");
   var captionText = document.getElementById("caption");
-  img.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-  }
   
-  var span = document.getElementsByClassName("close")[0];
-  span.onclick = function() { 
-    modal.style.display = "none";
-  }
-  </script>
+  modal.style.display = "block";
+  modalImg.src = imageUrl;
+  captionText.innerHTML = "Pastikan KTP dan Foto Profil sama";
+}
+
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+</script>
 
 @endsection
