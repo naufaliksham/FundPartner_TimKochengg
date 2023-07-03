@@ -186,7 +186,10 @@
             {{-- @endforeach --}}
             @endforeach
         </div>
-        {{ $datas->links() }}
     </div>
 </div>
+<div class="pagination justify-content-center">
+    {{ $datas->links('pagination::bootstrap-4') }}
+</div>
+<br>
 @endsection
